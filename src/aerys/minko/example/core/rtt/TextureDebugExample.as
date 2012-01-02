@@ -1,4 +1,4 @@
-package aerys.minko.example.rtt
+package aerys.minko.example.core.rtt
 {
 	import aerys.minko.render.effect.basic.BasicStyle;
 	import aerys.minko.render.target.TextureRenderTarget;

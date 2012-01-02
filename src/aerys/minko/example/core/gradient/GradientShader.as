@@ -1,4 +1,4 @@
-package aerys.minko.example.gradient
+package aerys.minko.example.core.gradient
 {
 	import aerys.minko.render.shader.ActionScriptShader;
 	import aerys.minko.render.shader.SValue;

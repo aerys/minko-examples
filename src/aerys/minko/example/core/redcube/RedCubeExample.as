@@ -1,9 +1,7 @@
-package aerys.minko.example.red
+package aerys.minko.example.core.redcube
 {
-	import aerys.minko.Minko;
 	import aerys.minko.scene.node.mesh.primitive.CubeMesh;
 	import aerys.minko.scene.node.texture.ColorTexture;
-	import aerys.minko.type.log.DebugLevel;
 
 	public class RedCubeExample extends MinkoExampleApplication
 	{

@@ -1,4 +1,4 @@
-package aerys.minko.example.texture
+package aerys.minko.example.core.texture
 {
 	import aerys.minko.scene.node.group.LoaderGroup;
 	import aerys.minko.scene.node.mesh.primitive.CubeMesh;

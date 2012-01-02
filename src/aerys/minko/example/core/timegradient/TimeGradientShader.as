@@ -1,4 +1,4 @@
-package aerys.minko.example.timegradient
+package aerys.minko.example.core.timegradient
 {
 	import aerys.minko.render.effect.Style;
 	import aerys.minko.render.shader.ActionScriptShader;

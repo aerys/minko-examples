@@ -3,7 +3,10 @@ package
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.node.camera.TargetCamera;
 	import aerys.minko.scene.node.group.Group;
+	import aerys.minko.scene.node.texture.BitmapTexture;
+	import aerys.minko.scene.node.texture.ITexture;
 	
+	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -11,15 +14,15 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport	: Viewport		= new Viewport();
-		private var _camera		: TargetCamera	= new TargetCamera();
-		private var _scene		: Group			= new Group(_camera);
+		private var _viewport		: Viewport		= new Viewport();
+		private var _camera			: TargetCamera	= new TargetCamera();
+		private var _scene			: Group			= new Group(_camera);
 		
-		private var _cursor		: Point			= new Point();
+		private var _cursor			: Point			= new Point();
 		
-		protected function get viewport() 	: Viewport		{ return _viewport; }
-		protected function get scene() 		: Group			{ return _scene; }
-		protected function get camera() 	: TargetCamera	{ return _camera; }
+		protected function get viewport() 		: Viewport		{ return _viewport; }
+		protected function get scene() 			: Group			{ return _scene; }
+		protected function get camera() 		: TargetCamera	{ return _camera; }
 		
 		public function MinkoExampleApplication()
 		{
@@ -33,13 +36,14 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			
 			camera.distance = 5.;
+			
 			initializeScene();
 			
 			stage.frameRate = 30;
 			stage.addChild(_viewport);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
@@ -55,6 +59,8 @@ package
 		
 		private function mouseMoveHandler(event : MouseEvent) : void
 		{
+			return ;
+			
 			if (event.buttonDown)
 			{
 				_camera.rotation.x -= (event.stageY - _cursor.y) * 0.01;
@@ -63,6 +69,13 @@ package
 			
 			_cursor.x = event.stageX;
 			_cursor.y = event.stageY;
+		}
+		
+		private function mouseWheelHandler(event : MouseEvent) : void
+		{
+			_camera.distance -= event.delta;
+			if (_camera.distance < 5.0)
+				_camera.distance = 5.0;
 		}
 	}
 }

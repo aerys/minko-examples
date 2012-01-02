@@ -1,10 +1,10 @@
-package aerys.minko.example.gradient3
+package aerys.minko.example.core.threewaygradient
 {
 	import aerys.minko.render.shader.ActionScriptShader;
 	import aerys.minko.render.shader.SValue;
 	import aerys.minko.type.stream.format.VertexComponent;
 	
-	public final class Gradient3Shader extends ActionScriptShader
+	public final class ThreeWayGradientShader extends ActionScriptShader
 	{
 		private var _color : SValue = null;
 		

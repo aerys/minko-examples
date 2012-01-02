@@ -1,13 +1,12 @@
-package aerys.minko.example.rtt
+package aerys.minko.example.core.rtt
 {
-	import aerys.minko.render.effect.IEffect;
 	import aerys.minko.render.effect.IEffectPass;
 	import aerys.minko.render.effect.IRenderingEffect;
-	import aerys.minko.render.effect.basic.BasicEffect;
+	import aerys.minko.render.effect.AbstractSinglePassEffect;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.target.AbstractRenderTarget;
 	import aerys.minko.scene.data.StyleData;
 	import aerys.minko.scene.data.TransformData;
-	import aerys.minko.scene.node.texture.RenderTargetTexture;
 	
 	import flash.utils.Dictionary;
 	
@@ -18,8 +17,8 @@ package aerys.minko.example.rtt
 		public function SimpleRTTEffect(target : AbstractRenderTarget)
 		{
 			_passes = new <IEffectPass>[
-				new BasicEffect(1, target),
-				new BasicEffect()
+				new AbstractSinglePassEffect(new BasicShader(), 1, target),
+				new AbstractSinglePassEffect(new BasicShader()),
 			];
 		}
 		

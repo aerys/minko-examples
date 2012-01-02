@@ -1,4 +1,4 @@
-package aerys.minko.example.light
+package aerys.minko.example.core.light
 {
 	import aerys.minko.render.shader.ActionScriptShader;
 	import aerys.minko.render.shader.SValue;
