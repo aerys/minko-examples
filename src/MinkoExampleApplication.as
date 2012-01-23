@@ -1,12 +1,12 @@
 package
 {
 	import aerys.minko.render.Viewport;
+	import aerys.minko.scene.node.camera.Camera;
 	import aerys.minko.scene.node.camera.TargetCamera;
 	import aerys.minko.scene.node.group.Group;
-	import aerys.minko.scene.node.texture.BitmapTexture;
-	import aerys.minko.scene.node.texture.ITexture;
+	import aerys.minko.scene.node.group.TransformGroup;
+	import aerys.minko.type.controller.ArcBallController;
 	
-	import flash.display.BitmapData;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -14,15 +14,32 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport		: Viewport		= new Viewport();
-		private var _camera			: TargetCamera	= new TargetCamera();
-		private var _scene			: Group			= new Group(_camera);
+		private var _viewport			: Viewport			= new Viewport();
+		private var _camera				: Camera			= new Camera();
+		private var _cameraController	: ArcBallController	= null;
+		private var _scene				: Group				= new Group();
 		
-		private var _cursor			: Point			= new Point();
+		private var _cursor				: Point				= new Point();
 		
-		protected function get viewport() 		: Viewport		{ return _viewport; }
-		protected function get scene() 			: Group			{ return _scene; }
-		protected function get camera() 		: TargetCamera	{ return _camera; }
+		protected function get viewport() : Viewport
+		{
+			return _viewport;
+		}
+		
+		protected function get scene() : Group
+		{
+			return _scene;
+		}
+		
+		protected function get camera() : Camera
+		{
+			return _camera;
+		}
+
+		protected function get cameraController() : ArcBallController
+		{
+			return _cameraController;
+		}
 		
 		public function MinkoExampleApplication()
 		{
@@ -36,7 +53,17 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			camera.distance = 5.;
+			camera.lookAt.set(0., 0., 0.);
+			camera.position.set(0., 0., -5.);
+			
+			var cameraGroup : TransformGroup = new TransformGroup(
+				_camera
+			);
+			
+			_cameraController = new ArcBallController(cameraGroup);
+			_cameraController.bindDefaultControls(stage);
+			
+			_scene.addChild(cameraGroup);
 			
 			initializeScene();
 			
@@ -59,23 +86,12 @@ package
 		
 		private function mouseMoveHandler(event : MouseEvent) : void
 		{
-			return ;
-			
-			if (event.buttonDown)
-			{
-				_camera.rotation.x -= (event.stageY - _cursor.y) * 0.01;
-				_camera.rotation.y -= (event.stageX - _cursor.x) * 0.01;
-			}
-			
-			_cursor.x = event.stageX;
-			_cursor.y = event.stageY;
+			// nothing
 		}
 		
 		private function mouseWheelHandler(event : MouseEvent) : void
 		{
-			_camera.distance -= event.delta;
-			if (_camera.distance < 5.0)
-				_camera.distance = 5.0;
+			// nothing
 		}
 	}
 }

@@ -13,6 +13,8 @@ package aerys.minko.example.core.controller
 	
 	import flash.events.Event;
 	import flash.net.URLRequest;
+	import aerys.minko.type.controller.AnimationController;
+	import aerys.minko.type.controller.ArcBallController;
 
 	public class ControllerExample extends MinkoExampleApplication
 	{
