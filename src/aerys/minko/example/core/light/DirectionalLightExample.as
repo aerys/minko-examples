@@ -12,13 +12,12 @@ package aerys.minko.example.core.light
 
 	public class DirectionalLightExample extends MinkoExampleApplication
 	{
-		private var _shader	: IShader	= new DirectionalLightShader();
-		private var _matrix	: Matrix4x4	= new Matrix4x4();
+		protected var _shader	: IShader	= new DirectionalLightShader();
+		protected var _matrix	: Matrix4x4	= new Matrix4x4();
 		
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
-			camera.lookAt.y = 1.3;
-			camera.distance = 10.;
+			cameraController.setPivot(0, 1.3, 0);
 			
 			scene.addChild(
 				new EffectGroup(

@@ -1,9 +1,12 @@
 package aerys.minko.example.core.cubes
 {
 	import aerys.minko.render.effect.SinglePassRenderingEffect;
+	import aerys.minko.render.effect.basic.BasicStyle;
 	import aerys.minko.scene.node.mesh.IMesh;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.modifier.NormalMeshModifier;
+	import aerys.minko.type.enum.DepthTest;
+	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.stream.IndexStream;
 	import aerys.minko.type.stream.StreamUsage;

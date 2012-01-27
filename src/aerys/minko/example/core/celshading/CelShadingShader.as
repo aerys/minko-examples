@@ -8,6 +8,7 @@ package aerys.minko.example.core.celshading
 	{
 		private static const NUM_LEVELS					: uint			= 6;
 		
+		private static const DEFAULT_THICKNESS			: Number		= 0.04;
 		private static const DEFAULT_AMBIENT			: Number		= .2;
 		private static const DEFAULT_LIGHT_DIRECTION	: ConstVector4	= new ConstVector4(1., -1., 0.);
 		private static const DEFAULT_DIFFUSE_COLOR		: ConstVector4	= new ConstVector4(1., 1., 1., 1.);
@@ -23,7 +24,7 @@ package aerys.minko.example.core.celshading
 				dotProduct3(vertexNormal, eyeToVertex)
 			);
 			
-			var thickness : SValue	= getNamedParameter("thickness", .06);
+			var thickness : SValue	= getNamedParameter("thickness", DEFAULT_THICKNESS);
 			var delta : SValue = multiply(_isEdge, vertexNormal.xyz, thickness);
 			
 			return multiply4x4(

@@ -2,6 +2,7 @@ package aerys.minko.example.collada.astroboy
 {
 	import aerys.minko.render.effect.animation.AnimationStyle;
 	import aerys.minko.scene.node.IScene;
+	import aerys.minko.scene.node.group.AnimationGroup;
 	import aerys.minko.scene.node.group.LoaderGroup;
 	import aerys.minko.scene.node.group.StyleGroup;
 	import aerys.minko.scene.node.group.TransformGroup;
@@ -10,7 +11,9 @@ package aerys.minko.example.collada.astroboy
 	import aerys.minko.type.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
 	
+	import flash.events.Event;
 	import flash.net.URLRequest;
+	import flash.utils.getTimer;
 
 	public class AstroboyExample extends MinkoExampleApplication
 	{
@@ -18,7 +21,7 @@ package aerys.minko.example.collada.astroboy
 		{
 			LoaderGroup.registerParser("dae", ColladaParser);
 			
-			var plane 	: LoaderGroup 	= new LoaderGroup();
+			var astroboy 	: LoaderGroup 	= new LoaderGroup();
 			var options : ParserOptions = new ParserOptions();
 			
 			options.loadTextures = true;
@@ -26,14 +29,14 @@ package aerys.minko.example.collada.astroboy
 			{
 				request.url = "../assets/seymour/" + request.url.match(/^.*\/([^\/]+)\..*$/)[1]
 							  + ".jpg";
-				
+			
 				return LoaderGroup.load(request, options);
 			};
 			
-			plane.load(new URLRequest("../assets/seymour/astroboy.dae"), options);
+			astroboy.load(new URLRequest("../assets/seymour/astroboy.dae"), options);
 			
 			// tune 3D transform
-			var tg : TransformGroup = new TransformGroup(plane);
+			var tg : TransformGroup = new TransformGroup(astroboy);
 			
 			tg.transform
 				.appendRotation(-Math.PI * 0.5, ConstVector4.X_AXIS)
@@ -44,7 +47,7 @@ package aerys.minko.example.collada.astroboy
 			var sg : StyleGroup = new StyleGroup(tg);
 			
 			sg.style.set(AnimationStyle.METHOD, AnimationMethod.DUAL_QUATERNION_SKINNING);
-			
+		
 			scene.addChild(sg);
 		}
 	}

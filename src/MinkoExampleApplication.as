@@ -2,13 +2,13 @@ package
 {
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.node.camera.Camera;
-	import aerys.minko.scene.node.camera.TargetCamera;
-	import aerys.minko.scene.node.group.Group;
+	import aerys.minko.scene.node.group.StyleGroup;
 	import aerys.minko.scene.node.group.TransformGroup;
 	import aerys.minko.type.controller.ArcBallController;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
@@ -17,7 +17,7 @@ package
 		private var _viewport			: Viewport			= new Viewport();
 		private var _camera				: Camera			= new Camera();
 		private var _cameraController	: ArcBallController	= null;
-		private var _scene				: Group				= new Group();
+		private var _scene				: StyleGroup		= new StyleGroup();
 		
 		private var _cursor				: Point				= new Point();
 		
@@ -26,7 +26,7 @@ package
 			return _viewport;
 		}
 		
-		protected function get scene() : Group
+		protected function get scene() : StyleGroup
 		{
 			return _scene;
 		}
@@ -84,12 +84,17 @@ package
 			_viewport.render(_scene);
 		}
 		
-		private function mouseMoveHandler(event : MouseEvent) : void
+		protected function mouseMoveHandler(event : MouseEvent) : void
 		{
 			// nothing
 		}
 		
-		private function mouseWheelHandler(event : MouseEvent) : void
+		protected function mouseWheelHandler(event : MouseEvent) : void
+		{
+			// nothing
+		}
+		
+		protected function keyDownHandler(event : KeyboardEvent) : void
 		{
 			// nothing
 		}

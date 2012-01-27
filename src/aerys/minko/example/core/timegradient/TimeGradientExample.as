@@ -14,8 +14,7 @@ package aerys.minko.example.core.timegradient
 		
 		override protected function initializeScene():void
 		{
-			camera.lookAt.y = 1.3;
-			camera.distance = 10.;
+			cameraController.setPivot(0, 1.3, 0);
 			
 			var teapot : EffectGroup = new EffectGroup(
 				new SinglePassRenderingEffect(_shader),

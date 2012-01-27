@@ -20,8 +20,7 @@ package aerys.minko.example.effects.wireframe
 			
 			scene.addChild(teapot);
 			
-			camera.distance = 10.0;
-			camera.lookAt.y = 1.5;
+			cameraController.setPivot(0, 1.5, 0);
 		}
 	}
 }

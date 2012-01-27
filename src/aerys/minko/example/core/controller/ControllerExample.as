@@ -29,17 +29,12 @@ package aerys.minko.example.core.controller
 			camera.lookAt.set(0., 0., 0.);
 			camera.position.set(0., 0., -5.);
 			
-			_controller = new ArcBallController(arcBallCamera);
-			_controller.bindDefaultControls(stage);
-			
 			var cube : TransformGroup = new TransformGroup(
 				new LoaderGroup().load(new URLRequest("../assets/checker.jpg"))
 								 .addChild(CubeMesh.cubeMesh)
 			);
 			
-			scene.removeChild(this.camera)
-				 .addChild(arcBallCamera)
-				 .addChild(cube);
+			scene.addChild(cube);
 			
 			var matrices : Vector.<Matrix4x4>	= new <Matrix4x4>[
 				new Matrix4x4(),

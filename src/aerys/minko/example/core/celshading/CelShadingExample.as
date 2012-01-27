@@ -23,8 +23,8 @@ package aerys.minko.example.core.celshading
 			
 			viewport.backgroundColor = 0x666666;
 			
-			camera.position.set(0., 0., -6);
-			cameraController.setCenter(0, 1.5, 0);
+			camera.position.set(0., 0., -7);
+			cameraController.setPivot(0, 1.5, 0);
 			
 			scene.addChild(new EffectGroup(
 				new SinglePassRenderingEffect(_shader),

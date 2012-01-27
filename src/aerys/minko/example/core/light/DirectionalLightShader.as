@@ -22,7 +22,10 @@ package aerys.minko.example.core.light
 			
 			var lambert : SValue = saturate(negate(dotProduct3(normal, direction)));
 			
-			return multiply(add(lambert,ambient), color);
+			return float4(
+				multiply(add(lambert,ambient), color.rgb),
+				1
+			);
 		}
 	}
 }
