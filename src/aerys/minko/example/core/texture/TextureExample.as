@@ -1,17 +1,22 @@
 package aerys.minko.example.core.texture
 {
-	import aerys.minko.scene.node.group.LoaderGroup;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.node.mesh.primitive.CubeMesh;
-	
-	import flash.net.URLRequest;
+	import aerys.minko.type.loader.TextureLoader;
 
 	public class TextureExample extends MinkoExampleApplication
 	{
-		override protected function initializeScene():void
+		[Embed("../assets/checker.jpg")]
+		private static const ASSET_TEXTURE	: Class;
+		
+		override protected function initializeScene() : void
 		{
 			scene.addChild(
-				LoaderGroup.load(new URLRequest("../assets/wall_small.png"))
-						   .addChild(CubeMesh.cubeMesh)
+				new CubeMesh(
+					new Effect(new BasicShader()),
+					{ "diffuse map" : TextureLoader.loadClass(ASSET_TEXTURE) }
+				)
 			);
 		}
 	}

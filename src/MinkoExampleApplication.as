@@ -1,10 +1,10 @@
 package
 {
 	import aerys.minko.render.Viewport;
-	import aerys.minko.scene.node.camera.Camera;
-	import aerys.minko.scene.node.group.StyleGroup;
-	import aerys.minko.scene.node.group.TransformGroup;
-	import aerys.minko.type.controller.ArcBallController;
+	import aerys.minko.scene.controller.ArcBallController;
+	import aerys.minko.scene.node.Camera;
+	import aerys.minko.scene.node.Group;
+	import aerys.minko.scene.node.Scene;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -14,10 +14,10 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport();
-		private var _camera				: Camera			= new Camera();
+		private var _viewport			: Viewport			= null;
+		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
-		private var _scene				: StyleGroup		= new StyleGroup();
+		private var _scene				: Scene				= new Scene();
 		
 		private var _cursor				: Point				= new Point();
 		
@@ -26,7 +26,7 @@ package
 			return _viewport;
 		}
 		
-		protected function get scene() : StyleGroup
+		protected function get scene() : Scene
 		{
 			return _scene;
 		}
@@ -53,22 +53,24 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			camera.lookAt.set(0., 0., 0.);
-			camera.position.set(0., 0., -5.);
+			_viewport = new Viewport(stage);
 			
-			var cameraGroup : TransformGroup = new TransformGroup(
-				_camera
-			);
+			_camera = new Camera(_viewport);
+			_camera.lookAt.set(0., 0., 0.);
+			_camera.position.set(0., 0., -5.);
 			
-			_cameraController = new ArcBallController(cameraGroup);
+			var cameraGroup : Group = new Group(_camera);
+			
+			_cameraController = new ArcBallController();
 			_cameraController.bindDefaultControls(stage);
+			cameraGroup.controller = _cameraController;
 			
 			_scene.addChild(cameraGroup);
 			
 			initializeScene();
 			
-			stage.frameRate = 30;
-			stage.addChild(_viewport);
+			stage.frameRate = 60;
+//			stage.addChild(_viewport);
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 			stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);

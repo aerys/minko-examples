@@ -1,9 +1,10 @@
 package aerys.minko.example.core.gradient
 {
-	import aerys.minko.render.shader.ActionScriptShader;
-	import aerys.minko.render.shader.SValue;
+	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.Shader;
 	
-	public class GradientShader extends ActionScriptShader
+	
+	public class GradientShader extends Shader
 	{
 		private var _color1	: uint	= 0;
 		private var _color2	: uint	= 0;
@@ -16,15 +17,15 @@ package aerys.minko.example.core.gradient
 			_color2 = color2;
 		}
 		
-		override protected function getOutputPosition():SValue
+		override protected function getVertexPosition() : SFloat
 		{
-			return vertexClipspacePosition;
+			return localToScreen(vertexXYZ);
 		}
 		
-		override protected function getOutputColor():SValue
+		override protected function getPixelColor() : SFloat
 		{
-			var pos : SValue = interpolate(vertexPosition);
-			var c : SValue = absolute(pos.y).scaleBy(2.);
+			var pos : SFloat = interpolate(vertexXYZ);
+			var c : SFloat = absolute(pos.y).scaleBy(2.);
 			
 			return mix(rgba(_color1), rgba(_color2), c);
 		}

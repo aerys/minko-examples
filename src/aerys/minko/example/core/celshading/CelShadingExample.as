@@ -1,11 +1,8 @@
 package aerys.minko.example.core.celshading
 {
-	import aerys.minko.render.effect.SinglePassRenderingEffect;
-	import aerys.minko.render.shader.IShader;
-	import aerys.minko.scene.node.group.EffectGroup;
-	import aerys.minko.scene.node.mesh.modifier.NormalMeshModifier;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.primitive.TeapotMesh;
-	import aerys.minko.type.math.ConstVector4;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
@@ -15,7 +12,6 @@ package aerys.minko.example.core.celshading
 	{
 		private var _lightDirection	: Vector4	= new Vector4(1., -.5, 0.);
 		private var _lightMatrix	: Matrix4x4	= new Matrix4x4();
-		private var _shader			: IShader	= new CelShadingShader();
 		
 		override protected function initializeScene():void
 		{
@@ -26,21 +22,25 @@ package aerys.minko.example.core.celshading
 			camera.position.set(0., 0., -7);
 			cameraController.setPivot(0, 1.5, 0);
 			
-			scene.addChild(new EffectGroup(
-				new SinglePassRenderingEffect(_shader),
-				new NormalMeshModifier(new TeapotMesh(20))
-			));
-			
-			_shader.setNamedParameter(
-				"diffuse color",
-				new Vector4(.9, .9, 1, 1)
+			var mesh : Mesh = new TeapotMesh(
+				new Effect(new CelShadingShader()),
+				20
 			);
+			
+			mesh.bindings.setProperty("thickness", .05);
+			
+			scene.addChild(mesh);
+			
+			scene.bindings.setProperties({
+				"light diffuse color"	: 0xfffffffff,
+				"light ambient"			: 0.4
+			});
 		}
 		
 		override protected function enterFrameHandler(event:Event):void
 		{
-			_lightMatrix.appendRotation(0.01, ConstVector4.Y_AXIS);
-			_shader.setNamedParameter(
+			_lightMatrix.appendRotation(0.01, Vector4.Y_AXIS);
+			scene.bindings.setProperty(
 				"light direction",
 				_lightMatrix.transformVector(_lightDirection)
 			);

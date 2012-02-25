@@ -1,50 +1,56 @@
 package aerys.minko.example.core.celshading
 {
-	import aerys.minko.render.shader.ActionScriptShader;
-	import aerys.minko.render.shader.SValue;
-	import aerys.minko.type.math.ConstVector4;
+	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.Shader;
+	import aerys.minko.type.math.Vector4;
 	
-	public class CelShadingShader extends ActionScriptShader
+	public class CelShadingShader extends Shader
 	{
-		private static const NUM_LEVELS					: uint			= 6;
+		private static const NUM_LEVELS					: uint		= 6;
 		
-		private static const DEFAULT_THICKNESS			: Number		= 0.04;
-		private static const DEFAULT_AMBIENT			: Number		= .2;
-		private static const DEFAULT_LIGHT_DIRECTION	: ConstVector4	= new ConstVector4(1., -1., 0.);
-		private static const DEFAULT_DIFFUSE_COLOR		: ConstVector4	= new ConstVector4(1., 1., 1., 1.);
+		private static const DEFAULT_THICKNESS			: Number	= 0.04;
+		private static const DEFAULT_AMBIENT			: Number	= .2;
+		private static const DEFAULT_LIGHT_DIRECTION	: Vector4	= new Vector4(1., -1., 0.);
+		private static const DEFAULT_DIFFUSE_COLOR		: Vector4	= new Vector4(1., 1., 1., 1.);
 		
-		private var _isEdge	: SValue	= null;
+		private var _isEdge	: SFloat	= null;
 		
-		override protected function getOutputPosition() : SValue
+		override protected function getVertexPosition() : SFloat
 		{
-			var eyeToVertex : SValue = normalize(subtract(vertexPosition, cameraLocalPosition));
+			var eyeToVertex : SFloat = normalize(subtract(
+				multiply4x4(vertexXYZ, localToWorldMatrix),
+				cameraWorldPosition
+			));
 			
 			_isEdge = lessThan(
 				-0.05,
 				dotProduct3(vertexNormal, eyeToVertex)
 			);
 			
-			var thickness : SValue	= getNamedParameter("thickness", DEFAULT_THICKNESS);
-			var delta : SValue = multiply(_isEdge, vertexNormal.xyz, thickness);
+			var thickness : SFloat	= meshBindings.getParameter("thickness", 1);
+			var delta : SFloat = multiply(_isEdge, vertexNormal.xyz, thickness);
 			
-			return multiply4x4(
-				add(vertexPosition, float4(delta, 0)),
-				localToScreenMatrix
+			var pos : SFloat = multiply4x4(
+				add(vertexXYZ, float4(delta, 0)),
+				localToWorldMatrix
 			);
+			
+			// WORKAROUND
+			_isEdge = float4(_isEdge.x, _isEdge.x, _isEdge.x, _isEdge.x);
+			// !WORKAROUND
+				
+			return multiply4x4(pos, worldToScreenMatrix);
 		}
 		
-		override protected function getOutputColor() : SValue
+		override protected function getPixelColor() : SFloat
 		{
-			var vertexNormal : SValue = normalize(interpolate(vertexNormal));
-			var lightDirection : SValue = getNamedParameter(
-				"light direction",
-				DEFAULT_LIGHT_DIRECTION
-			);
+			var vertexNormal : SFloat = normalize(interpolate(vertexNormal));
+			var lightDirection : SFloat = sceneBindings.getParameter("light direction", 3);
 			
 			lightDirection.normalize();
 			
 			// diffuse lighting
-			var lambertFactor : SValue = saturate(
+			var lambertFactor : SFloat = saturate(
 				negate(dotProduct3(lightDirection, vertexNormal))
 			);
 			
@@ -54,25 +60,19 @@ package aerys.minko.example.core.celshading
 			lambertFactor = divide(lambertFactor, NUM_LEVELS);
 			
 			// ambient lighting
-			var ambient	: SValue = getNamedParameter(
-				"ambient",
-				DEFAULT_AMBIENT
-			);
+			var ambient	: SFloat = sceneBindings.getParameter("light ambient", 1);
 			
 			lambertFactor.incrementBy(ambient);
 			
-			var diffuseColor : SValue = getNamedParameter(
-				"diffuse color",
-				DEFAULT_DIFFUSE_COLOR
-			);
+			var diffuseColor : SFloat = sceneBindings.getParameter("light diffuse color", 3);
 			
 			// outline
-			var outline : SValue = lessThan(interpolate(_isEdge), 0.1);
+			var outline : SFloat = lessThan(interpolate(_isEdge).x, 0.1);
 			
 			lambertFactor.scaleBy(outline);
 			
 			return float4(
-				multiply(diffuseColor.rgb, lambertFactor),
+				multiply(diffuseColor, lambertFactor),
 				diffuseColor.a
 			);
 		}
