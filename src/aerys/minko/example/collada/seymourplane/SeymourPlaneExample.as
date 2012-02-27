@@ -1,6 +1,7 @@
 package aerys.minko.example.collada.seymourplane
 {
 	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;

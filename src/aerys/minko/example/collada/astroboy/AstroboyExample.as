@@ -1,7 +1,7 @@
 package aerys.minko.example.collada.astroboy
 {
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.ColorShader;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
@@ -19,7 +19,7 @@ package aerys.minko.example.collada.astroboy
 			options.parser					= ColladaParser;
 			options.loadDependencies		= true;
 			options.mipmapTextures			= true;
-			options.effect					= new Effect(new TextureShader());
+			options.effect					= new Effect(new BasicShader());
 			options.dependencyURLRewriter	= function(s : String) : String
 			{
 				return "../assets/seymour/boy_10.jpg";
@@ -35,22 +35,5 @@ package aerys.minko.example.collada.astroboy
 			scene.addChild(result);
 		}
 		
-	}
-}
-
-
-import aerys.minko.render.shader.SFloat;
-import aerys.minko.render.shader.ShaderTemplate;
-
-class TextureShader extends ShaderTemplate
-{
-	override protected function getClipspacePosition():SFloat
-	{
-		return localToScreen(vertexXYZ);
-	}
-	
-	override protected function getPixelColor():SFloat
-	{
-		return sampleTexture(getTextureParameter('diffuse'), interpolate(vertexUV));
 	}
 }
