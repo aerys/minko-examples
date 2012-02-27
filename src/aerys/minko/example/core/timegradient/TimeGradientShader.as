@@ -1,13 +1,10 @@
 package aerys.minko.example.core.timegradient
 {
-	import aerys.minko.render.effect.Style;
+	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.ActionScriptShader;
-	import aerys.minko.render.shader.SValue;
 	
 	public class TimeGradientShader extends ActionScriptShader
 	{
-		public static const TIME_STYLE_ID	: int	= Style.getStyleId("time");
-		
 		private var _minY	: uint	= 0.;
 		private var _maxY	: uint	= 0.;
 		private var _color1	: uint	= 0;
@@ -26,16 +23,20 @@ package aerys.minko.example.core.timegradient
 			_color2 = color2;
 		}
 		
-		override protected function getOutputPosition() : SValue
+		override protected function getVertexPosition() : SFloat
 		{
-			return vertexClipspacePosition;
+			return localToScreen(vertexXYZ);
 		}
 		
-		override protected function getOutputColor():SValue
+		override protected function getPixelColor() : SFloat
 		{
-			var pos : SValue = interpolate(vertexPosition);
-			var time : SValue = fractional(divide(frameId, 30.));
-			var c : SValue = divide(
+			var pos : SFloat = interpolate(vertexXYZ);
+			var time : SFloat = fractional(divide(
+				sceneBindings.getParameter("time", 1),
+				1000
+			));
+				
+			var c : SFloat = divide(
 				subtract(pos.y, _minY),
 				(_maxY - _minY)
 			);
