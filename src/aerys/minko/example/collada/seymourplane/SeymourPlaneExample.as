@@ -1,9 +1,10 @@
 package aerys.minko.example.collada.seymourplane
 {
-	import aerys.minko.scene.node.IScene;
-	import aerys.minko.scene.node.group.LoaderGroup;
-	import aerys.minko.scene.node.group.TransformGroup;
-	import aerys.minko.type.parser.ParserOptions;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.scene.node.ISceneNode;
+	import aerys.minko.type.loader.ILoader;
+	import aerys.minko.type.loader.SceneLoader;
+	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
 	
 	import flash.net.URLRequest;
@@ -12,28 +13,28 @@ package aerys.minko.example.collada.seymourplane
 	{
 		override protected function initializeScene():void
 		{
-			LoaderGroup.registerParser("dae", ColladaParser);
+			var options : ParserOptions		= new ParserOptions();
 			
-			var plane 	: LoaderGroup 	= new LoaderGroup();
-			var options : ParserOptions = new ParserOptions();
-			
-			options.loadTextures = true;
-			options.loadFunction = function(request : URLRequest, options : ParserOptions) : IScene
+			options.parser					= ColladaParser;
+			options.loadDependencies		= true;
+			options.mipmapTextures			= true;
+			options.effect					= new Effect(new BasicShader());
+			options.dependencyURLRewriter	= function(s : String) : String
 			{
-				request.url = "../assets/seymour_plane/" + request.url.match(/^.*\/([^\/]+)\..*$/)[1]
-							  + ".jpg";
-				
-				return LoaderGroup.load(request, options);
+				return "../assets/seymour_plane/" 
+					+ s.match(/^.*\/([^\/]+)\..*$/)[1]
+					+ ".jpg"
 			};
 			
-			plane.load(new URLRequest("../assets/seymour_plane/seymourplane.dae"), options);
-			
-			// tune 3D transform
-			var tg : TransformGroup = new TransformGroup(plane);
-			
-			tg.transform.appendScale(.3, .3, -.3)
-			
-			scene.addChild(tg);
+			var loader : SceneLoader = new SceneLoader(options);
+			loader.complete.add(onLoadComplete);
+			loader.load(new URLRequest("../assets/seymour/astroboy.dae"));
+		}
+		
+		private function onLoadComplete(loader : ILoader, result : ISceneNode) : void
+		{
+			scene.addChild(result);
 		}
 	}
 }
+

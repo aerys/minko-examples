@@ -1,54 +1,56 @@
 package aerys.minko.example.collada.astroboy
 {
-	import aerys.minko.render.effect.animation.AnimationStyle;
-	import aerys.minko.scene.node.IScene;
-	import aerys.minko.scene.node.group.AnimationGroup;
-	import aerys.minko.scene.node.group.LoaderGroup;
-	import aerys.minko.scene.node.group.StyleGroup;
-	import aerys.minko.scene.node.group.TransformGroup;
-	import aerys.minko.type.animation.AnimationMethod;
-	import aerys.minko.type.math.ConstVector4;
-	import aerys.minko.type.parser.ParserOptions;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.ColorShader;
+	import aerys.minko.scene.node.ISceneNode;
+	import aerys.minko.type.loader.ILoader;
+	import aerys.minko.type.loader.SceneLoader;
+	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
 	
-	import flash.events.Event;
 	import flash.net.URLRequest;
-	import flash.utils.getTimer;
 
 	public class AstroboyExample extends MinkoExampleApplication
 	{
 		override protected function initializeScene():void
 		{
-			LoaderGroup.registerParser("dae", ColladaParser);
+			var options : ParserOptions		= new ParserOptions();
 			
-			var astroboy 	: LoaderGroup 	= new LoaderGroup();
-			var options : ParserOptions = new ParserOptions();
-			
-			options.loadTextures = true;
-			options.loadFunction = function(request : URLRequest, options : ParserOptions) : IScene
+			options.parser					= ColladaParser;
+			options.loadDependencies		= true;
+			options.mipmapTextures			= true;
+			options.effect					= new Effect(new TextureShader());
+			options.dependencyURLRewriter	= function(s : String) : String
 			{
-				request.url = "../assets/seymour/" + request.url.match(/^.*\/([^\/]+)\..*$/)[1]
-							  + ".jpg";
-			
-				return LoaderGroup.load(request, options);
+				return "../assets/seymour/boy_10.jpg";
 			};
 			
-			astroboy.load(new URLRequest("../assets/seymour/astroboy.dae"), options);
-			
-			// tune 3D transform
-			var tg : TransformGroup = new TransformGroup(astroboy);
-			
-			tg.transform
-				.appendRotation(-Math.PI * 0.5, ConstVector4.X_AXIS)
-				.appendScale(.5, .5, -.5)
-				.appendTranslation(0.0, -1.5, 0.0);
-			
-			// enable animations
-			var sg : StyleGroup = new StyleGroup(tg);
-			
-			sg.style.set(AnimationStyle.METHOD, AnimationMethod.DUAL_QUATERNION_SKINNING);
-		
-			scene.addChild(sg);
+			var loader : SceneLoader = new SceneLoader(options);
+			loader.complete.add(onLoadComplete);
+			loader.load(new URLRequest("../assets/seymour/astroboy.dae"));
 		}
+		
+		private function onLoadComplete(loader : ILoader, result : ISceneNode) : void
+		{
+			scene.addChild(result);
+		}
+		
+	}
+}
+
+
+import aerys.minko.render.shader.SFloat;
+import aerys.minko.render.shader.ShaderTemplate;
+
+class TextureShader extends ShaderTemplate
+{
+	override protected function getClipspacePosition():SFloat
+	{
+		return localToScreen(vertexXYZ);
+	}
+	
+	override protected function getPixelColor():SFloat
+	{
+		return sampleTexture(getTextureParameter('diffuse'), interpolate(vertexUV));
 	}
 }
