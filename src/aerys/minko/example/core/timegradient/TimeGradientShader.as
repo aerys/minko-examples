@@ -1,9 +1,9 @@
 package aerys.minko.example.core.timegradient
 {
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.Shader;
+	import aerys.minko.render.shader.ActionScriptShader;
 	
-	public class TimeGradientShader extends Shader
+	public class TimeGradientShader extends ActionScriptShader
 	{
 		private var _minY	: uint	= 0.;
 		private var _maxY	: uint	= 0.;

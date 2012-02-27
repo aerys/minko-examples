@@ -1,10 +1,10 @@
 package aerys.minko.example.core.celshading
 {
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.Shader;
+	import aerys.minko.render.shader.ActionScriptShader;
 	import aerys.minko.type.math.Vector4;
 	
-	public class CelShadingShader extends Shader
+	public class CelShadingShader extends ActionScriptShader
 	{
 		private static const NUM_LEVELS					: uint		= 6;
 		

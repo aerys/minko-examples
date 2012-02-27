@@ -10,6 +10,7 @@ package aerys.minko.example.core.controller
 	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Matrix4x4;
+	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
 	import flash.net.URLRequest;
@@ -35,13 +36,17 @@ package aerys.minko.example.core.controller
 				new Matrix4x4(),
 				new Matrix4x4()
 			];
-			
+		
 			matrices[0].appendTranslation(-1);
-			matrices[1].appendTranslation(1);
-			matrices[2].appendTranslation(-1);
+			matrices[1].appendTranslation(1)
+					   .prependRotation(Math.PI, Vector4.Y_AXIS);
+			matrices[2].appendTranslation(-1)
+					   .prependRotation(Math.PI * 2, Vector4.Y_AXIS);
 			
-			cube.controller = new AnimationController(
-				new <ITimeline>[new MatrixRegularTimeline("transform", 1000, matrices)]
+			cube.addController(
+				new AnimationController(
+					new <ITimeline>[new MatrixRegularTimeline("transform", 1000, matrices)]
+				)
 			);
 		}
 		

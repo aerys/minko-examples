@@ -1,7 +1,6 @@
 package aerys.minko.example.core.celshading
 {
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.primitive.TeapotMesh;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
@@ -13,7 +12,7 @@ package aerys.minko.example.core.celshading
 		private var _lightDirection	: Vector4	= new Vector4(1., -.5, 0.);
 		private var _lightMatrix	: Matrix4x4	= new Matrix4x4();
 		
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
@@ -22,15 +21,14 @@ package aerys.minko.example.core.celshading
 			camera.position.set(0., 0., -7);
 			cameraController.setPivot(0, 1.5, 0);
 			
-			var mesh : Mesh = new TeapotMesh(
-				new Effect(new CelShadingShader()),
-				20
+			scene.addChild(
+				new TeapotMesh(
+					new Effect(new CelShadingShader()),
+					{ "thickness" : 0.05 },
+					20
+				)
 			);
-			
-			mesh.bindings.setProperty("thickness", .05);
-			
-			scene.addChild(mesh);
-			
+		
 			scene.bindings.setProperties({
 				"light diffuse color"	: 0xfffffffff,
 				"light ambient"			: 0.4

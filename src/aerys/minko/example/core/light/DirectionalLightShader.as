@@ -1,26 +1,25 @@
 package aerys.minko.example.core.light
 {
+	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.ActionScriptShader;
-	import aerys.minko.render.shader.SValue;
-	import aerys.minko.type.math.ConstVector4;
 	
 	public class DirectionalLightShader extends ActionScriptShader
 	{
-		override protected function getOutputPosition():SValue
+		override protected function getVertexPosition() : SFloat
 		{
-			return vertexClipspacePosition;
+			return localToScreen(vertexXYZ);
 		}
 		
-		override protected function getOutputColor():SValue
+		override protected function getPixelColor() : SFloat
 		{
-			var normal : SValue = interpolate(vertexNormal);
-			var ambient : SValue = getNamedParameter("ambient", .1);
-			var color : SValue = getNamedParameter("light color", ConstVector4.ONE);
-			var direction : SValue = getNamedParameter("light direction", ConstVector4.ONE);
+			var normal 		: SFloat = interpolate(vertexNormal);
+			var ambient 	: SFloat = sceneBindings.getParameter("ambient", 1);
+			var color 		: SFloat = sceneBindings.getParameter("light color", 4);
+			var direction 	: SFloat = sceneBindings.getParameter("light direction", 3);
 			
 			direction.normalize();
 			
-			var lambert : SValue = saturate(negate(dotProduct3(normal, direction)));
+			var lambert : SFloat = saturate(negate(dotProduct3(normal, direction)));
 			
 			return float4(
 				multiply(add(lambert,ambient), color.rgb),

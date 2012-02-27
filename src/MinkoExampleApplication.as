@@ -63,7 +63,7 @@ package
 			
 			_cameraController = new ArcBallController();
 			_cameraController.bindDefaultControls(stage);
-			cameraGroup.controller = _cameraController;
+			cameraGroup.addController(_cameraController);
 			
 			_scene.addChild(cameraGroup);
 			
