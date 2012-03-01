@@ -28,7 +28,7 @@ package aerys.minko.example.core.controller
 					{ "diffuse map" : TextureLoader.loadClass(EMBED_TEXTURE) }
 				)
 			);
-			
+		
 			scene.addChild(cube);
 			
 			var matrices : Vector.<Matrix4x4>	= new <Matrix4x4>[

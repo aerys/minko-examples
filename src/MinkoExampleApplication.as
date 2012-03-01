@@ -71,8 +71,8 @@ package
 			
 			stage.frameRate = 60;
 //			stage.addChild(_viewport);
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);
+			/*stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);*/
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
@@ -86,7 +86,7 @@ package
 			_viewport.render(_scene);
 		}
 		
-		protected function mouseMoveHandler(event : MouseEvent) : void
+		/*protected function mouseMoveHandler(event : MouseEvent) : void
 		{
 			// nothing
 		}
@@ -99,6 +99,6 @@ package
 		protected function keyDownHandler(event : KeyboardEvent) : void
 		{
 			// nothing
-		}
+		}*/
 	}
 }
