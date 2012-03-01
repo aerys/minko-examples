@@ -54,6 +54,7 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
 			_viewport = new Viewport(stage);
+			_viewport.backgroundColor = 0x666666;
 			
 			_camera = new Camera(_viewport);
 			_camera.lookAt.set(0., 0., 0.);
