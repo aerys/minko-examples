@@ -12,9 +12,10 @@ package aerys.minko.example.picking
 	{
 		public function PickingGuideShader()
 		{
-			super(Blending.ADDITIVE, TriangleCulling.FRONT, 1);
+			super(Blending.ALPHA, TriangleCulling.FRONT, -1);
 			
 			forkTemplate.compareMode = Context3DCompareMode.LESS_EQUAL;
+			forkTemplate.enableDepthWrite = false;
 		}
 		
 		override protected function getVertexPosition() : SFloat
@@ -48,9 +49,10 @@ package aerys.minko.example.picking
 			center.decrementBy(multiply(absolute(normal), center.z));
 			position.incrementBy(center);
 			
+			position = modulo(position, size);
 			var line : SFloat = add(
-				lessThan(modulo(position.x, size), thickness),
-				lessThan(modulo(position.y, size), thickness)
+				lessThan(position.x, thickness),
+				lessThan(position.y, thickness)
 			);
 			
 			return float4(

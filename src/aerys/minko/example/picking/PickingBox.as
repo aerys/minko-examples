@@ -6,18 +6,38 @@ package aerys.minko.example.picking
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.primitive.CubeMesh;
-	import aerys.minko.scene.node.mesh.primitive.QuadMesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.IEventDispatcher;
 	
 	public class PickingBox extends Group
 	{
-		private static const EFFECT	: Effect	= new Effect(new BasicShader(Blending.ALPHA));
+		private static const EFFECT	: Effect	= new Effect(
+			new BasicShader(Blending.ALPHA, TriangleCulling.FRONT, -10)
+		);
 		
-		private var _guide	: Group	= null;
+		private var _guide	: Group		= null;
+		private var _planes	: Group		= null;
+		
+		private var _active	: Boolean	= false;
+		
+		public function get planes() : Group
+		{
+			return _planes;
+		}
+		
+		public function get active() : Boolean
+		{
+			return _active;
+		}
+		public function set active(value : Boolean) : void
+		{
+			_active = value;
+		}
 		
 		public function PickingBox(viewport		: Viewport,
 								   camera		: Camera,
@@ -25,15 +45,17 @@ package aerys.minko.example.picking
 		{
 			super();
 			
-			addController(new PickingBoxController(viewport, camera, dispatcher));
+			addController(
+				new PickingBoxController(viewport, camera, dispatcher)
+			);
 		}
 		
 		override protected function initialize() : void
 		{
 			super.initialize();
 			
-			var corner	: Mesh	= new CubeMesh(
-				EFFECT,
+			var corner	: Mesh	= new Mesh(
+				CubeGeometry.cubeGeometry,
 				{ diffuseColor	: 0xffffff99}
 			);
 			
@@ -47,28 +69,28 @@ package aerys.minko.example.picking
 			var bottomBackRight		: Group	= new Group(corner.clone());
 			
 			topFrontLeft.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, 0.5, -0.5);
 			topFrontRight.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(0.5, 0.5, -0.5);
 			topBackLeft.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, 0.5, 0.5);
 			topBackRight.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(0.5, 0.5, 0.5);
 			bottomFrontLeft.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, -0.5, -0.5);
 			bottomFrontRight.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(0.5, -0.5, -0.5);
 			bottomBackLeft.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, -0.5, 0.5);
 			bottomBackRight.transform
-				.appendUniformScale(0.1)
+				.appendUniformScale(0.05)
 				.appendTranslation(0.5, -0.5, 0.5);
 			
 			addChild(topFrontLeft);
@@ -80,13 +102,13 @@ package aerys.minko.example.picking
 			addChild(bottomBackLeft);
 			addChild(bottomBackRight);
 			
-			var plane 	: Mesh 	= new QuadMesh(EFFECT);
-			var front 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff11 }));
-			var back 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff11 }));
-			var left 	: Group = new Group(plane.clone({ diffuseColor : 0xff000011 }));
-			var right 	: Group = new Group(plane.clone({ diffuseColor : 0xff000011 }));
-			var top 	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0011 }));
-			var bottom	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0011 }));
+			var plane 	: Mesh 	= new Mesh(QuadGeometry.quadGeometry);
+			var front 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
+			var back 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
+			var left 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
+			var right 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
+			var top 	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0000 }));
+			var bottom	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0000 }));
 			
 			front[0].name = "front";
 			front.transform.appendTranslation(0., 0., -0.5);
@@ -111,7 +133,7 @@ package aerys.minko.example.picking
 				.appendRotation(Math.PI * -.5, Vector4.X_AXIS)
 				.appendTranslation(0., -.5, 0.);
 			
-			var pickingPlanes : Group = new Group(
+			_planes = new Group(
 				front,
 				back,
 				left,
@@ -120,10 +142,9 @@ package aerys.minko.example.picking
 				bottom
 			);
 			
-			pickingPlanes.name = "pickingPlanes";
-			addChild(pickingPlanes);
+			_planes.name = "pickingPlanes";
+			addChild(_planes);
 		}
-		
 		
 	}
 }

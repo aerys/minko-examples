@@ -1,6 +1,6 @@
 package aerys.minko.example.core.raytracer
 {
-	import aerys.minko.scene.node.mesh.primitive.QuadMesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 
 	public class RayTracerExample extends MinkoExampleApplication
 	{
@@ -10,7 +10,7 @@ package aerys.minko.example.core.raytracer
 			
 			scene.addChild(new EffectGroup(
 				new SinglePassRenderingEffect(new RayTracerShader()),
-				new QuadMesh()
+				new QuadGeometry()
 			));
 		}
 	}

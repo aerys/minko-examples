@@ -5,7 +5,8 @@ package aerys.minko.example.core.controller
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.ISceneNode;
-	import aerys.minko.scene.node.mesh.primitive.CubeMesh;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;
@@ -23,9 +24,9 @@ package aerys.minko.example.core.controller
 		override protected function initializeScene():void
 		{
 			var cube : Group = new Group(
-				new CubeMesh(
-					new Effect(new BasicShader()),
-					{ "diffuse map" : TextureLoader.loadClass(EMBED_TEXTURE) }
+				new Mesh(
+					CubeGeometry.cubeGeometry,
+					{ diffuseMap : TextureLoader.loadClass(EMBED_TEXTURE) }
 				)
 			);
 		

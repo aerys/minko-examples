@@ -7,7 +7,7 @@ package aerys.minko.example.picking
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.primitive.QuadMesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.Signal;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Plane;
@@ -37,7 +37,7 @@ package aerys.minko.example.picking
 		
 		private var _picking	: PickingController	= new PickingController();
 		
-		private var _target		: Group				= null;
+		private var _target		: PickingBox		= null;
 
 		private var _plane		: Plane				= null;
 		private var _delta		: Vector4			= null;
@@ -79,7 +79,7 @@ package aerys.minko.example.picking
 											target	: PickingBox) : void
 		{
 			_target = target;
-			_target.addController(_picking);
+			_target.planes.addController(_picking);
 		}
 		
 		private function mouseRollOverHandler(ctrl		: PickingController,
@@ -92,6 +92,8 @@ package aerys.minko.example.picking
 				uint(target.bindings.getProperty("diffuseColor")) | 0x88
 			);
 			
+			_target.active = true;
+			
 			Mouse.cursor = MouseCursor.HAND;
 		}
 		
@@ -102,8 +104,10 @@ package aerys.minko.example.picking
 		{
 			target.bindings.setProperty(
 				"diffuseColor",
-				uint(target.bindings.getProperty("diffuseColor")) & 0xffffff11
+				uint(target.bindings.getProperty("diffuseColor")) & 0xffffff00
 			);
+			
+			_target.active = false;
 			
 			Mouse.cursor = MouseCursor.AUTO;
 		}
@@ -126,15 +130,16 @@ package aerys.minko.example.picking
 			
 			var color : uint = uint(target.bindings.getProperty("diffuseColor"));
 			_guide = new Group(
-				new QuadMesh(
-					new Effect(new PickingGuideShader()),
+				new Mesh(
+					QuadGeometry.quadGeometry,
 					{
 						diffuseColor 	: color,
 						size			: 1,
 						thickness		: 0.05,
 						maxDistance		: 10,
 						normal			: _plane.normal
-					}
+					},
+					new Effect(new PickingGuideShader())
 				)
 			);
 			

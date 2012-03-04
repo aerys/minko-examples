@@ -5,7 +5,7 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.scene.node.debug.TextureDebugDisplay;
 	import aerys.minko.scene.node.group.EffectGroup;
 	import aerys.minko.scene.node.group.Group;
-	import aerys.minko.scene.node.mesh.primitive.CubeMesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.texture.ColorTexture;
 	import aerys.minko.scene.node.texture.RenderTargetTexture;
 	import aerys.minko.scene.node.texture.Texture;
@@ -21,7 +21,7 @@ package aerys.minko.example.core.rtt
 			var cube : Group = new EffectGroup(
 				new SimpleRTTEffect(rttTexture.renderTarget),
 				new ColorTexture(0x0000ff),
-				CubeMesh.cubeMesh
+				CubeGeometry.cubeMesh
 			);
 			
 			scene.addChild(cube)
