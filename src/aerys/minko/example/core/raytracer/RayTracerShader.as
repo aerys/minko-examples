@@ -2,6 +2,7 @@ package aerys.minko.example.core.raytracer
 {
 	import aerys.minko.render.shader.ActionScriptShader;
 	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.part.BlendingShaderPart;
 	import aerys.minko.type.enum.Blending;
 	
 	public final class RayTracerShader extends ActionScriptShader
@@ -11,35 +12,18 @@ package aerys.minko.example.core.raytracer
 		
 		private const TYPE_PLANE		: String	= "plane";
 		private const TYPE_SPHERE		: String	= "sphere";
-		private const SCENE				: Array		= [
-			{
-				type:		TYPE_SPHERE,
-				position:	float3(0.5, multiply(sin(divide(time, 30)), .5), 0),
-				radius:		float(.5),
-				color:		float4(0, 0, 1, 1)
-			},
-			/*{
-				type:		TYPE_SPHERE,
-				position:	float3(0, multiply(sin(divide(frameId, 30)), .25), 0),
-				radius:		float(.2),
-				color:		float4(1, 0, 0, 1)
-			},*/
-			{
-				type:		TYPE_SPHERE,
-				position:	float3(-0.5, multiply(sin(divide(time, 30)), -.5), 0),
-				radius:		float(.4),
-				color:		float4(0, 1, 0, 1)
-			},
-			{
-				type:		TYPE_PLANE,
-				plane:		float4(0, 1, 0, -.5),
-				color:		float4(1, 1, 1, 1)
-			}
-		];
 		
-		private var _position	: SFloat	= null;
+		private var _blendingPart	: BlendingShaderPart	= null;
+		private var _position		: SFloat				= null;
 		
-		override protected function getVertexPosition():SFloat
+		public function RayTracerShader()
+		{
+			super();
+			
+			_blendingPart = new BlendingShaderPart(this);
+		}
+		
+		override protected function getVertexPosition() : SFloat
 		{
 			_position = multiply(vertexXYZ, float4(2, 2, 1, 1));
 			
@@ -48,12 +32,38 @@ package aerys.minko.example.core.raytracer
 		
 		override protected function getPixelColor() : SFloat
 		{
+			var scene	: Array		= [
+				{
+					type:		TYPE_SPHERE,
+					position:	float3(0.5, multiply(sin(divide(time, 200)), .5), 0),
+					radius:		float(.5),
+					color:		float4(0, 0, 1, 1)
+				},
+				{
+					type:		TYPE_SPHERE,
+					position:	float3(0, multiply(sin(divide(time, 200)), .25), 0),
+					radius:		float(.2),
+					color:		float4(1, 0, 0, 1)
+				},
+				{
+					type:		TYPE_SPHERE,
+					position:	float3(-0.5, multiply(sin(divide(time, 200)), -.5), 0),
+					radius:		float(.4),
+					color:		float4(0, 1, 0, 1)
+				}/*,
+				{
+					type:		TYPE_PLANE,
+					plane:		float4(0, 1, 0, -.5),
+					color:		float4(1, 1, 1, 1)
+				}*/
+			];
+			
 			var p 		: SFloat 	= interpolate(_position);
 			var o 		: SFloat 	= float3(p.xy, 0);
 			var r 		: SFloat 	= normalize(float3(p.xy, 1));
 			var output	: SFloat	= BACKGROUND_COLOR;
 			
-			for each (var object : Object in SCENE)
+			for each (var object : Object in scene)
 			{
 				var intersect : SFloat = null;
 				
@@ -67,7 +77,7 @@ package aerys.minko.example.core.raytracer
 						break ;
 				}
 				
-				output = blend(
+				output = _blendingPart.blend(
 					multiply(intersect, object.color),
 					output,
 					Blending.ALPHA

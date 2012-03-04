@@ -1,7 +1,5 @@
 package aerys.minko.example.picking
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.mesh.Mesh;
@@ -33,14 +31,20 @@ package aerys.minko.example.picking
 			var sphere : Group = new Group(
 				new Mesh(
 					SphereGeometry.sphereGeometry,
-					{ diffuseColor: 0xffffffff }
+					{
+						diffuseColor	: 0xffffffff,
+						lightEnabled	: true
+					}
 				)
 			);
 			
 			var sphere2 : Group = new Group(
 				new Mesh(
 					SphereGeometry.sphereGeometry,
-					{ diffuseColor: 0xffffffff }
+					{
+						diffuseColor	: 0xffffffff,
+						lightEnabled	: true
+					}
 				)
 			);
 			
@@ -59,6 +63,7 @@ package aerys.minko.example.picking
 			scene.addChild(sphere2);
 			
 			scene.bindings.setProperties({
+				lightEnabled	: true,
 				lightColor 		: 0xffffffff,
 				lightDirection	: new Vector4(-1, -1, 1),
 				ambient			: .2

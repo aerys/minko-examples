@@ -102,7 +102,7 @@ package aerys.minko.example.picking
 			addChild(bottomBackLeft);
 			addChild(bottomBackRight);
 			
-			var plane 	: Mesh 	= new Mesh(QuadGeometry.quadGeometry);
+			var plane 	: Mesh 	= new Mesh(QuadGeometry.quadGeometry, null, EFFECT);
 			var front 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
 			var back 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
 			var left 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
