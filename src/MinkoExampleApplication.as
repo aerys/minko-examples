@@ -60,13 +60,10 @@ package
 			_camera.lookAt.set(0., 0., 0.);
 			_camera.position.set(0., 0., -5.);
 			
-			var cameraGroup : Group = new Group(_camera);
-			
 			_cameraController = new ArcBallController();
 			_cameraController.bindDefaultControls(stage);
-			cameraGroup.addController(_cameraController);
-			
-			_scene.addChild(cameraGroup);
+			_camera.addController(_cameraController);
+			_scene.addChild(_camera);
 			
 			initializeScene();
 			
