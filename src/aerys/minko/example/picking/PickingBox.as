@@ -5,25 +5,52 @@ package aerys.minko.example.picking
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
+	import aerys.minko.scene.node.Scene;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
+	import aerys.minko.type.Signal;
+	import aerys.minko.type.bounding.BoundingBox;
 	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.enum.DepthTest;
 	import aerys.minko.type.enum.TriangleCulling;
+	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.IEventDispatcher;
 	
 	public class PickingBox extends Group
 	{
-		private static const EFFECT	: Effect	= new Effect(
-			new BasicShader(Blending.ALPHA, TriangleCulling.FRONT, -10)
+		private static const EFFECT			: Effect	= new Effect(
+			new BasicShader(-2)
 		);
 		
-		private var _guide	: Group		= null;
-		private var _planes	: Group		= null;
+		private static const CORNER_MESH	: Mesh		= new Mesh(
+			CubeGeometry.cubeGeometry,
+			{ 
+				diffuseColor	: 0xffffff99,
+				depthTest		: DepthTest.ALWAYS
+			},
+			EFFECT
+		);
 		
-		private var _active	: Boolean	= false;
+		private var _topFrontLeft			: Mesh		= CORNER_MESH.clone();
+		private var _topFrontRight			: Mesh		= CORNER_MESH.clone();
+		private var _topBackLeft			: Mesh		= CORNER_MESH.clone();
+		private var _topBackRight			: Mesh		= CORNER_MESH.clone();
+		private var _bottomFrontLeft		: Mesh		= CORNER_MESH.clone();
+		private var _bottomFrontRight		: Mesh		= CORNER_MESH.clone();
+		private var _bottomBackLeft			: Mesh		= CORNER_MESH.clone();
+		private var _bottomBackRight		: Mesh		= CORNER_MESH.clone();
+			
+		private var _guide					: Group		= null;
+		private var _planes					: Group		= null;
+		
+		private var _active					: Boolean	= false;
+		
+		private var _selectedMesh			: Mesh		= null;
+		
+//		private var _selectedMeshChanged	: Signal	= new Signal();
 		
 		public function get planes() : Group
 		{
@@ -38,6 +65,23 @@ package aerys.minko.example.picking
 		{
 			_active = value;
 		}
+		
+		public function get selectedMesh() : Mesh
+		{
+			return _selectedMesh;
+		}
+		public function set selectedMesh(value : Mesh) : void
+		{
+			_selectedMesh = value;
+			
+			if (value)
+				updateFromBoundingBox(value.geometry.boundingBox, value.localToWorld);
+		}
+		
+		/*public function get selectedMeshChanged() : Signal
+		{
+			return _selectedMeshChanged;
+		}*/
 		
 		public function PickingBox(viewport		: Viewport,
 								   camera		: Camera,
@@ -54,55 +98,49 @@ package aerys.minko.example.picking
 		{
 			super.initialize();
 			
-			var corner	: Mesh	= new Mesh(
-				CubeGeometry.cubeGeometry,
-				{ diffuseColor	: 0xffffff99}
-			);
-			
-			var topFrontLeft		: Group	= new Group(corner.clone());
-			var topFrontRight		: Group	= new Group(corner.clone());
-			var topBackLeft			: Group	= new Group(corner.clone());
-			var topBackRight		: Group	= new Group(corner.clone());
-			var bottomFrontLeft		: Group	= new Group(corner.clone());
-			var bottomFrontRight	: Group	= new Group(corner.clone());
-			var bottomBackLeft		: Group	= new Group(corner.clone());
-			var bottomBackRight		: Group	= new Group(corner.clone());
-			
-			topFrontLeft.transform
+			_topFrontLeft.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, 0.5, -0.5);
-			topFrontRight.transform
+			_topFrontRight.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(0.5, 0.5, -0.5);
-			topBackLeft.transform
+			_topBackLeft.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, 0.5, 0.5);
-			topBackRight.transform
+			_topBackRight.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(0.5, 0.5, 0.5);
-			bottomFrontLeft.transform
+			_bottomFrontLeft.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, -0.5, -0.5);
-			bottomFrontRight.transform
+			_bottomFrontRight.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(0.5, -0.5, -0.5);
-			bottomBackLeft.transform
+			_bottomBackLeft.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, -0.5, 0.5);
-			bottomBackRight.transform
+			_bottomBackRight.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(0.5, -0.5, 0.5);
 			
-			addChild(topFrontLeft);
-			addChild(topFrontRight);
-			addChild(topBackLeft);
-			addChild(topBackRight);
-			addChild(bottomFrontLeft);
-			addChild(bottomFrontRight);
-			addChild(bottomBackLeft);
-			addChild(bottomBackRight);
+			addChild(_topFrontLeft);
+			addChild(_topFrontRight);
+			addChild(_topBackLeft);
+			addChild(_topBackRight);
+			addChild(_bottomFrontLeft);
+			addChild(_bottomFrontRight);
+			addChild(_bottomBackLeft);
+			addChild(_bottomBackRight);
 			
-			var plane 	: Mesh 	= new Mesh(QuadGeometry.quadGeometry, null, EFFECT);
+			var plane 	: Mesh 	= new Mesh(
+				QuadGeometry.quadGeometry,
+				{
+					blending 	: Blending.ALPHA//,
+//					depthTest	: DepthTest.ALWAYS
+				},
+				new Effect(new BasicShader(-1))
+			);
+			
 			var front 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
 			var back 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
 			var left 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
@@ -146,5 +184,33 @@ package aerys.minko.example.picking
 			addChild(_planes);
 		}
 		
+		public function updateFromBoundingBox(boundingBox 			: BoundingBox,
+											  targetLocalToWorld	: Matrix4x4) : void
+		{
+			var max : Vector4 	= targetLocalToWorld.transformVector(boundingBox.max);
+			var min : Vector4 	= targetLocalToWorld.transformVector(boundingBox.min);
+			var t	: Vector4	= targetLocalToWorld.getTranslation();
+			
+			transform.setTranslation(t.x, t.y, t.z);
+			
+			max = Vector4.subtract(max, t);
+			min = Vector4.subtract(min, t);
+			
+			_topBackRight.transform.setTranslation(max.x, max.y, max.z);
+			_topBackLeft.transform.setTranslation(min.x, max.y, max.z);
+			_topFrontRight.transform.setTranslation(max.x, max.y, min.z);
+			_topFrontLeft.transform.setTranslation(min.x, max.y, min.z);
+			
+			_bottomFrontLeft.transform.setTranslation(min.x, min.y, min.z);
+			_bottomFrontRight.transform.setTranslation(max.x, min.y, min.z);
+			_bottomBackLeft.transform.setTranslation(min.x, min.y, max.z);
+			_bottomBackRight.transform.setTranslation(max.x, min.y, max.z);
+			
+			_planes.transform.setScale(
+				max.x - min.x + 0.01,
+				max.y - min.y + 0.01,
+				max.z - min.z + 0.01
+			);
+		}
 	}
 }

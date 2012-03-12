@@ -1,20 +1,18 @@
 package aerys.minko.example.picking
 {
-	import aerys.minko.render.RenderTarget;
-	import aerys.minko.render.shader.ActionScriptShader;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.type.enum.Blending;
-	import aerys.minko.type.enum.TriangleCulling;
+	import aerys.minko.type.enum.DepthTest;
 	
 	import flash.display3D.Context3DCompareMode;
 	
-	public final class PickingGuideShader extends ActionScriptShader
+	public final class PickingGuideShader extends BasicShader
 	{
 		public function PickingGuideShader()
 		{
-			super(Blending.ALPHA, TriangleCulling.FRONT, -1);
+			super(0);
 			
-			forkTemplate.compareMode = Context3DCompareMode.LESS_EQUAL;
+			forkTemplate.depthTest = DepthTest.LESS | DepthTest.EQUAL;
 			forkTemplate.enableDepthWrite = false;
 		}
 		

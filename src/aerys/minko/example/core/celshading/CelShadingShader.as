@@ -45,7 +45,7 @@ package aerys.minko.example.core.celshading
 		override protected function getPixelColor() : SFloat
 		{
 			var vertexNormal : SFloat = normalize(interpolate(vertexNormal));
-			var lightDirection : SFloat = sceneBindings.getParameter("light direction", 3);
+			var lightDirection : SFloat = sceneBindings.getParameter("lightDirection", 3);
 			
 			lightDirection.normalize();
 			
@@ -60,11 +60,11 @@ package aerys.minko.example.core.celshading
 			lambertFactor = divide(lambertFactor, NUM_LEVELS);
 			
 			// ambient lighting
-			var ambient	: SFloat = sceneBindings.getParameter("light ambient", 1);
+			var ambient	: SFloat = sceneBindings.getParameter("lightAmbient", 1);
 			
 			lambertFactor.incrementBy(ambient);
 			
-			var diffuseColor : SFloat = sceneBindings.getParameter("light diffuse color", 3);
+			var diffuseColor : SFloat = sceneBindings.getParameter("lightDiffuseColor", 3);
 			
 			// outline
 			var outline : SFloat = lessThan(interpolate(_isEdge).x, 0.1);

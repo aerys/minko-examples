@@ -1,7 +1,7 @@
 package
 {
 	import aerys.minko.render.Viewport;
-	import aerys.minko.scene.controller.ArcBallController;
+	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Scene;

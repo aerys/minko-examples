@@ -9,6 +9,8 @@ package aerys.minko.example.picking
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.Signal;
+	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Plane;
 	import aerys.minko.type.math.Vector4;
@@ -18,6 +20,7 @@ package aerys.minko.example.picking
 	import flash.geom.Point;
 	import flash.ui.Mouse;
 	import flash.ui.MouseCursor;
+	import flash.utils.getTimer;
 	
 	public final class PickingBoxController extends AbstractController
 	{
@@ -79,8 +82,16 @@ package aerys.minko.example.picking
 											target	: PickingBox) : void
 		{
 			_target = target;
+//			_target.selectedMeshChanged.add(selectedMeshChangedHandler);
 			_target.planes.addController(_picking);
 		}
+		
+		/*private function selectedMeshChangedHandler(box		: PickingBox,
+													oldMesh	: Mesh,
+													newMesh	: Mesh) : void
+		{
+			
+		}*/
 		
 		private function mouseRollOverHandler(ctrl		: PickingController,
 											  target	: Mesh,
@@ -134,6 +145,7 @@ package aerys.minko.example.picking
 					QuadGeometry.quadGeometry,
 					{
 						diffuseColor 	: color,
+						blending		: Blending.ADDITIVE,
 						size			: 1,
 						thickness		: 0.05,
 						maxDistance		: 10,
@@ -141,6 +153,11 @@ package aerys.minko.example.picking
 					},
 					new Effect(new PickingGuideShader())
 				)
+			);
+			
+			target.bindings.setProperty(
+				"diffuseColor",
+				uint(target.bindings.getProperty("diffuseColor")) | 0x88
 			);
 			
 			_guide.transform
@@ -194,7 +211,15 @@ package aerys.minko.example.picking
 			_cursor.x = event.stageX;
 			_cursor.y = event.stageY;
 			
-			_moved.execute(this, _target.transform);
+//			_moved.execute(this, x, y, z);
+			
+			var scale : Vector4 = _target.selectedMesh.localToWorld.getScale();
+			
+			_target.selectedMesh.transform.prependTranslation(
+				x / scale.x,
+				y / scale.y,
+				z / scale.z
+			);
 			
 			event.updateAfterEvent();
 		}
