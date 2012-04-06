@@ -1,23 +1,24 @@
 package aerys.minko.example.core.threewaygradient
 {
-	import aerys.minko.render.shader.ActionScriptShader;
-	import aerys.minko.render.shader.SValue;
+	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.Shader;
 	import aerys.minko.type.stream.format.VertexComponent;
 	
-	public final class ThreeWayGradientShader extends ActionScriptShader
+	public final class ThreeWayGradientShader extends BasicShader
 	{
-		private var _color : SValue = null;
+		private var _color : SFloat = null;
 		
-		override protected function getOutputPosition() : SValue
+		override protected function getVertexPosition() : SFloat
 		{
-			var xy : SValue = float2(getVertexAttribute(VertexComponent.XY));
+			var xy : SFloat = getVertexAttribute(VertexComponent.XY).xy;
 			
 			_color = getVertexAttribute(VertexComponent.RGB);
 			
 			return float4(xy, 0., 1.);
 		}
 		
-		override protected function getOutputColor() : SValue
+		override protected function getPixelColor() : SFloat
 		{
 			return interpolate(_color);
 		}

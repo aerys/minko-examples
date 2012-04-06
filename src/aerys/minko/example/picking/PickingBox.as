@@ -34,14 +34,14 @@ package aerys.minko.example.picking
 			EFFECT
 		);
 		
-		private var _topFrontLeft			: Mesh		= CORNER_MESH.clone();
-		private var _topFrontRight			: Mesh		= CORNER_MESH.clone();
-		private var _topBackLeft			: Mesh		= CORNER_MESH.clone();
-		private var _topBackRight			: Mesh		= CORNER_MESH.clone();
-		private var _bottomFrontLeft		: Mesh		= CORNER_MESH.clone();
-		private var _bottomFrontRight		: Mesh		= CORNER_MESH.clone();
-		private var _bottomBackLeft			: Mesh		= CORNER_MESH.clone();
-		private var _bottomBackRight		: Mesh		= CORNER_MESH.clone();
+		private var _topFrontLeft			: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _topFrontRight			: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _topBackLeft			: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _topBackRight			: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _bottomFrontLeft		: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _bottomFrontRight		: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _bottomBackLeft			: Mesh		= CORNER_MESH.clone() as Mesh;
+		private var _bottomBackRight		: Mesh		= CORNER_MESH.clone() as Mesh;
 			
 		private var _guide					: Group		= null;
 		private var _planes					: Group		= null;
@@ -75,7 +75,10 @@ package aerys.minko.example.picking
 			_selectedMesh = value;
 			
 			if (value)
+			{
+				value.removedFromScene.add(selectedMeshRemovedFromSceneHandler);
 				updateFromBoundingBox(value.geometry.boundingBox, value.localToWorld);
+			}
 		}
 		
 		/*public function get selectedMeshChanged() : Signal
@@ -141,12 +144,24 @@ package aerys.minko.example.picking
 				new Effect(new BasicShader(-1))
 			);
 			
-			var front 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
-			var back 	: Group = new Group(plane.clone({ diffuseColor : 0x0000ff00 }));
-			var left 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
-			var right 	: Group = new Group(plane.clone({ diffuseColor : 0xff000000 }));
-			var top 	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0000 }));
-			var bottom	: Group = new Group(plane.clone({ diffuseColor : 0x00ff0000 }));
+			var frontMesh	: Mesh	= plane.clone() as Mesh;
+			var leftMesh	: Mesh	= plane.clone() as Mesh;
+			var topMesh		: Mesh	= plane.clone() as Mesh;
+			
+			frontMesh.bindings.setProperty('diffuseColor', 0x0000ff00);
+			leftMesh.bindings.setProperty('diffuseColor', 0xff000000);
+			topMesh.bindings.setProperty('diffuseColor', 0x00ff0000);
+			
+			var backMesh	: Mesh	= frontMesh.clone() as Mesh;
+			var rightMesh	: Mesh	= leftMesh.clone() as Mesh;
+			var bottomMesh	: Mesh	= topMesh.clone() as Mesh;
+			
+			var front 		: Group = new Group(frontMesh);
+			var back 		: Group = new Group(backMesh);
+			var left 		: Group = new Group(leftMesh);
+			var right 		: Group = new Group(rightMesh);
+			var top 		: Group = new Group(topMesh);
+			var bottom		: Group	= new Group(bottomMesh);
 			
 			front[0].name = "front";
 			front.transform.appendTranslation(0., 0., -0.5);
@@ -211,6 +226,15 @@ package aerys.minko.example.picking
 				max.y - min.y + 0.01,
 				max.z - min.z + 0.01
 			);
+		}
+		
+		private function selectedMeshRemovedFromSceneHandler(mesh	: Mesh,
+															 scene	: Scene) : void
+		{
+			mesh.removedFromScene.remove(selectedMeshRemovedFromSceneHandler);
+			
+			selectedMesh = null;
+			parent = null;
 		}
 	}
 }

@@ -215,10 +215,10 @@ package aerys.minko.example.picking
 			
 			var scale : Vector4 = _target.selectedMesh.localToWorld.getScale();
 			
-			_target.selectedMesh.transform.prependTranslation(
-				x / scale.x,
-				y / scale.y,
-				z / scale.z
+			_target.selectedMesh.transform.appendTranslation(
+				x,// / scale.x,
+				y,// / scale.y,
+				z// / scale.z
 			);
 			
 			event.updateAfterEvent();

@@ -2,14 +2,10 @@ package aerys.minko.example.collada.astroboy
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
-	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
-	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
-	
-	import flash.net.URLRequest;
 
 	public class AstroboyExample extends MinkoExampleApplication
 	{
@@ -29,10 +25,7 @@ package aerys.minko.example.collada.astroboy
 			options.effect					= new Effect(new BasicShader());
 			options.dependencyLoaderClosure	= dependencyLoaderClosure;
 			
-			var loader : SceneLoader = new SceneLoader(options);
-			
-			loader.complete.add(onLoadComplete);
-			loader.loadClass(DAE);
+			scene.loadClass(DAE, options);
 		}
 		
 		private function dependencyLoaderClosure(dependencyPath	: String,
@@ -44,11 +37,6 @@ package aerys.minko.example.collada.astroboy
 			loader.loadClass(TEXTURE);
 			
 			return loader;
-		}
-		
-		private function onLoadComplete(loader : ILoader, result : ISceneNode) : void
-		{
-			scene.addChild(result);
 		}
 	}
 }

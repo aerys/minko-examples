@@ -1,11 +1,11 @@
 package aerys.minko.example.core.raytracer
 {
-	import aerys.minko.render.shader.ActionScriptShader;
+	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.part.BlendingShaderPart;
 	import aerys.minko.type.enum.Blending;
 	
-	public final class RayTracerShader extends ActionScriptShader
+	public final class RayTracerShader extends Shader
 	{
 		private const BACKGROUND_COLOR	: SFloat	= float4(0, 0, 0, 1);
 		private const PLANE_THICKNESS	: SFloat	= float(0.001);

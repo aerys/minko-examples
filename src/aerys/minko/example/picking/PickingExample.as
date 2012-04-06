@@ -5,12 +5,15 @@ package aerys.minko.example.picking
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.SphereGeometry;
+	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
+	import flash.net.URLRequest;
 	import flash.ui.Keyboard;
+	import flash.utils.setTimeout;
 
 	public class PickingExample extends MinkoExampleApplication
 	{
@@ -63,9 +66,9 @@ package aerys.minko.example.picking
 		}
 		
 		private function mouseDownHandler(ctrl		: PickingController,
-									 	   target	: Mesh,
-										   mouseX	: Number,
-										   mouseY	: Number) : void
+										  target	: Mesh,
+										  mouseX	: Number,
+										  mouseY	: Number) : void
 		{
 			if (target)
 			{

@@ -25,7 +25,10 @@ package aerys.minko.example.core.celshading
 			scene.addChild(
 				new Mesh(
 					new TeapotGeometry(20),
-					{ thickness : 0.05 },
+					{
+						thickness 		: 0.05,
+						diffuseColor	: 0xffffffff
+					},
 					new Effect(new CelShadingShader())
 				)
 			);

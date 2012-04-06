@@ -1,9 +1,9 @@
 package aerys.minko.example.core.timegradient
 {
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.ActionScriptShader;
 	
-	public class TimeGradientShader extends ActionScriptShader
+	public class TimeGradientShader extends BasicShader
 	{
 		private var _minY	: uint	= 0.;
 		private var _maxY	: uint	= 0.;
@@ -31,15 +31,8 @@ package aerys.minko.example.core.timegradient
 		override protected function getPixelColor() : SFloat
 		{
 			var pos : SFloat = interpolate(vertexXYZ);
-			var time : SFloat = fractional(divide(
-				sceneBindings.getParameter("time", 1),
-				1000
-			));
-				
-			var c : SFloat = divide(
-				subtract(pos.y, _minY),
-				(_maxY - _minY)
-			);
+			var time : SFloat = fractional(divide(time, 1000));
+			var c : SFloat = divide(subtract(pos.y, _minY),	(_maxY - _minY));
 			
 			c.decrementBy(time);
 			

@@ -1,14 +1,15 @@
 package aerys.minko.example.core.light
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.type.animation.timeline.ColorTimeline;
+	import aerys.minko.type.animation.timeline.ITimeline;
+	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
-	import flash.utils.setTimeout;
 
 	public class DirectionalLightExample extends MinkoExampleApplication
 	{
@@ -32,6 +33,7 @@ package aerys.minko.example.core.light
 					new TeapotGeometry(),
 					{
 						diffuseColor	: 0xffffffff,
+						blending		: Blending.ALPHA,
 						lightEnabled	: true
 					}
 				)

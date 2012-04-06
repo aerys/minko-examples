@@ -9,8 +9,6 @@ package aerys.minko.example.core.timegradient
 	{
 		override protected function initializeScene():void
 		{
-			cameraController.setPivot(0, 1.3, 0);
-			
 			scene.addChild(
 				new Mesh(
 					CubeGeometry.cubeGeometry,

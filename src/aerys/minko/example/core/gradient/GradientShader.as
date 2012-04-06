@@ -1,10 +1,11 @@
 package aerys.minko.example.core.gradient
 {
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.ActionScriptShader;
+	import aerys.minko.render.shader.Shader;
 	
 	
-	public class GradientShader extends ActionScriptShader
+	public class GradientShader extends BasicShader
 	{
 		private var _color1	: uint	= 0;
 		private var _color2	: uint	= 0;

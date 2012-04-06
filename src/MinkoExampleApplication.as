@@ -81,7 +81,7 @@ package
 		
 		protected function enterFrameHandler(event : Event) : void
 		{
-			_viewport.render(_scene);
+			_scene.render(_viewport);
 		}
 		
 		/*protected function mouseMoveHandler(event : MouseEvent) : void

@@ -1,8 +1,9 @@
 package aerys.minko.example.core.threewaygradient
 {
-	import aerys.minko.render.effect.SinglePassRenderingEffect;
-	import aerys.minko.scene.node.group.EffectGroup;
+	import aerys.minko.render.effect.Effect;
 	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.Geometry;
+	import aerys.minko.type.stream.IVertexStream;
 	import aerys.minko.type.stream.StreamUsage;
 	import aerys.minko.type.stream.VertexStream;
 	import aerys.minko.type.stream.format.VertexComponent;
@@ -21,9 +22,10 @@ package aerys.minko.example.core.threewaygradient
 			vertices[2] = {x: .5,  y: -.5, r: 0., g: 0., b: 1.};
 			
 			scene.addChild(
-				new EffectGroup(
-					new SinglePassRenderingEffect(new ThreeWayGradientShader()),
-					new Mesh(vertices.vertexStream)
+				new Mesh(
+					new Geometry(new <IVertexStream>[vertices.vertexStream]),
+					null,
+					new Effect(new ThreeWayGradientShader())
 				)
 			);
 		}

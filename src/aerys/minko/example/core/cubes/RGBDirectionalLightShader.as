@@ -1,10 +1,10 @@
 package aerys.minko.example.core.cubes
 {
-	import aerys.minko.render.shader.ActionScriptShader;
+	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.SValue;
 	import aerys.minko.type.math.ConstVector4;
 	
-	public class RGBDirectionalLightShader extends ActionScriptShader
+	public class RGBDirectionalLightShader extends Shader
 	{
 		private var _vertexColor	: SValue	= null;
 		
