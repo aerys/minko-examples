@@ -1,9 +1,9 @@
 package aerys.minko.example.effects.wireframe
 {
-	import aerys.minko.render.effect.wireframe.WireframeEffect;
-	import aerys.minko.render.effect.wireframe.WireframeStyle;
-	import aerys.minko.scene.node.group.MaterialGroup;
-	import aerys.minko.scene.node.mesh.modifier.WireframeMeshModifier;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.wireframe.WireframeShader;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.stream.StreamUsage;
 
@@ -11,16 +11,16 @@ package aerys.minko.example.effects.wireframe
 	{
 		override protected function initializeScene():void
 		{
-			var teapot : MaterialGroup = new MaterialGroup(new WireframeEffect());
-			
-			teapot.addChild(new WireframeMeshModifier(new TeapotGeometry(10, StreamUsage.READ)));
-			teapot.style
-				.set(WireframeStyle.WIRE_COLOR, 	0x77ffffff)
-				.set(WireframeStyle.WIRE_THICKNESS, 15.);
-			
-			scene.addChild(teapot);
-			
 			cameraController.setPivot(0, 1.5, 0);
+			
+			scene.addChild(new Mesh(
+				new WireframeGeometry(new TeapotGeometry(10, StreamUsage.READ)),
+				{
+					wireframeWireColor		: 0xffffff77,
+					wireframeWireThickness	: 15.
+				},
+				new Effect(new WireframeShader())
+			));
 		}
 	}
 }

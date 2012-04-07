@@ -4,7 +4,7 @@ package aerys.minko.example.core.texture
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.type.enum.SamplerFilter;
+	import aerys.minko.type.enum.SamplerFiltering;
 	import aerys.minko.type.loader.TextureLoader;
 
 	public class TextureExample extends MinkoExampleApplication
@@ -18,7 +18,7 @@ package aerys.minko.example.core.texture
 				CubeGeometry.cubeGeometry,
 				{
 					diffuseMap 			: TextureLoader.loadClass(ASSET_TEXTURE),
-					diffuseFiltering	: SamplerFilter.NEAREST
+					diffuseFiltering	: SamplerFiltering.NEAREST
 				}
 			);
 			
@@ -28,7 +28,7 @@ package aerys.minko.example.core.texture
 				CubeGeometry.cubeGeometry,
 				{
 					diffuseMap 			: TextureLoader.loadClass(ASSET_TEXTURE),
-					diffuseFiltering	: SamplerFilter.LINEAR
+					diffuseFiltering	: SamplerFiltering.LINEAR
 				}
 			);
 			
