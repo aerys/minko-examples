@@ -1,19 +1,26 @@
 package aerys.minko.example.picking
 {
+	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.ShaderSettings;
 	import aerys.minko.type.enum.DepthTest;
 	
 	import flash.display3D.Context3DCompareMode;
 	
 	public final class PickingGuideShader extends BasicShader
 	{
-		public function PickingGuideShader()
+		public function PickingGuideShader(target : RenderTarget = null)
 		{
-			super(0);
+			super(target, 0);
+		}
+		
+		override protected function initializeSettings(settings:ShaderSettings):void
+		{
+			super.initializeSettings(settings);
 			
-			forkTemplate.depthTest = DepthTest.LESS | DepthTest.EQUAL;
-			forkTemplate.enableDepthWrite = false;
+			settings.depthTest = DepthTest.LESS | DepthTest.EQUAL;
+			settings.depthWriteEnabled = false;
 		}
 		
 		override protected function getVertexPosition() : SFloat

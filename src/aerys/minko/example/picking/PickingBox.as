@@ -22,7 +22,7 @@ package aerys.minko.example.picking
 	public class PickingBox extends Group
 	{
 		private static const EFFECT			: Effect	= new Effect(
-			new BasicShader(-2)
+			new BasicShader(null, -2)
 		);
 		
 		private static const CORNER_MESH	: Mesh		= new Mesh(
@@ -141,7 +141,7 @@ package aerys.minko.example.picking
 					blending 	: Blending.ALPHA//,
 //					depthTest	: DepthTest.ALWAYS
 				},
-				new Effect(new BasicShader(-1))
+				new Effect(new BasicShader(null, -1))
 			);
 			
 			var frontMesh	: Mesh	= plane.clone() as Mesh;
@@ -163,25 +163,25 @@ package aerys.minko.example.picking
 			var top 		: Group = new Group(topMesh);
 			var bottom		: Group	= new Group(bottomMesh);
 			
-			front[0].name = "front";
+			front.getChildAt(0).name = "front";
 			front.transform.appendTranslation(0., 0., -0.5);
-			back[0].name = "back";
+			back.getChildAt(0).name = "back";
 			back.transform
 				.appendRotation(Math.PI, Vector4.Y_AXIS)
 				.appendTranslation(0., 0., 0.5);
-			left[0].name = "left";
+			left.getChildAt(0).name = "left";
 			left.transform
 				.appendRotation(Math.PI * .5, Vector4.Y_AXIS)
 				.appendTranslation(-.5, 0, 0);
-			right[0].name = "right";
+			right.getChildAt(0).name = "right";
 			right.transform
 				.appendRotation(Math.PI * -.5, Vector4.Y_AXIS)
 				.appendTranslation(.5, 0, 0);
-			top[0].name = "top";
+			top.getChildAt(0).name = "top";
 			top.transform
 				.appendRotation(Math.PI * .5, Vector4.X_AXIS)
 				.appendTranslation(0., .5, 0.);
-			bottom[0].name = "bottom";
+			bottom.getChildAt(0).name = "bottom";
 			bottom.transform
 				.appendRotation(Math.PI * -.5, Vector4.X_AXIS)
 				.appendTranslation(0., -.5, 0.);

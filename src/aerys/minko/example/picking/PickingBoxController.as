@@ -47,7 +47,7 @@ package aerys.minko.example.picking
 		private var _guide		: Group				= null;
 		private var _cursor		: Point				= new Point();
 		
-		private var _moved		: Signal			= new Signal();
+		private var _moved		: Signal			= new Signal('PickingBoxController.moved');
 		
 		public function get moved() : Signal
 		{
