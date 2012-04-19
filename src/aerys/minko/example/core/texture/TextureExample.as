@@ -1,11 +1,11 @@
 package aerys.minko.example.core.texture
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.Minko;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.enum.SamplerFiltering;
 	import aerys.minko.type.loader.TextureLoader;
+	import aerys.minko.type.log.DebugLevel;
 
 	public class TextureExample extends MinkoExampleApplication
 	{
@@ -14,6 +14,8 @@ package aerys.minko.example.core.texture
 		
 		override protected function initializeScene() : void
 		{
+			Minko.debugLevel = DebugLevel.SHADER_AGAL;
+			
 			var m1 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				{

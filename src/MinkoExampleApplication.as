@@ -3,13 +3,10 @@ package
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
-	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Scene;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	public class MinkoExampleApplication extends Sprite
@@ -53,8 +50,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			_viewport = new Viewport(stage);
-			_viewport.backgroundColor = 0x666666;
+			_viewport = new Viewport(stage, 2);
+			_viewport.backgroundColor = 0x666666ff;
 			
 			_camera = new Camera(_viewport);
 			_camera.lookAt.set(0., 0., 0.);
@@ -68,9 +65,6 @@ package
 			initializeScene();
 			
 			stage.frameRate = 60;
-//			stage.addChild(_viewport);
-			/*stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			stage.addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);*/
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
@@ -83,20 +77,5 @@ package
 		{
 			_scene.render(_viewport);
 		}
-		
-		/*protected function mouseMoveHandler(event : MouseEvent) : void
-		{
-			// nothing
-		}
-		
-		protected function mouseWheelHandler(event : MouseEvent) : void
-		{
-			// nothing
-		}
-		
-		protected function keyDownHandler(event : KeyboardEvent) : void
-		{
-			// nothing
-		}*/
 	}
 }

@@ -1,11 +1,13 @@
 package aerys.minko.example.core.light
 {
+	import aerys.minko.Minko;
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.animation.timeline.ColorTimeline;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
@@ -17,6 +19,8 @@ package aerys.minko.example.core.light
 		
 		override protected function initializeScene() : void
 		{
+			Minko.debugLevel = DebugLevel.SHADER_AGAL;
+			
 			camera.position.set(0, 0, -10);
 			cameraController.setPivot(0, 1.3, 0);
 			
