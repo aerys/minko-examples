@@ -11,6 +11,7 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.math.Vector4;
 
+	[SWF(width="512",height="512")]
 	public class RenderToTextureExample extends MinkoExampleApplication
 	{
 		override protected function initializeScene() : void
