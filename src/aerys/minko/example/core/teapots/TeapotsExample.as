@@ -27,6 +27,8 @@ package aerys.minko.example.core.teapots
 			viewport.backgroundColor = 0;
 			
 			_lastTime = getTimer();
+			
+			addTeapot();
 		}
 		
 		override protected function enterFrameHandler(event : Event) : void
@@ -46,7 +48,7 @@ package aerys.minko.example.core.teapots
 			var teapot : Mesh = new Mesh(GEOMETRY, null, EFFECT);
 			
 			teapot.transform
-				.appendUniformScale(0.03)
+				.appendUniformScale(.5)
 				.appendTranslation(
 					-1 + Math.random() * 2,
 					-1 + Math.random() * 2,

@@ -23,6 +23,9 @@ package aerys.minko.example.core.cubes
 			viewport.backgroundColor = 0;
 			
 			_lastTime = getTimer();
+			
+			for(var i:int = 0;i<100;i++)
+				addCube();
 		}
 		
 		override protected function enterFrameHandler(event : Event) : void
@@ -47,7 +50,7 @@ package aerys.minko.example.core.cubes
 			);
 			
 			cube.transform
-				.appendUniformScale(0.03)
+				.appendUniformScale(.1 + Math.random() * .5)
 				.appendTranslation(
 					-1 + Math.random() * 2,
 					-1 + Math.random() * 2,
