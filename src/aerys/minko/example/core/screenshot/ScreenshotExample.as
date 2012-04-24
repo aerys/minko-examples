@@ -9,14 +9,21 @@ package aerys.minko.example.core.screenshot
 
 	public class ScreenshotExample extends DirectionalLightExample
 	{
-		override protected function keyDownHandler(event : KeyboardEvent) : void
+		override protected function initializeScene():void
+		{
+			super.initializeScene();
+			
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+		}
+		
+		protected function keyDownHandler(event : KeyboardEvent) : void
 		{
 			if (event.keyCode == Keyboard.SPACE)
 			{
 				var bitmapData : BitmapData = new BitmapData(viewport.width, viewport.height);
 				var encoder : JPEGEncoder = new JPEGEncoder(80);
 				
-				viewport.render(scene, bitmapData);
+				scene.render(viewport, bitmapData);
 				
 				new FileReference().save(encoder.encode(bitmapData), "screenshot.jpg");
 			}
