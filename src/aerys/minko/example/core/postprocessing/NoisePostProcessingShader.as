@@ -59,9 +59,13 @@ package aerys.minko.example.core.postprocessing
 				SamplerWrapping.REPEAT
 			);
 			var noiseUV		: SFloat	= interpolate(vertexUV);
+			var scale		: SFloat	= float2(
+				divide(viewportWidth, 1024),
+				divide(viewportHeight, 1024)
+			);
 			
 			noiseUV.incrementBy(fractional(divide(time, 1000000)));
-			noiseUV.scaleBy(50);
+			noiseUV.scaleBy(multiply(50, scale));
 			
 			var noise		: SFloat	= sampleTexture(noiseMap, noiseUV);
 			

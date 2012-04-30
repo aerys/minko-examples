@@ -17,8 +17,6 @@ package aerys.minko.example.core.celshading
 		{
 			super.initializeScene();
 			
-			viewport.backgroundColor = 0x666666;
-		
 			camera.position.set(0., 0., -7);
 			cameraController.setPivot(0, 1.5, 0);
 			

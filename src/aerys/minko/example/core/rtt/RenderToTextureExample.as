@@ -1,5 +1,6 @@
 package aerys.minko.example.core.rtt
 {
+	import aerys.minko.Minko;
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
@@ -9,12 +10,15 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.scene.node.Sprite;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 
 	public class RenderToTextureExample extends MinkoExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
+			Minko.debugLevel = DebugLevel.CONTEXT;
+			
 			// setup lighting
 			scene.bindings.setProperties({
 				lightDirection		: new Vector4(.1, .1, 1.),
@@ -37,6 +41,8 @@ package aerys.minko.example.core.rtt
 				0x000000ff
 			);
 			
+			var basicShader : BasicShader = new BasicShader();
+			
 			// create the teapot
 			var teapot : Mesh = new Mesh(
 				new TeapotGeometry(),
@@ -46,10 +52,10 @@ package aerys.minko.example.core.rtt
 				},
 				new Effect(
 					// RTT passes
-					new VertexNormalShader(normalsTexture),
-					new VertexPositionShader(positionsTexture),
+					new VertexNormalShader(normalsTexture, 1),
+					new VertexPositionShader(positionsTexture, 1),
 					// rendering pass
-					new BasicShader()
+					basicShader
 				)
 			);
 			

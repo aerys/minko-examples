@@ -4,6 +4,7 @@ package
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Scene;
+	import aerys.monitor.Monitor;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -65,6 +66,7 @@ package
 			initializeScene();
 			initializeUI();
 			
+			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants']));
 			stage.frameRate = 60;
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
