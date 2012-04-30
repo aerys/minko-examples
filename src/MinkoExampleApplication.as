@@ -4,14 +4,15 @@ package
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Scene;
+	import aerys.minko.scene.node.Sprite;
+	import aerys.monitor.Monitor;
 	
-	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= null;
+		private var _viewport			: Viewport			= new Viewport(2);
 		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
 		private var _scene				: Scene				= new Scene();
@@ -50,7 +51,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			_viewport = new Viewport(stage, 2);
+			stage.addChild(_viewport);
 			_viewport.backgroundColor = 0x666666ff;
 			
 			_camera = new Camera(_viewport);
@@ -64,6 +65,7 @@ package
 			
 			initializeScene();
 			
+			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants']));
 			stage.frameRate = 60;
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}

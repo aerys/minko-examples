@@ -1,4 +1,4 @@
-package aerys.minko.example.core.controller
+package aerys.minko.example.core.animationcontroller
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
@@ -11,7 +11,7 @@ package aerys.minko.example.core.controller
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 
-	public class ControllerExample extends MinkoExampleApplication
+	public class AnimationControllerExample extends MinkoExampleApplication
 	{
 		[Embed("../assets/checker.jpg")]
 		private static const EMBED_TEXTURE : Class;
@@ -21,16 +21,12 @@ package aerys.minko.example.core.controller
 			cameraController.enabled = false;
 			
 			var matrices : Vector.<Matrix4x4>	= new <Matrix4x4>[
-				new Matrix4x4(),
-				new Matrix4x4(),
-				new Matrix4x4()
+				new Matrix4x4().appendTranslation(-1),
+				new Matrix4x4().appendTranslation(1)
+							   .prependRotation(Math.PI, Vector4.Y_AXIS),
+				new Matrix4x4().appendTranslation(-1)
+							   .prependRotation(Math.PI * 2, Vector4.Y_AXIS)
 			];
-			
-			matrices[0].appendTranslation(-1);
-			matrices[1].appendTranslation(1)
-					   .prependRotation(Math.PI, Vector4.Y_AXIS);
-			matrices[2].appendTranslation(-1)
-					   .prependRotation(Math.PI * 2, Vector4.Y_AXIS);
 			
 			scene.addChild(
 				new Mesh(
