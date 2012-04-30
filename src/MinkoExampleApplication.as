@@ -11,7 +11,7 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= null;
+		private var _viewport			: Viewport			= new Viewport(2);
 		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
 		private var _scene				: Scene				= new Scene();
@@ -50,7 +50,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			_viewport = new Viewport(stage, 2);
+			addChild(_viewport);
 			_viewport.backgroundColor = 0x666666ff;
 			
 			_camera = new Camera(_viewport);
@@ -63,12 +63,18 @@ package
 			_scene.addChild(_camera);
 			
 			initializeScene();
+			initializeUI();
 			
 			stage.frameRate = 60;
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
 		protected function initializeScene() : void
+		{
+			// nothing
+		}
+		
+		protected function initializeUI() : void
 		{
 			// nothing
 		}
