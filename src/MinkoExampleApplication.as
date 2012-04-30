@@ -4,9 +4,9 @@ package
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Scene;
-	import aerys.minko.scene.node.Sprite;
 	import aerys.monitor.Monitor;
 	
+	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
 	
