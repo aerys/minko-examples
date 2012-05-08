@@ -19,7 +19,7 @@ package aerys.minko.example.core.blending
 	public class BlendingExample extends MinkoExampleApplication
 	{
 		private var _sharedProperties	: DataProvider	= new DataProvider({
-			blending	: Blending.ALPHA
+			blending	: Blending.NORMAL
 		});
 		
 		override protected function initializeScene():void
@@ -61,12 +61,12 @@ package aerys.minko.example.core.blending
 			
 			cfg.parseXML(
 				<comps>
-					<Panel x="10" y="10">
+					<Panel x="10" y="110">
 						<VBox x="10" y="10">
 							<Label text="Blending:"/>
-							<RadioButton label="Normal"
+							<RadioButton label="Normal" selected="true"
 										 event="click:blendingChangedHandler"/>
-							<RadioButton label="Alpha" selected="true"
+							<RadioButton label="Alpha"
 										 event="click:blendingChangedHandler"/>
 							<RadioButton label="Additive"
 										 event="click:blendingChangedHandler"/>

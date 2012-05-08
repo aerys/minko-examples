@@ -236,7 +236,7 @@ package aerys.minko.example.picking
 			
 			var fov			: Number	= _camera.fieldOfView;
 			var worldToView	: Matrix4x4	= _camera.worldToView;
-			var viewToWorld	: Matrix4x4	= Matrix4x4.invert(worldToView);
+			var viewToWorld	: Matrix4x4	= new Matrix4x4().copyFrom(worldToView).invert();
 			
 			var dx	: Number = Math.tan(fov * 0.5) * xPercent * (stageWidth / stageHeight);
 			var dy	: Number = -Math.tan(fov * 0.5) * yPercent;
@@ -248,7 +248,7 @@ package aerys.minko.example.picking
 				dx * _camera.zFar, dy * _camera.zFar, _camera.zFar
 			);
 			
-			var m : Matrix4x4 = Matrix4x4.multiply(_camera.worldToView, _target.localToWorld);
+			var m : Matrix4x4 = new Matrix4x4().copyFrom(_target.localToWorld).append(_camera.worldToView);
 			
 			m.invert();
 			
