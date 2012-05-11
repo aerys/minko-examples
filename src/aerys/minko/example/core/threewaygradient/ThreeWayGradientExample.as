@@ -14,6 +14,8 @@ package aerys.minko.example.core.threewaygradient
 	{
 		override protected function initializeScene() : void
 		{
+			cameraController.enabled = false;
+			
 			var format : VertexFormat = new VertexFormat(VertexComponent.XY, VertexComponent.RGB);
 			var vertices : VertexIterator = new VertexIterator(new VertexStream(StreamUsage.WRITE, format));
 			
