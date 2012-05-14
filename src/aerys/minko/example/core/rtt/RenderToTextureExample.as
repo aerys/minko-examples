@@ -28,13 +28,13 @@ package aerys.minko.example.core.rtt
 			});
 
 			// create render targets
-			var normalsTexture : RenderTarget = new RenderTarget(
+			var normalsTarget : RenderTarget = new RenderTarget(
 				512, 512,
 				new TextureResource(512, 512),
 				0,
 				0x000000ff
 			);
-			var positionsTexture : RenderTarget = new RenderTarget(
+			var positionsTarget : RenderTarget = new RenderTarget(
 				512, 512,
 				new TextureResource(512, 512),
 				0,
@@ -52,8 +52,8 @@ package aerys.minko.example.core.rtt
 				},
 				new Effect(
 					// RTT passes
-					new VertexNormalShader(normalsTexture, 1),
-					new VertexPositionShader(positionsTexture, 1),
+					new VertexNormalShader(normalsTarget, 1),
+					new VertexPositionShader(positionsTarget, 1),
 					// rendering pass
 					basicShader
 				)
@@ -69,13 +69,13 @@ package aerys.minko.example.core.rtt
 			scene.addChild(new Sprite(
 				10, 10,
 				128, 128,
-				{ diffuseMap : normalsTexture.resource }
+				{ diffuseMap : normalsTarget.textureResource }
 			));
 			
 			scene.addChild(new Sprite(
 				10, 148,
 				128, 128,
-				{ diffuseMap : positionsTexture.resource }
+				{ diffuseMap : positionsTarget.textureResource }
 			));
 		}
 	}

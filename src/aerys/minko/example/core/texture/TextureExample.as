@@ -14,8 +14,6 @@ package aerys.minko.example.core.texture
 		
 		override protected function initializeScene() : void
 		{
-			Minko.debugLevel = DebugLevel.SHADER_AGAL;
-			
 			var m1 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				{

@@ -24,8 +24,8 @@ package aerys.minko.example.core.spritesheet
 		{
 			var frame		: SFloat = floor(meshBindings.getParameter(
 				"spritesheetFrameId",
-				1)
-			);
+				1
+			));
 			var uv			: SFloat = add(0.5, interpolate(vertexXY));
 			var diffuseMap	: SFloat = meshBindings.getTextureParameter(
 				"diffuseMap",
