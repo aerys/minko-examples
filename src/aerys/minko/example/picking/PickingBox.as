@@ -95,12 +95,12 @@ package aerys.minko.example.picking
 			addController(
 				new PickingBoxController(viewport, camera, dispatcher)
 			);
+			
+			initialize();
 		}
 		
-		override protected function initialize() : void
+		private function initialize() : void
 		{
-			super.initialize();
-			
 			_topFrontLeft.transform
 				.appendUniformScale(0.05)
 				.appendTranslation(-0.5, 0.5, -0.5);
