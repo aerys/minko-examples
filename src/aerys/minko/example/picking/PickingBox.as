@@ -92,11 +92,11 @@ package aerys.minko.example.picking
 		{
 			super();
 			
+			initialize();
+			
 			addController(
 				new PickingBoxController(viewport, camera, dispatcher)
 			);
-			
-			initialize();
 		}
 		
 		private function initialize() : void
@@ -148,9 +148,9 @@ package aerys.minko.example.picking
 			var leftMesh	: Mesh	= plane.clone() as Mesh;
 			var topMesh		: Mesh	= plane.clone() as Mesh;
 			
-			frontMesh.bindings.setProperty('diffuseColor', 0x0000ff00);
-			leftMesh.bindings.setProperty('diffuseColor', 0xff000000);
-			topMesh.bindings.setProperty('diffuseColor', 0x00ff0000);
+			frontMesh.properties.setProperty('diffuseColor', 0x0000ff00);
+			leftMesh.properties.setProperty('diffuseColor', 0xff000000);
+			topMesh.properties.setProperty('diffuseColor', 0x00ff0000);
 			
 			var backMesh	: Mesh	= frontMesh.clone() as Mesh;
 			var rightMesh	: Mesh	= leftMesh.clone() as Mesh;

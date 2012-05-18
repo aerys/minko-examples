@@ -47,8 +47,8 @@ package aerys.minko.example.core.light
 		override protected function enterFrameHandler(event:Event):void
 		{
 			_matrix.appendRotation(.05, Vector4.Y_AXIS);
-			scene.bindings.setProperty(
-				"lightDirection",
+			scene.properties.setProperty(
+				'lightDirection',
 				_matrix.transformVector(Vector4.ONE)
 			);
 			

@@ -98,9 +98,9 @@ package aerys.minko.example.picking
 											  mouseX	: Number,
 											  mouseY	: Number) : void
 		{
-			target.bindings.setProperty(
-				"diffuseColor",
-				uint(target.bindings.getProperty("diffuseColor")) | 0x88
+			target.properties.setProperty(
+				'diffuseColor',
+				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);
 			
 			_target.active = true;
@@ -113,9 +113,9 @@ package aerys.minko.example.picking
 											 mouseX	: Number,
 											 mouseY	: Number) : void
 		{
-			target.bindings.setProperty(
-				"diffuseColor",
-				uint(target.bindings.getProperty("diffuseColor")) & 0xffffff00
+			target.properties.setProperty(
+				'diffuseColor',
+				uint(target.bindings.getProperty('diffuseColor')) & 0xffffff00
 			);
 			
 			_target.active = false;
@@ -139,7 +139,7 @@ package aerys.minko.example.picking
 			_plane = PLANES[target.name];
 			_delta = getIntersection(_plane, mouseX, mouseY);
 			
-			var color : uint = uint(target.bindings.getProperty("diffuseColor"));
+			var color : uint = uint(target.bindings.getProperty('diffuseColor'));
 			_guide = new Group(
 				new Mesh(
 					QuadGeometry.quadGeometry,
@@ -155,9 +155,9 @@ package aerys.minko.example.picking
 				)
 			);
 			
-			target.bindings.setProperty(
-				"diffuseColor",
-				uint(target.bindings.getProperty("diffuseColor")) | 0x88
+			target.properties.setProperty(
+				'diffuseColor',
+				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);
 			
 			_guide.transform

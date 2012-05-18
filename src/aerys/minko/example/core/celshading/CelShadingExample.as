@@ -40,8 +40,8 @@ package aerys.minko.example.core.celshading
 		override protected function enterFrameHandler(event:Event):void
 		{
 			_lightMatrix.appendRotation(0.01, Vector4.Y_AXIS);
-			scene.bindings.setProperty(
-				"lightDirection",
+			scene.properties.setProperty(
+				'lightDirection',
 				_lightMatrix.transformVector(_lightDirection)
 			);
 			
