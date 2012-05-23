@@ -20,7 +20,7 @@ package aerys.minko.example.core.rtt
 			Minko.debugLevel = DebugLevel.CONTEXT;
 			
 			// setup lighting
-			scene.bindings.setProperties({
+			scene.properties.setProperties({
 				lightDirection		: new Vector4(.1, .1, 1.),
 				lightDiffuseColor	: 0xffffff,
 				lightDiffuse		: 1.,

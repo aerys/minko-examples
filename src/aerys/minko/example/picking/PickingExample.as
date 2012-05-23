@@ -25,7 +25,7 @@ package aerys.minko.example.picking
 		
 		override protected function initializeScene() : void
 		{
-			scene.bindings.setProperties({
+			scene.properties.setProperties({
 				lightEnabled		: true,
 				lightDiffuseColor	: 0xffffff,
 				lightDiffuse		: 0.8,

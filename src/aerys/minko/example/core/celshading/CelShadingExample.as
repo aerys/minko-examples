@@ -31,7 +31,7 @@ package aerys.minko.example.core.celshading
 				)
 			);
 		
-			scene.bindings.setProperties({
+			scene.properties.setProperties({
 				lightDiffuseColor	: 0xfffffffff,
 				lightAmbient		: 0.4
 			});
