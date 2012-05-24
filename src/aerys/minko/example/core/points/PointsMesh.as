@@ -7,6 +7,8 @@ package aerys.minko.example.core.points
 	
 	public class PointsMesh extends Mesh
 	{
+		public static const MAX_NUM_POINTS	: uint	= 100;
+		
 		private static const EFFECT	: Effect	= new Effect(new PointsShader());
 		
 		private var _pointsProperties	: DataProvider		= null;
