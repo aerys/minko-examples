@@ -23,22 +23,22 @@ package aerys.minko.example.realistic.reflection
 		[Embed(source="../assets/reflections/probe.jpg")]
 		private static const PROBE_MAP			: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark.jpg")]
+		[Embed(source="../assets/skybox/front.jpg")]
 		private static const CUBE_MAP_FRONT		: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark2.jpg")]
+		[Embed(source="../assets/skybox/back.jpg")]
 		private static const CUBE_MAP_BACK		: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark3.jpg")]
+		[Embed(source="../assets/skybox/left.jpg")]
 		private static const CUBE_MAP_LEFT		: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark4.jpg")]
+		[Embed(source="../assets/skybox/right.jpg")]
 		private static const CUBE_MAP_RIGHT		: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark1.jpg")]
+		[Embed(source="../assets/skybox/top.jpg")]
 		private static const CUBE_MAP_TOP		: Class;
 		
-		[Embed(source="../assets/skybox/ImageCubeFromBookmark5.jpg")]
+		[Embed(source="../assets/skybox/bottom.jpg")]
 		private static const CUBE_MAP_BOTTOM	: Class;
 		
 		[Embed(source="../assets/reflections/escher.env.jpg")]
