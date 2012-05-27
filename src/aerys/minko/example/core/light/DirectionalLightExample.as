@@ -24,7 +24,7 @@ package aerys.minko.example.core.light
 			camera.position.set(0, 0, -10);
 			cameraController.setPivot(0, 1.3, 0);
 			
-			scene.bindings.setProperties({
+			scene.properties.setProperties({
 				lightEnabled		: true,
 				lightDiffuseColor	: 0xffffff,
 				lightDiffuse		: 0.8,
