@@ -12,7 +12,7 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport();
+		private var _viewport			: Viewport			= new Viewport(2);
 		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
 		private var _scene				: Scene				= new Scene();
@@ -66,7 +66,6 @@ package
 			initializeScene();
 			initializeUI();
 			
-			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles']));
 			stage.frameRate = 60;
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
@@ -78,7 +77,7 @@ package
 		
 		protected function initializeUI() : void
 		{
-			// nothing
+			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles']));
 		}
 		
 		protected function enterFrameHandler(event : Event) : void
