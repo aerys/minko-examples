@@ -16,7 +16,9 @@ package aerys.minko.example.core.raycasting
 		{
 			super.initializeScene();
 			
-			cameraController.rotateX(.4);
+			cameraController.zoom(-5);
+			cameraController.rotateX(0.4);
+			cameraController.rotateY(Math.PI / 4);
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,
@@ -24,25 +26,28 @@ package aerys.minko.example.core.raycasting
 				lightDiffuse		: 0.8,
 				lightAmbientColor	: 0xffffff,
 				lightAmbient		: 0.2,
-				lightDirection		: new Vector4(0, -1, 0.5)
+				lightDirection		: new Vector4(0, -1, -.5)
 			});
 			
 			for (var x : uint = 0; x < 10; ++x)
 			{
 				for (var y : uint = 0; y < 10; ++y)
 				{
-					var cube : Mesh = new Mesh(
-						CubeGeometry.cubeGeometry,
-						{
-							diffuseColor 	: 0xffffffff,
-							lightEnabled	: true
-						}
-					);
-					
-					cube.transform.appendTranslation(x - 49.5, 0, y - 49.5)
-						.prependUniformScale(.5);
-					
-					scene.addChild(cube);
+					for (var z : uint = 0; z < 10; ++z)
+					{
+						var cube : Mesh = new Mesh(
+							CubeGeometry.cubeGeometry,
+							{
+								diffuseColor 	: 0xffffffff,
+								lightEnabled	: true
+							}
+						);
+						
+						cube.transform.appendTranslation(x - 4.5, y - 4.5, z - 4.5)
+							.prependUniformScale(.5);
+						
+						scene.addChild(cube);
+					}
 				}
 			}
 			
