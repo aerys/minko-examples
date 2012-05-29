@@ -6,9 +6,11 @@ package aerys.minko.example.core.stencil
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.Geometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.enum.DepthTest;
 	import aerys.minko.type.enum.StencilAction;
+	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
 	import aerys.minko.type.stream.IVertexStream;
@@ -51,41 +53,11 @@ package aerys.minko.example.core.stencil
 			mask.transform.appendTranslation(0, 0.5, 0.0); 
 			mask.transform.rotationX = Math.PI / 180 * 90;	
 			
-			// create the hole with a cube like geometry:
-			// inverted faces, and no top, uvs are also modified according to the structrue
-			var xyz 	: Vector.<Number> = new <Number>[
-				0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5,
-				-0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5,
-				0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5,
-				-0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5,
-				0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5,
-				0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5,
-				-0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5,
-				-0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5,
-				0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5,
-				0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5,
-			];
-			var uv : Vector.<Number>	= new <Number>[
-				0., 1., 1., 1., 0., 0.,
-				0., 0., 1., 1., 1., 0.,				
-				1., 1., 0., 1., 1., 0.,
-				0., 0., 1., 0., 0., 1.,
-				1., 0., 0., 1., 0., 0.,
-				1., 0., 1., 1., 0., 1.,
-				0., 1., 0., 0., 1., 1.,
-				1., 0., 1., 1., 0., 0.,
-				1., 1., 1., 0., 0., 0.,
-				0., 0., 0., 1., 1., 1.
-			];
-			var vstream : Vector.<IVertexStream> = new <IVertexStream>[
-				VertexStream.fromPositionsAndUVs(xyz, uv, StreamUsage.STATIC)
-			];	
-			var texture : TextureResource = TextureLoader.loadClass(TEXTURE);
-			
-			var hole : Mesh = new Mesh( 
-				new Geometry(vstream, null),
-				{					
-					diffuseMap 				: texture,
+			var hole : Mesh = new Mesh(
+				CubeGeometry.cubeGeometry,
+				{
+					triangleCulling			: TriangleCulling.FRONT,
+					diffuseMap 				: TextureLoader.loadClass(TEXTURE),
 					stencilCompareMode		: DepthTest.EQUAL,
 					// we don't want the stencil buffer get affected by this object
 					stencilActionOnBothPass	: StencilAction.KEEP,
