@@ -1,19 +1,19 @@
 package aerys.minko.example.core.stencil 
 {
-	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Group;
+	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.Geometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
-	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.type.enum.DepthTest;
-	import aerys.minko.type.enum.StencilActions;
+	import aerys.minko.type.enum.StencilAction;
+	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
 	import aerys.minko.type.stream.IVertexStream;
 	import aerys.minko.type.stream.StreamUsage;
 	import aerys.minko.type.stream.VertexStream;
-	import flash.display.Bitmap;
 	
 	/**
 	 * This example shows how to use stencil operations with Minko 3D 2.0b
@@ -21,30 +21,34 @@ package aerys.minko.example.core.stencil
 	 */
 	public class StencilExample extends MinkoExampleApplication
 	{		
-		[Embed("../../../../../../assets/wall.png")] public static const TEXTURES:Class;
+		[Embed("../assets/wall.png")]
+		private static const TEXTURE	: Class;
 		
 		override protected function initializeScene():void
 		{			
-			viewport.backgroundColor = 0x222222ff;
-			
 			// create the mask
 			// its just the missing top of the hole cube geometry, acts like a window 
 			// (portals drawn with almost the same concept but with a lot more passes
-			var mask:Mesh = new Mesh(
+			var mask : Mesh = new Mesh(
 				QuadGeometry.quadGeometry,
 				{ 
-					depthWriteEnabled : false, // disable depth write so objects behind can be displayed
-					diffuseColor : 0x00FF00FF, // not really important, for debug purposes only
-					stencilCompareMode: DepthTest.EQUAL,
-					stencilActionOnBothPass: StencilActions.INCREMENT_SATURATE, // this is important! stencil buffer gets incremented
-					stencilReferenceValue: 0 // original value
+					// disable depth write so objects behind can be displayed
+					depthWriteEnabled 		: false, 
+					stencilCompareMode		: DepthTest.EQUAL,
+					// this is important! stencil buffer gets incremented
+					stencilActionOnBothPass	: StencilAction.INCREMENT_SATURATE,
+					// stencil reference value
+					stencilReferenceValue	: 0,
+					// not really important, for debug purposes only
+					diffuseColor 			: 0x00FF00FF
 				},
 				new Effect(
-					new BasicShader(null, 2) // order of passes are important this is the first pass
+					// order of passes is important: this is the first pass
+					new BasicShader(null, 2)
 				)
 			);			
-			// position the mask like if it were the top of the hole
-			mask.transform.appendTranslation( 0, 0.5, 0.0 ); 
+			// position the mask like if it was the top of the hole
+			mask.transform.appendTranslation(0, 0.5, 0.0); 
 			mask.transform.rotationX = Math.PI / 180 * 90;	
 			
 			// create the hole with a cube like geometry:
@@ -73,27 +77,31 @@ package aerys.minko.example.core.stencil
 				1., 1., 1., 0., 0., 0.,
 				0., 0., 0., 1., 1., 1.
 			];
-			var vstream:Vector.<IVertexStream> = new <IVertexStream>[VertexStream.fromPositionsAndUVs(xyz, uv, StreamUsage.DYNAMIC)];				
-			var texture:TextureResource = new TextureResource( 512, 512 );
-			var bmp:Bitmap = new TEXTURES();
-			texture.setContentFromBitmapData( bmp.bitmapData, true );			
-			var hole:Mesh = new Mesh( 
-				new Geometry( vstream, null ),
+			var vstream : Vector.<IVertexStream> = new <IVertexStream>[
+				VertexStream.fromPositionsAndUVs(xyz, uv, StreamUsage.STATIC)
+			];	
+			var texture : TextureResource = TextureLoader.loadClass(TEXTURE);
+			
+			var hole : Mesh = new Mesh( 
+				new Geometry(vstream, null),
 				{					
-					diffuseMap : texture,
-					stencilCompareMode: DepthTest.EQUAL,
-					stencilActionOnBothPass: StencilActions.KEEP, // we don't want the stencil buffer get affected by this object
-					stencilReferenceValue: 1 // this object only get drawn where stencil incremented by
+					diffuseMap 				: texture,
+					stencilCompareMode		: DepthTest.EQUAL,
+					// we don't want the stencil buffer get affected by this object
+					stencilActionOnBothPass	: StencilAction.KEEP,
+					// this object only get drawn where stencil incremented by
+					stencilReferenceValue	: 1
 				},
 				new Effect(
-					new BasicShader(null, 1) // order of passes are important this is the second pass
+					// order of passes is important: this is the second pass
+					new BasicShader(null, 1)
 				)
 			);
 			
-			var group:Group = new Group();
-			group.addChild( mask ).addChild( hole );			
-			scene.addChild( group );	
-			group.transform.appendRotation( Math.PI / 180 * -90, Vector4.X_AXIS );			
+			var group : Group = new Group(mask, hole);
+			
+			group.transform.appendRotation(Math.PI / 180 * -90, Vector4.X_AXIS);
+			scene.addChild(group);
 		}
 	}
 }
