@@ -12,7 +12,10 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport(4);
+		private var _viewport			: Viewport			= new Viewport(2);
+		private var _camera				: Camera			= null;
+		private var _cameraController	: ArcBallController	= null;
+		
 		private var _scene				: Scene				= new Scene();
 		
 		private var _cursor				: Point				= new Point();
@@ -20,6 +23,16 @@ package
 		protected function get viewport() : Viewport
 		{
 			return _viewport;
+		}
+		
+		protected function get camera() : Camera
+		{
+			return _camera;
+		}
+		
+		protected function get cameraController() : ArcBallController
+		{
+			return _cameraController;
 		}
 		
 		protected function get scene() : Scene
@@ -42,19 +55,18 @@ package
 			addChild(_viewport);
 			_viewport.backgroundColor = 0;
 			
-			var camera		: Camera = new Camera(Math.PI / 4, 0.1, 200);
-			var controller	: ArcBallController = new ArcBallController();
-			controller.bindDefaultControls(stage);
-			controller.theta = Math.PI / 3;
-			controller.phi = Math.PI / 2;
-			controller.distance = 10;
-			camera.addController(controller);
+			_camera = new Camera(Math.PI / 4, 0.1, 200);
+			_cameraController = new ArcBallController();
+			_cameraController.bindDefaultControls(stage);
+			_cameraController.theta = Math.PI / 3;
+			_cameraController.phi = Math.PI / 2;
+			_cameraController.distance = 10;
+			camera.addController(_cameraController);
 			
 			_scene.addChild(camera);
 			initializeScene();
 			initializeUI();
 			
-			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles']));
 			stage.frameRate = 60;
 			stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
@@ -66,7 +78,7 @@ package
 		
 		protected function initializeUI() : void
 		{
-			// nothing
+			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles']));
 		}
 		
 		protected function enterFrameHandler(event : Event) : void
