@@ -12,9 +12,7 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport();
-		private var _camera				: Camera			= null;
-		private var _cameraController	: ArcBallController	= null;
+		private var _viewport			: Viewport			= new Viewport(4);
 		private var _scene				: Scene				= new Scene();
 		
 		private var _cursor				: Point				= new Point();
@@ -27,16 +25,6 @@ package
 		protected function get scene() : Scene
 		{
 			return _scene;
-		}
-		
-		protected function get camera() : Camera
-		{
-			return _camera;
-		}
-
-		protected function get cameraController() : ArcBallController
-		{
-			return _cameraController;
 		}
 		
 		public function MinkoExampleApplication()
@@ -52,17 +40,17 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
 			addChild(_viewport);
-			_viewport.backgroundColor = 0x666666ff;
+			_viewport.backgroundColor = 0;
 			
-			_camera = new Camera(_viewport);
-			_camera.lookAt.set(0., 0., 0.);
-			_camera.position.set(0., 0., -5.);
+			var camera		: Camera = new Camera(Math.PI / 4, 0.1, 200);
+			var controller	: ArcBallController = new ArcBallController();
+			controller.bindDefaultControls(stage);
+			controller.theta = Math.PI / 3;
+			controller.phi = Math.PI / 2;
+			controller.distance = 10;
+			camera.addController(controller);
 			
-			_cameraController = new ArcBallController();
-			_cameraController.bindDefaultControls(stage);
-			_camera.addController(_cameraController);
-			_scene.addChild(_camera);
-			
+			_scene.addChild(camera);
 			initializeScene();
 			initializeUI();
 			

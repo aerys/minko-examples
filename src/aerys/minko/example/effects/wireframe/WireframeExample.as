@@ -11,10 +11,10 @@ package aerys.minko.example.effects.wireframe
 	{
 		override protected function initializeScene():void
 		{
-			cameraController.setPivot(0, 1.5, 0);
+//			cameraController.setPivot(0, 1.5, 0);
 			
 			scene.addChild(new Mesh(
-				new WireframeGeometry(new TeapotGeometry(10, StreamUsage.READ)),
+				new WireframeGeometry(new TeapotGeometry(15, StreamUsage.READ)),
 				{
 					wireframeWireColor		: 0xffffff77,
 					wireframeWireThickness	: 15.

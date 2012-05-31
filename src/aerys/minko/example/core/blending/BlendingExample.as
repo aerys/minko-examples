@@ -31,7 +31,7 @@ package aerys.minko.example.core.blending
 				{ diffuseColor : 0xff000077 }
 			);
 			
-			red.bindings.add(_sharedProperties);
+			red.bindings.addProvider(_sharedProperties);
 			red.transform.appendTranslation(-1, 0, -1);
 			
 			var blue : Mesh = new Mesh(
@@ -39,7 +39,7 @@ package aerys.minko.example.core.blending
 				{ diffuseColor : 0x00ff0077 }
 			);
 			
-			blue.bindings.add(_sharedProperties);
+			blue.bindings.addProvider(_sharedProperties);
 			blue.transform.appendTranslation(1, 0, -1);
 			
 			var green : Mesh = new Mesh(
@@ -47,7 +47,7 @@ package aerys.minko.example.core.blending
 				{ diffuseColor : 0x0000ff77 }
 			);
 			
-			green.bindings.add(_sharedProperties);
+			green.bindings.addProvider(_sharedProperties);
 			green.transform.appendTranslation(0, 0, 1);
 			
 			scene.addChild(red).addChild(blue).addChild(green);

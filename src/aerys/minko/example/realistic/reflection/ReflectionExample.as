@@ -15,7 +15,7 @@ package aerys.minko.example.realistic.reflection
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.log.DebugLevel;
 
-	public class Reflection extends MinkoExampleApplication
+	public class ReflectionExample extends MinkoExampleApplication
 	{
 		[Embed(source="../assets/reflections/blinn-newell.jpg")]
 		private static const BLINN_NEWELL_MAP	: Class;
