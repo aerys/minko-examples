@@ -36,7 +36,7 @@ package aerys.minko.example.core.points
 				pointsPositions	: _positions
 			});
 			
-			bindings.add(_pointsProperties);
+			bindings.addProvider(_pointsProperties);
 		}
 		
 		public function lock() : void

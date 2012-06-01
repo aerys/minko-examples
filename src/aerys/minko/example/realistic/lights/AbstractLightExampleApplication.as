@@ -1,53 +1,45 @@
-package aerys.minko.example.lighting.cubes
+package aerys.minko.example.realistic.lights
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicProperties;
 	import aerys.minko.render.effect.lighting.LightingEffect;
 	import aerys.minko.render.effect.lighting.LightingProperties;
-	import aerys.minko.scene.node.Sprite;
-	import aerys.minko.scene.node.light.AbstractLight;
-	import aerys.minko.scene.node.light.AmbientLight;
-	import aerys.minko.scene.node.light.DirectionalLight;
-	import aerys.minko.scene.node.light.PointLight;
-	import aerys.minko.scene.node.light.SpotLight;
+	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
-	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
-	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
-
-	public class Cubes extends MinkoExampleApplication
+	
+	public class AbstractLightExampleApplication extends MinkoExampleApplication
 	{
 		private var _lightingEffect : Effect;
-		private var _light			: AbstractLight;
+		private var _teapotGroup	: Group;
+		
+		public function get lightingEffect() : Effect
+		{
+			return _lightingEffect;
+		}
 		
 		override protected function initializeScene() : void
 		{
-			Minko.debugLevel = DebugLevel.CONTEXT | DebugLevel.SHADER_AGAL;
-			
 			_lightingEffect	= new LightingEffect(scene);
-			_light			= new PointLight();
-			_light.shadowCastingType = ShadowMappingType.CUBE;
-			_light.shadowMapSize		= 1024;
-//			_light.transform.rotationX = Math.PI / 8;
 			
-			scene.addChild(new AmbientLight());
-			scene.addChild(_light);
+			initializeLights();
 			
 			var bigCube : Mesh = new Mesh(CubeGeometry.cubeGeometry, null, _lightingEffect);
 			bigCube.transform.setScale(100, 100, 100);
 			bigCube.properties[BasicProperties.TRIANGLE_CULLING]	= TriangleCulling.FRONT;
 			bigCube.properties[BasicProperties.DIFFUSE_COLOR]		= 0xbbbbffff;
 			bigCube.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
+			bigCube.properties[LightingProperties.CAST_SHADOWS]		= true;
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry	: TeapotGeometry = new TeapotGeometry(5);
+			var teapotGeometry : TeapotGeometry = new TeapotGeometry(3);
+			_teapotGroup = new Group();
 			
 			for (var teapotId : uint = 0; teapotId < 50; ++teapotId)
 			{
@@ -57,11 +49,12 @@ package aerys.minko.example.lighting.cubes
 					new Vector4(Math.random(), Math.random(), Math.random(), 1);
 				
 				smallTeapot.properties[LightingProperties.CAST_SHADOWS] = true;
+				smallTeapot.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
 				
 				smallTeapot.transform.setTranslation(
-					80 * (Math.random() - .5),
-					80 * (Math.random() - .5),
-					80 * (Math.random() - .5)
+					50 * (Math.random() - .5),
+					50 * (Math.random() - .5),
+					50 * (Math.random() - .5)
 				);
 				
 				smallTeapot.transform.setRotation(
@@ -70,15 +63,21 @@ package aerys.minko.example.lighting.cubes
 					2 * Math.PI * Math.random()
 				);
 				
-				scene.addChild(smallTeapot);
+				_teapotGroup.addChild(smallTeapot);
 			}
+			
+			scene.addChild(_teapotGroup);
 		}
 		
-		override protected function enterFrameHandler(event:Event):void
+		protected function initializeLights() : void
 		{
-			super.enterFrameHandler(event);
+		}
+		
+		override protected function enterFrameHandler(e : Event):void
+		{
+			super.enterFrameHandler(e);
 			
-			_light.transform.appendRotation(0.01, Vector4.Y_AXIS);
+			_teapotGroup.transform.appendRotation(0.01, Vector4.Y_AXIS);
 		}
 	}
 }
