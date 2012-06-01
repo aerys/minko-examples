@@ -1,6 +1,7 @@
 package aerys.minko.example.core.texture
 {
 	import aerys.minko.Minko;
+	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.enum.SamplerFiltering;
@@ -14,10 +15,12 @@ package aerys.minko.example.core.texture
 		
 		override protected function initializeScene() : void
 		{
+			var texture : TextureResource = TextureLoader.loadClass(ASSET_TEXTURE);
+			
 			var m1 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				{
-					diffuseMap 			: TextureLoader.loadClass(ASSET_TEXTURE),
+					diffuseMap 			: texture,
 					diffuseFiltering	: SamplerFiltering.NEAREST
 				}
 			);
@@ -27,7 +30,7 @@ package aerys.minko.example.core.texture
 			var m2 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				{
-					diffuseMap 			: TextureLoader.loadClass(ASSET_TEXTURE),
+					diffuseMap 			: texture,
 					diffuseFiltering	: SamplerFiltering.LINEAR
 				}
 			);
