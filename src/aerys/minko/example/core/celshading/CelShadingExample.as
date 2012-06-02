@@ -17,8 +17,8 @@ package aerys.minko.example.core.celshading
 		{
 			super.initializeScene();
 			
-			camera.position.set(0., 0., -7);
-			cameraController.setPivot(0, 1.5, 0);
+			camera.transform.setTranslation(0., 0., -7);
+			cameraController.lookAt.set(0, 1.5, 0);
 			
 			scene.addChild(
 				new Mesh(

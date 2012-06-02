@@ -162,7 +162,7 @@ package aerys.minko.example.picking
 			
 			_guide.transform
 				.prependTranslation(0, 0, 1)
-				.prependUniformScale(_camera.zFar)
+				.prependUniformScale(_camera.cameraData.zFar)
 			target.parent.addChild(_guide);
 			
 			_dispatcher.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false, 1000);
@@ -234,21 +234,21 @@ package aerys.minko.example.picking
 			var xPercent	: Number	= 2 * (x / stageWidth - 0.5);
 			var yPercent 	: Number	= 2 * (y / stageHeight - 0.5);
 			
-			var fov			: Number	= _camera.fieldOfView;
-			var worldToView	: Matrix4x4	= _camera.worldToView;
+			var fov			: Number	= _camera.cameraData.fieldOfView;
+			var worldToView	: Matrix4x4	= _camera.cameraData.worldToView;
 			var viewToWorld	: Matrix4x4	= new Matrix4x4().copyFrom(worldToView).invert();
 			
 			var dx	: Number = Math.tan(fov * 0.5) * xPercent * (stageWidth / stageHeight);
 			var dy	: Number = -Math.tan(fov * 0.5) * yPercent;
 			
 			var p1 : Vector4 = new Vector4(
-				dx * _camera.zNear, dy * _camera.zNear, _camera.zNear
+				dx * _camera.cameraData.zNear, dy * _camera.cameraData.zNear, _camera.cameraData.zNear
 			);
 			var p2 : Vector4 = new Vector4(
-				dx * _camera.zFar, dy * _camera.zFar, _camera.zFar
+				dx * _camera.cameraData.zFar, dy * _camera.cameraData.zFar, _camera.cameraData.zFar
 			);
 			
-			var m : Matrix4x4 = new Matrix4x4().copyFrom(_target.localToWorld).append(_camera.worldToView);
+			var m : Matrix4x4 = new Matrix4x4().copyFrom(_target.localToWorld).append(_camera.cameraData.worldToView);
 			
 			m.invert();
 			

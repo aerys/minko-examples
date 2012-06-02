@@ -9,6 +9,8 @@ package aerys.minko.example.core.timegradient
 	{
 		override protected function initializeScene():void
 		{
+			super.initializeScene();
+			
 			scene.addChild(
 				new Mesh(
 					CubeGeometry.cubeGeometry,

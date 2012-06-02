@@ -29,7 +29,7 @@ package aerys.minko.example.realistic.lights
 			
 			scene.addChild(ambientLight).addChild(spotLight);
 			
-			spotLight.transform.lookAt(
+			spotLight.transform.view(
 				new Vector4(0, 0, 0),
 				new Vector4(1, 1, 1)
 			).invert();

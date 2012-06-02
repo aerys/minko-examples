@@ -2,7 +2,7 @@ package aerys.minko.example.core.points
 {
 	public class PointsExample extends MinkoExampleApplication
 	{
-		private static const NUM_POINTS	: uint	= 100000;
+		private static const NUM_POINTS	: uint	= 10000;
 		
 		override protected function initializeScene() : void
 		{

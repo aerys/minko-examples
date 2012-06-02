@@ -18,7 +18,7 @@ package aerys.minko.example.core.animationcontroller
 		
 		override protected function initializeScene() : void
 		{
-			cameraController.enabled = false;
+//			cameraController.enabled = false;
 			
 			var matrices : Vector.<Matrix4x4>	= new <Matrix4x4>[
 				new Matrix4x4().appendTranslation(-1),

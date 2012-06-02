@@ -18,7 +18,7 @@ package aerys.minko.example.realistic.lights
 			pointLight.shadowCastingType	= ShadowMappingType.CUBE;
 			pointLight.shadowMapSize		= 1024;
 			
-			pointLight.transform.lookAt(
+			pointLight.transform.view(
 				new Vector4(20, 20, 20),
 				new Vector4(-30, 234, 2)
 			);

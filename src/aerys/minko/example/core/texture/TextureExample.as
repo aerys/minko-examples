@@ -15,6 +15,8 @@ package aerys.minko.example.core.texture
 		
 		override protected function initializeScene() : void
 		{
+			super.initializeScene();
+			
 			var texture : TextureResource = TextureLoader.loadClass(ASSET_TEXTURE);
 			
 			var m1 : Mesh = new Mesh(

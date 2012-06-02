@@ -17,7 +17,9 @@ package aerys.minko.example.core.rtt
 	{
 		override protected function initializeScene() : void
 		{
-			Minko.debugLevel = DebugLevel.CONTEXT;
+			super.initializeScene();
+			
+			cameraController.theta = Math.PI * -.5;
 			
 			// setup lighting
 			scene.properties.setProperties({
@@ -59,9 +61,7 @@ package aerys.minko.example.core.rtt
 				)
 			);
 			
-			teapot.transform
-				.appendUniformScale(.5)
-				.appendTranslation(0, -0.6);
+			teapot.transform.appendTranslation(0, -1.5);
 			
 			scene.addChild(teapot);
 			

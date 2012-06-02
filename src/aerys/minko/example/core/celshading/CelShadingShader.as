@@ -20,7 +20,7 @@ package aerys.minko.example.core.celshading
 		{
 			var eyeToVertex : SFloat = normalize(subtract(
 				multiply4x4(vertexXYZ, localToWorldMatrix),
-				cameraWorldPosition
+				cameraPosition
 			));
 			
 			_isEdge = lessThan(
@@ -28,7 +28,7 @@ package aerys.minko.example.core.celshading
 				dotProduct3(vertexNormal, eyeToVertex)
 			);
 			
-			var thickness : SFloat	= meshBindings.getParameter("thickness", 1);
+			var thickness : SFloat	= meshBindings.getParameter('thickness', 1);
 			var delta : SFloat = multiply(_isEdge, vertexNormal.xyz, thickness);
 			
 			var pos : SFloat = multiply4x4(

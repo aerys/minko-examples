@@ -30,9 +30,9 @@ package aerys.minko.example.core.terrain
 		{
 			super.initializeScene();
 			
-			cameraController.zoom(-30);
-			cameraController.rotateX(0.6);
-			cameraController.rotateY(-Math.PI * 0.25);
+			cameraController.distance = 150;
+			cameraController.phi = 1.;
+			cameraController.theta = Math.PI * .25;
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,

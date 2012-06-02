@@ -15,10 +15,10 @@ package aerys.minko.example.core.raycasting
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
-			
-			cameraController.zoom(-5);
-			cameraController.rotateX(0.4);
-			cameraController.rotateY(Math.PI / 4);
+
+			cameraController.distance = 20;
+			cameraController.phi = 0.8;
+			cameraController.theta = Math.PI / 4;
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,

@@ -19,10 +19,10 @@ package aerys.minko.example.core.light
 		
 		override protected function initializeScene() : void
 		{
-			Minko.debugLevel = DebugLevel.SHADER_AGAL;
+			super.initializeScene();
 			
-			camera.position.set(0, 0, -10);
-			cameraController.setPivot(0, 1.3, 0);
+			camera.transform.setTranslation(0, 0, -10);
+			cameraController.lookAt.set(0, 1.3, 0);
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,

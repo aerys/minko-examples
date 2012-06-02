@@ -11,12 +11,10 @@ package aerys.minko.example.core.redcube
 		{
 			super.initializeScene();
 			
-			Minko.debugLevel = DebugLevel.SHADER_AGAL;
-			
 			scene.addChild(
 				new Mesh(
 					CubeGeometry.cubeGeometry,
-					{ diffuseColor :	0xff0000ff }
+					{ diffuseColor : 0xff0000ff }
 				)
 			);
 		}

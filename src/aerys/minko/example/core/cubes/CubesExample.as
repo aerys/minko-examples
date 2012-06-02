@@ -47,12 +47,14 @@ package aerys.minko.example.core.cubes
 			);
 			
 			cube.transform
+				.lock()
 				.appendUniformScale(0.03)
 				.appendTranslation(
 					-1 + Math.random() * 2,
 					-1 + Math.random() * 2,
 					-1 + Math.random() * 2
-				);
+				)
+				.unlock();
 			
 			scene.addChild(cube);
 		}

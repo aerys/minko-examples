@@ -53,17 +53,8 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
 			addChild(_viewport);
-			_viewport.backgroundColor = 0;
+			_viewport.backgroundColor = 0x666666ff;
 			
-			_camera = new Camera(Math.PI / 4, 0.1, 200);
-			_cameraController = new ArcBallController();
-			_cameraController.bindDefaultControls(stage);
-			_cameraController.theta = Math.PI / 3;
-			_cameraController.phi = Math.PI / 2;
-			_cameraController.distance = 10;
-			camera.addController(_cameraController);
-			
-			_scene.addChild(camera);
 			initializeScene();
 			initializeUI();
 			
@@ -73,7 +64,15 @@ package
 		
 		protected function initializeScene() : void
 		{
-			// nothing
+			_camera = new Camera();
+			_cameraController = new ArcBallController();
+			_cameraController.bindDefaultControls(stage);
+			_cameraController.theta = Math.PI * -.5;
+			_cameraController.phi = Math.PI / 2;
+			_cameraController.distance = 5;
+			camera.addController(_cameraController);
+			
+			_scene.addChild(camera);
 		}
 		
 		protected function initializeUI() : void

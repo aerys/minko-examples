@@ -25,7 +25,7 @@ package aerys.minko.example.core.screenshot
 				
 				scene.render(viewport, bitmapData);
 				
-				new FileReference().save(encoder.encode(bitmapData), "screenshot.jpg");
+				new FileReference().save(encoder.encode(bitmapData), 'screenshot.jpg');
 			}
 		}
 	}

@@ -27,7 +27,9 @@ package aerys.minko.example.core.stencil
 		private static const TEXTURE	: Class;
 		
 		override protected function initializeScene():void
-		{			
+		{
+			super.initializeScene();
+			
 			// create the mask
 			// its just the missing top of the hole cube geometry, acts like a window 
 			// (portals drawn with almost the same concept but with a lot more passes

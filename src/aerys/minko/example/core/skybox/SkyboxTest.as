@@ -20,7 +20,10 @@ package aerys.minko.example.core.skybox
 		
 	    override protected function initializeScene() : void
 		{
+			super.initializeScene();
+			
 			var texture : CubeTextureResource = new CubeTextureResource(1024);
+			
 			texture.setContentFromBitmapData(new CUBE_MAP().bitmapData, true);
 			
 	        var skybox : Mesh = new Mesh(

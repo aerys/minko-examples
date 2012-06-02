@@ -17,7 +17,7 @@ package aerys.minko.example.core.spritesheet
 		{
 			super.initializeScene();
 			
-			camera.position.z = -2;
+//			camera.position.z = -2;
 			
 			scene.addChild(new Mesh(
 				new BillboardsGeometry(1),
