@@ -9,9 +9,11 @@ package aerys.minko.example.effects.wireframe
 
 	public class WireframeExample extends MinkoExampleApplication
 	{
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
-//			cameraController.setPivot(0, 1.5, 0);
+			super.initializeScene();
+		
+			cameraController.lookAt.set(0, 1.5, 0);
 			
 			scene.addChild(new Mesh(
 				new WireframeGeometry(new TeapotGeometry(15, StreamUsage.READ)),
