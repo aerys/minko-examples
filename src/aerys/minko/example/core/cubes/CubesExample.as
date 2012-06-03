@@ -29,7 +29,7 @@ package aerys.minko.example.core.cubes
 		{
 			var time : int = getTimer();
 			
-			if (Monitor.monitor.framerate > TARGET_FPS)
+			if (1000. / (time - _lastTime) > TARGET_FPS)
 				for (var i : uint = 0; i < 10; ++i)
 					addCube();
 			
