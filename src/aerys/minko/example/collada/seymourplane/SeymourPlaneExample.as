@@ -15,17 +15,18 @@ package aerys.minko.example.collada.seymourplane
 	{
 		override protected function initializeScene():void
 		{
+			super.initializeScene();
+			
+			cameraController.distance = 0.5;
+			
 			var options : ParserOptions		= new ParserOptions();
 			
 			options.parser					= ColladaParser;
 			options.loadDependencies		= true;
 			options.mipmapTextures			= true;
-			options.effect					= new Effect(new BasicShader());
 			options.dependencyLoaderClosure	= dependencyLoaderClosure;
 			
-			var loader : SceneLoader = new SceneLoader(options);
-			loader.complete.add(onLoadComplete);
-			loader.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"));
+			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options);
 		}
 		
 		private function dependencyLoaderClosure(dependencyPath	: String,
@@ -50,11 +51,6 @@ package aerys.minko.example.collada.seymourplane
 			}
 			
 			return loader;
-		}
-		
-		private function onLoadComplete(loader : ILoader, result : ISceneNode) : void
-		{
-			scene.addChild(result);
 		}
 	}
 }

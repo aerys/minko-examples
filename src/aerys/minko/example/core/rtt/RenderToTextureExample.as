@@ -19,7 +19,7 @@ package aerys.minko.example.core.rtt
 		{
 			super.initializeScene();
 			
-			cameraController.theta = Math.PI * -.5;
+			cameraController.yaw = Math.PI * -.5;
 			
 			// setup lighting
 			scene.properties.setProperties({

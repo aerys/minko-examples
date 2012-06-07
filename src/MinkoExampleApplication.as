@@ -67,8 +67,8 @@ package
 			_camera = new Camera();
 			_cameraController = new ArcBallController();
 			_cameraController.bindDefaultControls(stage);
-			_cameraController.theta = Math.PI * -.5;
-			_cameraController.phi = Math.PI / 2;
+			_cameraController.yaw = Math.PI * -.5;
+			_cameraController.pitch = Math.PI / 2;
 			_cameraController.distance = 5;
 			camera.addController(_cameraController);
 			
