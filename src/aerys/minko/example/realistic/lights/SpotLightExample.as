@@ -13,8 +13,6 @@ package aerys.minko.example.realistic.lights
 
 	public class SpotLightExample extends AbstractLightExampleApplication
 	{
-		private var _done	: Boolean	= false;
-		
 		override protected function initializeLights() : void
 		{
 			Minko.debugLevel = DebugLevel.CONTEXT;
@@ -32,21 +30,7 @@ package aerys.minko.example.realistic.lights
 			spotLight.transform.view(
 				new Vector4(0, 0, 0),
 				new Vector4(1, 1, 1)
-			).invert();
-		}
-		
-		override protected function enterFrameHandler(e:Event):void
-		{
-			super.enterFrameHandler(e);
-			
-			if (scene.bindings.getProperty('light_shadowMap_1') && !_done)
-			{
-				scene.addChild(new Sprite(0, 0, 256, 256, {
-					diffuseMap : scene.bindings.getProperty('light_shadowMap_1')
-				}));
-				
-				_done = true;
-			}
+			);
 		}
 	}
 }

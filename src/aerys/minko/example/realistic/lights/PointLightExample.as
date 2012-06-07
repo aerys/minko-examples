@@ -25,11 +25,5 @@ package aerys.minko.example.realistic.lights
 			
 			scene.addChild(new AmbientLight()).addChild(pointLight);
 		}
-		
-		override protected function enterFrameHandler(e:Event):void
-		{
-			super.enterFrameHandler(e);
-			
-		}
 	}
 }
