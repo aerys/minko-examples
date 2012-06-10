@@ -24,23 +24,7 @@ package aerys.minko.example.core.redcube
 			);
 			
 			camera.transform.appendTranslation(0, 0, -5);
-			
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
 		}
 		
-		private function mouseMoveHandler(event : MouseEvent) : void
-		{
-			if (event.buttonDown)
-			{
-				var ray : Ray = camera.unproject(event.stageX, event.stageY);
-				
-				camera.transform.lookAt(
-					Vector4.add(
-						camera.transform.transformVector(Vector4.ZERO),
-						ray.direction
-					)
-				);
-			}
-		}
 	}
 }

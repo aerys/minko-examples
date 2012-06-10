@@ -19,8 +19,6 @@ package aerys.minko.example.core.celshading
 		{
 			super.initializeScene();
 			
-			Minko.debugLevel = DebugLevel.SHADER_AGAL;
-			
 			camera.transform.setTranslation(0., 0., -7);
 			cameraController.lookAt.set(0, 1.5, 0);
 			

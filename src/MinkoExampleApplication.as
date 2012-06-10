@@ -1,9 +1,12 @@
 package
 {
+	import aerys.minko.Minko;
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
+	import aerys.minko.scene.node.OrientationAxis;
 	import aerys.minko.scene.node.Scene;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.monitor.Monitor;
 	
 	import flash.display.Sprite;
@@ -52,6 +55,8 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
+			Minko.debugLevel = DebugLevel.SHADER_AGAL;
+			
 			addChild(_viewport);
 			_viewport.backgroundColor = 0x666666ff;
 			
@@ -73,6 +78,8 @@ package
 			camera.addController(_cameraController);
 			
 			_scene.addChild(camera);
+			
+//			_scene.addChild(new OrientationAxis());
 		}
 		
 		protected function initializeUI() : void
