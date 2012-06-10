@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.reflection
+package aerys.minko.example.lighting.reflection
 {
 	import aerys.minko.Minko;
 	import aerys.minko.render.effect.Effect;

@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.lights
+package aerys.minko.example.lighting
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicProperties;
