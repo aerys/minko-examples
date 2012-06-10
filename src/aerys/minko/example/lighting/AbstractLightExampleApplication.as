@@ -25,6 +25,8 @@ package aerys.minko.example.lighting
 		
 		override protected function initializeScene() : void
 		{
+			super.initializeScene();
+			
 			_lightingEffect	= new LightingEffect(scene);
 			
 			initializeLights();

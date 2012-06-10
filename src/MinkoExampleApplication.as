@@ -77,7 +77,7 @@ package
 		
 		protected function initializeUI() : void
 		{
-			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles']));
+			stage.addChild(Monitor.monitor.watch(_scene, ['numDescendants', 'numTriangles', 'numPasses']));
 		}
 		
 		protected function enterFrameHandler(event : Event) : void

@@ -30,10 +30,7 @@ package aerys.minko.example.lighting.spot
 			
 			scene.addChild(ambientLight).addChild(spotLight);
 			
-			spotLight.transform.view(
-				new Vector4(0, 0, 0),
-				new Vector4(1, 1, 1)
-			).invert();
+			spotLight.transform.lookAt(new Vector4(1, 1, 1));
 		}
 		
 		override protected function enterFrameHandler(e:Event):void

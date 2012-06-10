@@ -46,7 +46,7 @@ package aerys.minko.example.lighting.reflection
 		
 		override protected function initializeScene() : void
 		{
-			Minko.debugLevel = DebugLevel.CONTEXT;
+			super.initializeScene();
 			
 			// create realistic effect
 			var effect : Effect = new RealisticEffect(scene);
@@ -78,21 +78,25 @@ package aerys.minko.example.lighting.reflection
 			);
 			
 			// configure cube so that they use the reflection maps.
-			blinnNewell.properties.setProperty(BasicProperties.DIFFUSE_COLOR, 0);
-			blinnNewell.properties.setProperty(ReflectionProperties.MAP, blinnNewellMap);
-			blinnNewell.properties.setProperty(ReflectionProperties.TYPE, ReflectionType.BLINN_NEWELL);
+			blinnNewell.properties
+				.setProperty(BasicProperties.DIFFUSE_COLOR, 0)
+				.setProperty(ReflectionProperties.MAP, blinnNewellMap)
+				.setProperty(ReflectionProperties.TYPE, ReflectionType.BLINN_NEWELL);
 			
-			probe.properties.setProperty(BasicProperties.DIFFUSE_COLOR, 0xff0000ff);
-			probe.properties.setProperty(ReflectionProperties.MAP, probeMap);
-			probe.properties.setProperty(ReflectionProperties.TYPE, ReflectionType.PROBE);
+			probe.properties
+				.setProperty(BasicProperties.DIFFUSE_COLOR, 0xff0000ff)
+				.setProperty(ReflectionProperties.MAP, probeMap)
+				.setProperty(ReflectionProperties.TYPE, ReflectionType.PROBE);
 			
-			cubeParts.properties.setProperty(BasicProperties.DIFFUSE_COLOR, 0);
-			cubeParts.properties.setProperty(ReflectionProperties.MAP, cubeMapParts);
-			cubeParts.properties.setProperty(ReflectionProperties.TYPE, ReflectionType.CUBE);
+			cubeParts.properties
+				.setProperty(BasicProperties.DIFFUSE_COLOR, 0)
+				.setProperty(ReflectionProperties.MAP, cubeMapParts)
+				.setProperty(ReflectionProperties.TYPE, ReflectionType.CUBE);
 			
-			cubeFull.properties.setProperty(BasicProperties.DIFFUSE_COLOR, 0);
-			cubeFull.properties.setProperty(ReflectionProperties.MAP, cubeMapFull);
-			cubeFull.properties.setProperty(ReflectionProperties.TYPE, ReflectionType.CUBE);
+			cubeFull.properties
+				.setProperty(BasicProperties.DIFFUSE_COLOR, 0)
+				.setProperty(ReflectionProperties.MAP, cubeMapFull)
+				.setProperty(ReflectionProperties.TYPE, ReflectionType.CUBE);
 			
 			// move them around
 			blinnNewell.transform.setTranslation(4, 0, 4);
@@ -100,8 +104,8 @@ package aerys.minko.example.lighting.reflection
 			cubeParts.transform.setTranslation(-4, 0, 4);
 			cubeFull.transform.setTranslation(-4, 0, -4);
 			
-			scene.addChild(new AmbientLight(0xffffff, 1));
-			scene.addChild(blinnNewell)
+			scene.addChild(new AmbientLight(0xffffffff, 1))
+				 .addChild(blinnNewell)
 				 .addChild(probe)
 				 .addChild(cubeParts)
 				 .addChild(cubeFull);
