@@ -7,7 +7,10 @@ package aerys.minko.example.lighting.normalmapping
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.Geometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.SphereGeometry;
 	import aerys.minko.type.data.DataProvider;
 	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.loader.TextureLoader;
@@ -35,17 +38,20 @@ package aerys.minko.example.lighting.normalmapping
 		[Embed(source="../assets/parallaxmapping/collage-bump.jpg")]
 		private static const HEIGHT_MAP		: Class;
 		
-		private var _light : DirectionalLight = new DirectionalLight(0xffffffff, 1, 1.0, 16);
+		private var _light : DirectionalLight = new DirectionalLight(0xffffffff, 1, 1.0, 128);
 		
 		override protected function initializeUI() : void
 		{
 			super.initializeUI();
 			
 			var textField : TextField = new TextField();
-			textField.text		= "Camera Control:\n- Press 1 to center on common rendering\n- Press 2 to center on normal mapped rendering\n- Press 3 to center on parallax mapped rendering";
 			textField.textColor	= 0xffffff;
 			textField.x			= 200;
 			textField.width		= 500;
+			textField.text		= "Camera Control:\n" +
+				"- Press 1 to center on common rendering\n" +
+				"- Press 2 to center on normal mapped rendering\n" +
+				"- Press 3 to center on parallax mapped rendering";
 			
 			addChild(textField);
 			
@@ -59,13 +65,15 @@ package aerys.minko.example.lighting.normalmapping
 			ArcBallController(camera.getControllersByType(ArcBallController)[0]).distanceStep = 0.1;
 			
 			var lightingEffect	: LightingEffect	= new LightingEffect(scene);
+			var geometry		: Geometry			= new SphereGeometry(30);
 			
 			for (var quadId : uint = 0; quadId < 3; ++quadId)
 			{
-				var quad			: Mesh										= new Mesh(QuadGeometry.quadGeometry, null, lightingEffect);
-				var quadProperties	: DataProvider								= quad.properties;
-				quadProperties[BasicProperties.DIFFUSE_MAP]						= TextureLoader.loadClass(DIFFUSE_MAP);
-				quad.transform.setTranslation(quadId  - 1, 0, 0);
+				var quad			: Mesh					= new Mesh(geometry, null, lightingEffect);
+				var quadProperties	: DataProvider			= quad.properties;
+				
+				quadProperties[BasicProperties.DIFFUSE_MAP]	= TextureLoader.loadClass(DIFFUSE_MAP);
+				quad.transform.setTranslation(quadId  - 1, 0, 0).setRotation(Math.PI, 0, 0);
 				
 				switch (quadId)
 				{
@@ -83,7 +91,7 @@ package aerys.minko.example.lighting.normalmapping
 						quadProperties[LightingProperties.NORMAL_MAP]					= TextureLoader.loadClass(NORMAL_MAP);
 						quadProperties[LightingProperties.HEIGHT_MAP]					= TextureLoader.loadClass(HEIGHT_MAP);
 						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 40;		// optional, defaults to 20
-						quadProperties[LightingProperties.PARALLAX_MAPPING_BUMP_SCALE]	= 0.04;		// optional, defaults to 0.03
+						quadProperties[LightingProperties.PARALLAX_MAPPING_BUMP_SCALE]	= 0.03;		// optional, defaults to 0.03
 						break;
 				}
 				

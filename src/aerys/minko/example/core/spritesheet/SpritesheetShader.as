@@ -2,12 +2,19 @@ package aerys.minko.example.core.spritesheet
 {
 	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.Shader;
+	import aerys.minko.render.shader.ShaderSettings;
+	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.SamplerFiltering;
 	import aerys.minko.type.enum.SamplerMipMapping;
 	import aerys.minko.type.enum.SamplerWrapping;
 	
 	public final class SpritesheetShader extends Shader
 	{
+		override protected function initializeSettings(settings:ShaderSettings):void
+		{
+			settings.blending = Blending.ADDITIVE;
+		}
+		
 		override protected function getVertexPosition():SFloat
 		{
 			var id			: SFloat	= vertexId.x;

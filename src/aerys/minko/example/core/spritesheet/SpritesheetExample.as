@@ -6,6 +6,7 @@ package aerys.minko.example.core.spritesheet
 	import aerys.minko.scene.node.mesh.geometry.primitive.BillboardsGeometry;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.ScalarRegularTimeline;
+	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.loader.TextureLoader;
 
 	public class SpritesheetExample extends MinkoExampleApplication
