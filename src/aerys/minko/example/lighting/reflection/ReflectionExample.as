@@ -1,6 +1,5 @@
 package aerys.minko.example.lighting.reflection
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicProperties;
 	import aerys.minko.render.effect.realistic.RealisticEffect;
@@ -13,7 +12,6 @@ package aerys.minko.example.lighting.reflection
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.enum.ReflectionType;
 	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.log.DebugLevel;
 
 	public class ReflectionExample extends MinkoExampleApplication
 	{
@@ -23,22 +21,22 @@ package aerys.minko.example.lighting.reflection
 		[Embed(source="../assets/reflections/probe.jpg")]
 		private static const PROBE_MAP			: Class;
 		
-		[Embed(source="../assets/skybox/front.jpg")]
+		[Embed(source="../assets/skybox/posz.jpg")]
 		private static const CUBE_MAP_FRONT		: Class;
 		
-		[Embed(source="../assets/skybox/back.jpg")]
+		[Embed(source="../assets/skybox/negz.jpg")]
 		private static const CUBE_MAP_BACK		: Class;
 		
-		[Embed(source="../assets/skybox/left.jpg")]
+		[Embed(source="../assets/skybox/negx.jpg")]
 		private static const CUBE_MAP_LEFT		: Class;
 		
-		[Embed(source="../assets/skybox/right.jpg")]
+		[Embed(source="../assets/skybox/posx.jpg")]
 		private static const CUBE_MAP_RIGHT		: Class;
 		
-		[Embed(source="../assets/skybox/top.jpg")]
+		[Embed(source="../assets/skybox/posy.jpg")]
 		private static const CUBE_MAP_TOP		: Class;
 		
-		[Embed(source="../assets/skybox/bottom.jpg")]
+		[Embed(source="../assets/skybox/negy.jpg")]
 		private static const CUBE_MAP_BOTTOM	: Class;
 		
 		[Embed(source="../assets/reflections/escher.env.jpg")]

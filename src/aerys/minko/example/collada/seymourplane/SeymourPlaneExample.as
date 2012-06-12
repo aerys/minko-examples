@@ -18,6 +18,7 @@ package aerys.minko.example.collada.seymourplane
 			super.initializeScene();
 			
 			cameraController.distance = 0.5;
+			cameraController.distanceStep = 0.02;
 			
 			var options : ParserOptions		= new ParserOptions();
 			

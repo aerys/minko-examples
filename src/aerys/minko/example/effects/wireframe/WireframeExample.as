@@ -4,7 +4,6 @@ package aerys.minko.example.effects.wireframe
 	import aerys.minko.render.effect.wireframe.WireframeShader;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.ConeGeometry;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.stream.StreamUsage;
 

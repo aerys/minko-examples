@@ -24,6 +24,7 @@ package aerys.minko.example.collada.astroboy
 			super.initializeScene();
 			
 			cameraController.distance = 0.5;
+			cameraController.distanceStep = 0.02;
 			cameraController.lookAt.set(0, 0.05, 0);
 			
 			var options : ParserOptions		= new ParserOptions();

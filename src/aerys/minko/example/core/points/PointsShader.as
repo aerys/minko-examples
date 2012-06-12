@@ -28,7 +28,13 @@ package aerys.minko.example.core.points
 		
 		override protected function getPixelColor() : SFloat
 		{
-			return meshBindings.getParameter('diffuseColor', 4);
+			var squareDistanceFromParticleCenter	: SFloat = dotProduct2(interpolate(vertexXY), interpolate(vertexXY));
+			var isInsideCircle						: SFloat = subtract(0.25, squareDistanceFromParticleCenter);
+			
+			kill(isInsideCircle);
+			
+			// cheap fake lighting.
+			return sqrt(add(.1, multiply(4, isInsideCircle, meshBindings.getParameter('diffuseColor', 4))));
 		}
 	}
 }

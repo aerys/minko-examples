@@ -14,7 +14,7 @@ package aerys.minko.example.core.terrain
 		override protected function getPixelColor():SFloat
 		{
 			var diffuseMap	: SFloat	= meshBindings.getTextureParameter('diffuseMap');
-			var uv			: SFloat	= interpolate(float2(vertexUV.x, vertexXYZ.z));
+			var uv			: SFloat	= interpolate(float2(0, vertexXYZ.z));
 		
 			var diffuse		: SFloat	= sampleTexture(diffuseMap, uv);
 			

@@ -1,21 +1,15 @@
 package aerys.minko.example.lighting.spot
 {
 	import aerys.minko.Minko;
-	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Sprite;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.SpotLight;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
-	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class SpotLightExample extends AbstractLightExampleApplication
 	{
-		private var _done	: Boolean	= false;
-		
 		override protected function initializeLights() : void
 		{
 			Minko.debugLevel = DebugLevel.CONTEXT;
@@ -31,20 +25,6 @@ package aerys.minko.example.lighting.spot
 			scene.addChild(ambientLight).addChild(spotLight);
 			
 			spotLight.transform.lookAt(new Vector4(1, 1, 1));
-		}
-		
-		override protected function enterFrameHandler(e:Event):void
-		{
-			super.enterFrameHandler(e);
-			
-			if (scene.bindings.getProperty('light_shadowMap_1') && !_done)
-			{
-				scene.addChild(new Sprite(0, 0, 256, 256, {
-					diffuseMap : scene.bindings.getProperty('light_shadowMap_1')
-				}));
-				
-				_done = true;
-			}
 		}
 	}
 }

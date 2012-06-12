@@ -50,7 +50,7 @@ package aerys.minko.example.core.stencil
 					// order of passes is important: this is the first pass
 					new BasicShader(null, 2)
 				)
-			);			
+			);
 			// position the mask like if it was the top of the hole
 			mask.transform.appendTranslation(0, 0.5, 0.0); 
 			mask.transform.rotationX = Math.PI / 180 * 90;	
