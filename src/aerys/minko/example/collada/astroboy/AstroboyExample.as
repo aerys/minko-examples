@@ -21,6 +21,11 @@ package aerys.minko.example.collada.astroboy
 		
 		override protected function initializeScene() : void
 		{
+			super.initializeScene();
+			
+			cameraController.distance = 0.5;
+			cameraController.lookAt.set(0, 0.05, 0);
+			
 			var options : ParserOptions		= new ParserOptions();
 			
 			options.parser					= ColladaParser;

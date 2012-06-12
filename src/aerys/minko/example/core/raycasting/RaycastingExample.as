@@ -17,8 +17,8 @@ package aerys.minko.example.core.raycasting
 			super.initializeScene();
 
 			cameraController.distance = 20;
-			cameraController.phi = 0.8;
-			cameraController.theta = Math.PI / 4;
+			cameraController.pitch = 0.8;
+			cameraController.yaw = Math.PI / 4;
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,

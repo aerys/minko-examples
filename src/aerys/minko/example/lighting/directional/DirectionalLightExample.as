@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.lights
+package aerys.minko.example.lighting.directional
 {
 	import aerys.minko.scene.node.Sprite;
 	import aerys.minko.scene.node.light.AmbientLight;
@@ -8,6 +8,7 @@ package aerys.minko.example.realistic.lights
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class DirectionalLightExample extends AbstractLightExampleApplication
 	{

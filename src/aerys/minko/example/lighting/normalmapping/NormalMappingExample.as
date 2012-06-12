@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.normal
+package aerys.minko.example.lighting.normalmapping
 {
 	import aerys.minko.Minko;
 	import aerys.minko.render.effect.basic.BasicProperties;
@@ -24,7 +24,7 @@ package aerys.minko.example.realistic.normal
 	 * 
 	 * @author Romain Gilliotte
 	 */	
-	public class SteepParallaxMappingExample extends MinkoExampleApplication
+	public class NormalMappingExample extends MinkoExampleApplication
 	{
 		[Embed(source="../assets/parallaxmapping/collage.jpg")]
 		private static const DIFFUSE_MAP	: Class;

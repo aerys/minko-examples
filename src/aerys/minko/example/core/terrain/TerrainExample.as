@@ -31,8 +31,8 @@ package aerys.minko.example.core.terrain
 			super.initializeScene();
 			
 			cameraController.distance = 150;
-			cameraController.phi = 1.;
-			cameraController.theta = Math.PI * .25;
+			cameraController.pitch = 1.;
+			cameraController.yaw = Math.PI * .25;
 			
 			scene.properties.setProperties({
 				lightEnabled		: true,

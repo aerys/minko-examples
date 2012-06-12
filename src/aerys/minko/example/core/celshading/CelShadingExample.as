@@ -1,8 +1,10 @@
 package aerys.minko.example.core.celshading
 {
+	import aerys.minko.Minko;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.scene.node.mesh.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	

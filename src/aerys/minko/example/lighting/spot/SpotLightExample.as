@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.lights
+package aerys.minko.example.lighting.spot
 {
 	import aerys.minko.Minko;
 	import aerys.minko.scene.node.Group;
@@ -10,6 +10,7 @@ package aerys.minko.example.realistic.lights
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class SpotLightExample extends AbstractLightExampleApplication
 	{
@@ -27,10 +28,7 @@ package aerys.minko.example.realistic.lights
 			
 			scene.addChild(ambientLight).addChild(spotLight);
 			
-			spotLight.transform.view(
-				new Vector4(0, 0, 0),
-				new Vector4(1, 1, 1)
-			);
+			spotLight.transform.lookAt(new Vector4(1, 1, 1));
 		}
 	}
 }

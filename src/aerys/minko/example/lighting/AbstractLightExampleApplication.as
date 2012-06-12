@@ -1,4 +1,4 @@
-package aerys.minko.example.realistic.lights
+package aerys.minko.example.lighting
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicProperties;
@@ -25,6 +25,8 @@ package aerys.minko.example.realistic.lights
 		
 		override protected function initializeScene() : void
 		{
+			super.initializeScene();
+			
 			_lightingEffect	= new LightingEffect(scene);
 			
 			initializeLights();
