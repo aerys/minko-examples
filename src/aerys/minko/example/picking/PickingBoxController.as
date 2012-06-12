@@ -24,7 +24,7 @@ package aerys.minko.example.picking
 	
 	public final class PickingBoxController extends AbstractController
 	{
-		private static const PLANES	: Object	=
+		private static const PLANES					: Object	=
 		{
 			front	: new Plane(0, 0, 1, 0.5),
 			back	: new Plane(0, 0, -1, 0.5),
@@ -33,6 +33,8 @@ package aerys.minko.example.picking
 			right	: new Plane(-1, 0, 0, 0.5),
 			left	: new Plane(1, 0, 0, 0.5)
 		};
+		
+		private static const PICKING_GUIDE_EFFECT	: Effect	= new Effect(new PickingGuideShader());
 		
 		private var _viewport	: Viewport			= null;
 		private var _camera		: Camera			= null;
@@ -151,7 +153,7 @@ package aerys.minko.example.picking
 						maxDistance		: 10,
 						normal			: _plane.normal
 					},
-					new Effect(new PickingGuideShader())
+					PICKING_GUIDE_EFFECT
 				)
 			);
 			
