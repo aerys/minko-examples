@@ -30,11 +30,11 @@ package aerys.minko.example.picking
 		
 		override protected function getPixelColor() : SFloat
 		{
-			var diffuseColor 	: SFloat 	= meshBindings.getParameter("diffuseColor", 4);
-			var thickness		: SFloat 	= meshBindings.getParameter("thickness", 1);
-			var size			: SFloat	= meshBindings.getParameter("size", 1);
-			var maxDistance		: SFloat	= meshBindings.getParameter("maxDistance", 1);
-			var normal			: SFloat	= meshBindings.getParameter("normal", 3);
+			var diffuseColor 	: SFloat 	= meshBindings.getParameter('diffuseColor', 4);
+			var thickness		: SFloat 	= meshBindings.getParameter('thickness', 1);
+			var size			: SFloat	= meshBindings.getParameter('size', 1);
+			var maxDistance		: SFloat	= meshBindings.getParameter('maxDistance', 1);
+			var normal			: SFloat	= meshBindings.getParameter('normal', 3);
 			var scale			: SFloat	= multiply3x3(float3(1, 1, 1), localToWorldMatrix);
 			var center			: SFloat	= multiply4x4(
 				float4(0, 0, 0, 1),
