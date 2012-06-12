@@ -1,6 +1,5 @@
 package aerys.minko.example.lighting.reflection
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicProperties;
 	import aerys.minko.render.effect.realistic.RealisticEffect;
@@ -13,7 +12,6 @@ package aerys.minko.example.lighting.reflection
 	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.enum.ReflectionType;
 	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.log.DebugLevel;
 
 	public class ReflectionExample extends MinkoExampleApplication
 	{

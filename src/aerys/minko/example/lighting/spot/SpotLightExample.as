@@ -1,16 +1,12 @@
 package aerys.minko.example.lighting.spot
 {
 	import aerys.minko.Minko;
-	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Sprite;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.SpotLight;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
-	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class SpotLightExample extends AbstractLightExampleApplication
 	{

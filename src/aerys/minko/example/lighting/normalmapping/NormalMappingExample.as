@@ -73,7 +73,7 @@ package aerys.minko.example.lighting.normalmapping
 				var quadProperties	: DataProvider			= quad.properties;
 				
 				quadProperties[BasicProperties.DIFFUSE_MAP]	= TextureLoader.loadClass(DIFFUSE_MAP);
-				quad.transform.setTranslation(quadId  - 1, 0, 0).setRotation(Math.PI, 0, 0);
+				quad.transform.setTranslation(1.1 * quadId  - 1.1, 0, 0).setRotation(Math.PI, 0, 0);
 				
 				switch (quadId)
 				{
@@ -90,7 +90,7 @@ package aerys.minko.example.lighting.normalmapping
 						quadProperties[LightingProperties.NORMAL_MAPPING_TYPE]			= NormalMappingType.PARALLAX;
 						quadProperties[LightingProperties.NORMAL_MAP]					= TextureLoader.loadClass(NORMAL_MAP);
 						quadProperties[LightingProperties.HEIGHT_MAP]					= TextureLoader.loadClass(HEIGHT_MAP);
-						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 40;		// optional, defaults to 20
+						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 25;		// optional, defaults to 20
 						quadProperties[LightingProperties.PARALLAX_MAPPING_BUMP_SCALE]	= 0.03;		// optional, defaults to 0.03
 						break;
 				}
@@ -108,7 +108,7 @@ package aerys.minko.example.lighting.normalmapping
 			switch (e.keyCode)
 			{
 				case Keyboard.NUMBER_1:
-					camController.lookAt.set(-1, 0, 0);
+					camController.lookAt.set(-1.1, 0, 0);
 					break;
 				
 				case Keyboard.NUMBER_2:
@@ -116,7 +116,7 @@ package aerys.minko.example.lighting.normalmapping
 					break;
 				
 				case Keyboard.NUMBER_3:
-					camController.lookAt.set(1, 0, 0);
+					camController.lookAt.set(1.1, 0, 0);
 					break;
 			}
 		}
