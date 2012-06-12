@@ -4,7 +4,7 @@ package
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Camera;
-	import aerys.minko.scene.node.OrientationAxis;
+	import aerys.minko.scene.node.debug.OrientationAxis;
 	import aerys.minko.scene.node.Scene;
 	import aerys.minko.type.log.DebugLevel;
 	import aerys.monitor.Monitor;
@@ -72,14 +72,13 @@ package
 			_camera = new Camera();
 			_cameraController = new ArcBallController();
 			_cameraController.bindDefaultControls(stage);
+			_cameraController.minDistance = 1;
 			_cameraController.yaw = Math.PI * -.5;
 			_cameraController.pitch = Math.PI / 2;
 			_cameraController.distance = 5;
 			camera.addController(_cameraController);
 			
 			_scene.addChild(camera);
-			
-//			_scene.addChild(new OrientationAxis());
 		}
 		
 		protected function initializeUI() : void
