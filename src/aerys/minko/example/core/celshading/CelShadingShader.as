@@ -36,10 +36,6 @@ package aerys.minko.example.core.celshading
 				localToWorldMatrix
 			);
 			
-			// WORKAROUND
-			_isEdge = float4(_isEdge.x, _isEdge.x, _isEdge.x, _isEdge.x);
-			// !WORKAROUND
-				
 			return multiply4x4(pos, worldToScreenMatrix);
 		}
 		
