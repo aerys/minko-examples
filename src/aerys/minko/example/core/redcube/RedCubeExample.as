@@ -22,8 +22,6 @@ package aerys.minko.example.core.redcube
 					{ diffuseColor : 0xff0000ff }
 				)
 			);
-			
-			camera.transform.appendTranslation(0, 0, -5);
 		}
 		
 	}
