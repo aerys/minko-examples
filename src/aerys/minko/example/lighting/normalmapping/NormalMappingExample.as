@@ -90,7 +90,7 @@ package aerys.minko.example.lighting.normalmapping
 						quadProperties[LightingProperties.NORMAL_MAPPING_TYPE]			= NormalMappingType.PARALLAX;
 						quadProperties[LightingProperties.NORMAL_MAP]					= TextureLoader.loadClass(NORMAL_MAP);
 						quadProperties[LightingProperties.HEIGHT_MAP]					= TextureLoader.loadClass(HEIGHT_MAP);
-						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 25;		// optional, defaults to 20
+						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 30;		// optional, defaults to 20
 						quadProperties[LightingProperties.PARALLAX_MAPPING_BUMP_SCALE]	= 0.03;		// optional, defaults to 0.03
 						break;
 				}
