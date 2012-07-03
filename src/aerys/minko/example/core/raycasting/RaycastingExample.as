@@ -43,7 +43,8 @@ package aerys.minko.example.core.raycasting
 							}
 						);
 						
-						cube.transform.appendTranslation(x - 4.5, y - 4.5, z - 4.5)
+						cube.transform
+							.appendTranslation(x - 4.5, y - 4.5, z - 4.5)
 							.prependUniformScale(.5);
 						
 						scene.addChild(cube);
