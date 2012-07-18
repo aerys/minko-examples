@@ -1,7 +1,7 @@
-
-/.actionScriptProperties
-/.project
-/.settings
-/bin-debug
-/html-template
-/bin-release
+.actionScriptProperties
+.project
+.settings
+bin-debug
+html-template
+bin-release
+*.ipa
