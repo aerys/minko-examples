@@ -3,7 +3,7 @@ package aerys.minko.example.core.threewaygradient
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.Shader;
-	import aerys.minko.type.stream.format.VertexComponent;
+	import aerys.minko.render.geometry.stream.format.VertexComponent;
 	
 	public final class ThreeWayGradientShader extends BasicShader
 	{

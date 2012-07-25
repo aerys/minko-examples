@@ -3,8 +3,8 @@ package aerys.minko.example.core.animationcontroller
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.controller.AnimationController;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;

@@ -1,19 +1,18 @@
 package aerys.minko.example.picking
 {
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.Viewport;
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Scene;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
-	import aerys.minko.type.Signal;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.bounding.BoundingBox;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.DepthTest;
-	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
@@ -27,11 +26,13 @@ package aerys.minko.example.picking
 		
 		private static const CORNER_MESH	: Mesh		= new Mesh(
 			CubeGeometry.cubeGeometry,
-			{ 
-				diffuseColor	: 0xffffff99,
-				depthTest		: DepthTest.ALWAYS
-			},
-			EFFECT
+			new Material(
+				EFFECT,
+				{ 
+					diffuseColor	: 0xffffff99,
+					depthTest		: DepthTest.ALWAYS
+				}
+			)
 		);
 		
 		private var _topFrontLeft			: Mesh		= CORNER_MESH.clone() as Mesh;
@@ -135,22 +136,18 @@ package aerys.minko.example.picking
 			addChild(_bottomBackLeft);
 			addChild(_bottomBackRight);
 			
-			var plane 	: Mesh 	= new Mesh(
-				QuadGeometry.quadGeometry,
-				{
-					blending 	: Blending.ALPHA//,
-//					depthTest	: DepthTest.ALWAYS
-				},
-				new Effect(new BasicShader(null, -1))
+			var mat : Material = new Material(
+				new Effect(new BasicShader(null, -1)),
+				{ blending : Blending.ALPHA }
 			);
 			
-			var frontMesh	: Mesh	= plane.clone() as Mesh;
-			var leftMesh	: Mesh	= plane.clone() as Mesh;
-			var topMesh		: Mesh	= plane.clone() as Mesh;
+			var frontMesh	: Mesh	= new Mesh(QuadGeometry.quadGeometry, mat.clone() as Material);
+			var leftMesh	: Mesh	= new Mesh(QuadGeometry.quadGeometry, mat.clone() as Material);
+			var topMesh		: Mesh	= new Mesh(QuadGeometry.quadGeometry, mat.clone() as Material);
 			
-			frontMesh.properties.setProperty('diffuseColor', 0x0000ff00);
-			leftMesh.properties.setProperty('diffuseColor', 0xff000000);
-			topMesh.properties.setProperty('diffuseColor', 0x00ff0000);
+			frontMesh.material.setProperty('diffuseColor', 0x0000ff00);
+			leftMesh.material.setProperty('diffuseColor', 0xff000000);
+			topMesh.material.setProperty('diffuseColor', 0x00ff0000);
 			
 			var backMesh	: Mesh	= frontMesh.clone() as Mesh;
 			var rightMesh	: Mesh	= leftMesh.clone() as Mesh;

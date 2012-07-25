@@ -2,10 +2,10 @@ package aerys.minko.example.effects.wireframe
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.wireframe.WireframeShader;
-	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
-	import aerys.minko.type.stream.StreamUsage;
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.geometry.stream.StreamUsage;
 
 	public class WireframeExample extends MinkoExampleApplication
 	{

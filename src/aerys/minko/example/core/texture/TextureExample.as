@@ -2,8 +2,8 @@ package aerys.minko.example.core.texture
 {
 	import aerys.minko.Minko;
 	import aerys.minko.render.resource.texture.TextureResource;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.enum.SamplerFiltering;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.log.DebugLevel;

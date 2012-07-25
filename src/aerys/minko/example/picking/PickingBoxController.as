@@ -1,13 +1,14 @@
 package aerys.minko.example.picking
 {
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.Viewport;
-	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.controller.AbstractController;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.Signal;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.TriangleCulling;
@@ -100,7 +101,7 @@ package aerys.minko.example.picking
 											  mouseX	: Number,
 											  mouseY	: Number) : void
 		{
-			target.properties.setProperty(
+			target.material.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);
@@ -115,7 +116,7 @@ package aerys.minko.example.picking
 											 mouseX	: Number,
 											 mouseY	: Number) : void
 		{
-			target.properties.setProperty(
+			target.material.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) & 0xffffff00
 			);
@@ -145,19 +146,21 @@ package aerys.minko.example.picking
 			_guide = new Group(
 				new Mesh(
 					QuadGeometry.quadGeometry,
-					{
-						diffuseColor 	: color,
-						blending		: Blending.ADDITIVE,
-						size			: 1,
-						thickness		: 0.05,
-						maxDistance		: 10,
-						normal			: _plane.normal
-					},
-					PICKING_GUIDE_EFFECT
+					new Material(
+						PICKING_GUIDE_EFFECT,
+						{
+							diffuseColor 	: color,
+							blending		: Blending.ADDITIVE,
+							size			: 1,
+							thickness		: 0.05,
+							maxDistance		: 10,
+							normal			: _plane.normal
+						}
+					)
 				)
 			);
 			
-			target.properties.setProperty(
+			target.material.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);

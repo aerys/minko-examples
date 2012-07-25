@@ -7,9 +7,9 @@ package aerys.minko.example.lighting.reflection
 	import aerys.minko.render.resource.texture.CubeTextureResource;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.light.AmbientLight;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.Geometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.Geometry;
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.enum.ReflectionType;
 	import aerys.minko.type.loader.TextureLoader;
 

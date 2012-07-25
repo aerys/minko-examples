@@ -1,7 +1,7 @@
 package aerys.minko.example.core.raycasting
 {
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.math.Vector4;
 	import aerys.monitor.Monitor;
 	

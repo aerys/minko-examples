@@ -4,7 +4,7 @@ package aerys.minko.example.collada.astroboy
 	import aerys.minko.render.effect.basic.BasicShader;
 	import aerys.minko.scene.controller.mesh.SkinningController;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;

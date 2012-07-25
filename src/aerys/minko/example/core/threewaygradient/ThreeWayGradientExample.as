@@ -1,14 +1,14 @@
 package aerys.minko.example.core.threewaygradient
 {
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.Geometry;
-	import aerys.minko.type.stream.IVertexStream;
-	import aerys.minko.type.stream.StreamUsage;
-	import aerys.minko.type.stream.VertexStream;
-	import aerys.minko.type.stream.format.VertexComponent;
-	import aerys.minko.type.stream.format.VertexFormat;
-	import aerys.minko.type.stream.iterator.VertexIterator;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.Geometry;
+	import aerys.minko.render.geometry.stream.IVertexStream;
+	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.render.geometry.stream.VertexStream;
+	import aerys.minko.render.geometry.stream.format.VertexComponent;
+	import aerys.minko.render.geometry.stream.format.VertexFormat;
+	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
 
 	public class ThreeWayGradientExample extends MinkoExampleApplication
 	{

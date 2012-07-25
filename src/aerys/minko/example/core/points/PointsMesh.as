@@ -1,9 +1,9 @@
 package aerys.minko.example.core.points
 {
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.BillboardsGeometry;
-	import aerys.minko.type.data.DataProvider;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.BillboardsGeometry;
+	import aerys.minko.type.binding.DataProvider;
 	
 	public class PointsMesh extends Mesh
 	{

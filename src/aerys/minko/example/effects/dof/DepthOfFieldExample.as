@@ -5,8 +5,8 @@ package aerys.minko.example.effects.dof
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.blur.BlurQuality;
 	import aerys.minko.render.effect.dof.DepthOfFieldEffect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.log.DebugLevel;
 	
 	public class DepthOfFieldExample extends MinkoExampleApplication

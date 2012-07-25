@@ -1,8 +1,12 @@
 package aerys.minko.example.core.blending
 {
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.type.data.DataProvider;
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.basic.BasicMaterial;
+	import aerys.minko.render.material.basic.BasicShader;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.type.binding.DataProvider;
 	import aerys.minko.type.enum.Blending;
 	
 	import com.bit101.utils.MinimalConfigurator;
@@ -26,9 +30,11 @@ package aerys.minko.example.core.blending
 		{
 			super.initializeScene();
 			
+			var fx : Effect = new Effect(new BasicShader());
+			
 			var red	: Mesh	= new Mesh(
 				CubeGeometry.cubeGeometry,
-				{ diffuseColor : 0xff000077 }
+				new Material(fx, { diffuseColor : 0xff000077 })
 			);
 			
 			red.bindings.addProvider(_sharedProperties);
@@ -36,7 +42,7 @@ package aerys.minko.example.core.blending
 			
 			var blue : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				{ diffuseColor : 0x00ff0077 }
+				new Material(fx, { diffuseColor : 0x00ff0077 })
 			);
 			
 			blue.bindings.addProvider(_sharedProperties);
@@ -44,7 +50,7 @@ package aerys.minko.example.core.blending
 			
 			var green : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				{ diffuseColor : 0x0000ff77 }
+				new Material(fx, { diffuseColor : 0x0000ff77 })
 			);
 			
 			green.bindings.addProvider(_sharedProperties);

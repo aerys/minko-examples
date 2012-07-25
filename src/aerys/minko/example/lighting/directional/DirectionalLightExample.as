@@ -1,14 +1,9 @@
 package aerys.minko.example.lighting.directional
 {
-	import aerys.minko.scene.node.Sprite;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.ShadowMappingType;
-	import aerys.minko.type.math.Matrix4x4;
-	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
-	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class DirectionalLightExample extends AbstractLightExampleApplication
 	{
@@ -19,7 +14,7 @@ package aerys.minko.example.lighting.directional
 			_light = new DirectionalLight();
 			
 			_light.shadowCastingType	= ShadowMappingType.MATRIX;
-			_light.shadowMapSize		= 2048;
+			_light.shadowMapSize		= 1024;
 			
 			scene.addChild(_light).addChild(new AmbientLight());
 		}

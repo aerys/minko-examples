@@ -2,10 +2,10 @@ package aerys.minko.example.core.teapots
 {
 	import aerys.minko.example.core.cubes.NormalsShader;
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.Geometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.Geometry;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.monitor.Monitor;
 	
 	import flash.events.Event;
