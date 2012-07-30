@@ -1,19 +1,18 @@
 package aerys.minko.example.core.terrain
 {
 	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.Geometry;
-	import aerys.minko.render.geometry.primitive.QuadGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.Geometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	import aerys.minko.render.geometry.stream.StreamUsage;
-	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
-	import aerys.minko.render.geometry.stream.iterator.VertexReference;
+	import aerys.minko.type.stream.StreamUsage;
+	import aerys.minko.type.stream.iterator.VertexIterator;
+	import aerys.minko.type.stream.iterator.VertexReference;
 	
 	import com.bit101.utils.MinimalConfigurator;
 	
-	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.events.MouseEvent;
 

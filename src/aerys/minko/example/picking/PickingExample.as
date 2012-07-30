@@ -1,11 +1,10 @@
 package aerys.minko.example.picking
 {
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.SphereGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.SphereGeometry;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
@@ -15,7 +14,7 @@ package aerys.minko.example.picking
 	import flash.net.URLRequest;
 	import flash.ui.Keyboard;
 	import flash.utils.setTimeout;
-
+	
 	public class PickingExample extends MinkoExampleApplication
 	{
 		private var _picking	: PickingController	= new PickingController(30);
@@ -39,18 +38,18 @@ package aerys.minko.example.picking
 			
 			var sphere : Mesh = new Mesh(
 				new SphereGeometry(20),
-				new BasicMaterial({
+				{
 					diffuseColor	: 0xffffffff,
 					lightEnabled	: true
-				})
+				}
 			);
 			
 			var cube : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				new BasicMaterial({
+				{
 					diffuseColor	: 0xffffffff,
 					lightEnabled	: true
-				})
+				}
 			);
 			
 			cube.transform.appendTranslation(1, 0, 0).appendUniformScale(2);
@@ -59,7 +58,7 @@ package aerys.minko.example.picking
 			
 			_picking.bindDefaultInputs(stage);
 			_picking.mouseDown.add(mouseDownHandler);
-
+			
 			_selectable.addController(_picking);
 			_selectable.addChild(sphere);
 			_selectable.addChild(cube);

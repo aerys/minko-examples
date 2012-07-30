@@ -1,15 +1,13 @@
 package aerys.minko.example.lighting
 {
-	import aerys.minko.render.Effect;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.BasicProperties;
 	import aerys.minko.render.effect.lighting.LightingEffect;
 	import aerys.minko.render.effect.lighting.LightingProperties;
-	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicProperties;
-	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.math.Vector4;
 	
@@ -33,32 +31,27 @@ package aerys.minko.example.lighting
 			
 			initializeLights();
 			
-			var mat : PhongMaterial = new PhongMaterial(scene);
-			
-			mat.castShadows = true;
-			mat.receiveShadows = true;
-			
-			var bigCubeMat : PhongMaterial = mat.clone() as PhongMaterial;
-			var bigCube : Mesh = new Mesh(CubeGeometry.cubeGeometry, bigCubeMat);
-			
+			var bigCube : Mesh = new Mesh(CubeGeometry.cubeGeometry, null, _lightingEffect);
 			bigCube.transform.setScale(100, 100, 100);
-			bigCubeMat.triangleCulling = TriangleCulling.FRONT;
-			bigCubeMat.diffuseColor = 0xbbbbffff;
-			bigCubeMat.castShadows = false;
+			bigCube.properties[BasicProperties.TRIANGLE_CULLING]	= TriangleCulling.FRONT;
+			bigCube.properties[BasicProperties.DIFFUSE_COLOR]		= 0xbbbbffff;
+			bigCube.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
+			bigCube.properties[LightingProperties.CAST_SHADOWS]		= true;
 			
 			scene.addChild(bigCube);
 			
 			var teapotGeometry : TeapotGeometry = new TeapotGeometry(3);
-
 			_teapotGroup = new Group();
-			
 			
 			for (var teapotId : uint = 0; teapotId < 50; ++teapotId)
 			{
-				var smallTeapot : Mesh = new Mesh(teapotGeometry);
+				var smallTeapot : Mesh = new Mesh(teapotGeometry, null, _lightingEffect);
 				
-				mat.diffuseColor = ((Math.random() * 0xffffff) << 8) || 0xff;
-				smallTeapot.material = mat.clone() as Material;
+				smallTeapot.properties[BasicProperties.DIFFUSE_COLOR] =
+					new Vector4(Math.random(), Math.random(), Math.random(), 1);
+				
+				smallTeapot.properties[LightingProperties.CAST_SHADOWS] = true;
+				smallTeapot.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
 				
 				smallTeapot.transform.setTranslation(
 					50 * (Math.random() - .5),

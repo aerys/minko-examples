@@ -1,7 +1,7 @@
 package aerys.minko.example.core.light
 {
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;

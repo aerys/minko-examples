@@ -1,8 +1,9 @@
 package aerys.minko.example.core.redcube
 {
-	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 
 	public class RedCubeExample extends MinkoExampleApplication
 	{
@@ -12,7 +13,7 @@ package aerys.minko.example.core.redcube
 			
 			scene.addChild(new Mesh(
 				CubeGeometry.cubeGeometry,
-				new BasicMaterial({ diffuseColor : 0xff0000ff })
+				{ diffuseColor : 0xff0000ff }
 			));
 		}
 		

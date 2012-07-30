@@ -11,8 +11,8 @@ package aerys.minko.example.core.skybox
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.resource.texture.CubeTextureResource;
 	import aerys.minko.scene.controller.camera.ArcBallController;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
 	
 	public class SkyboxExample extends MinkoExampleApplication
 	{

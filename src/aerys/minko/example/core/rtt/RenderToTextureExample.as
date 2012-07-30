@@ -1,6 +1,5 @@
 package aerys.minko.example.core.rtt
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
@@ -8,9 +7,8 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.render.effect.vertex.VertexPositionShader;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Sprite;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
-	import aerys.minko.type.log.DebugLevel;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
 	import aerys.minko.type.math.Vector4;
 
 	public class RenderToTextureExample extends MinkoExampleApplication

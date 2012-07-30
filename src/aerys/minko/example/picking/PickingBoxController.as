@@ -1,14 +1,13 @@
 package aerys.minko.example.picking
 {
-	import aerys.minko.render.Effect;
 	import aerys.minko.render.Viewport;
-	import aerys.minko.render.material.Material;
+	import aerys.minko.render.effect.Effect;
 	import aerys.minko.scene.controller.AbstractController;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.QuadGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.Signal;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.TriangleCulling;
@@ -26,14 +25,14 @@ package aerys.minko.example.picking
 	public final class PickingBoxController extends AbstractController
 	{
 		private static const PLANES					: Object	=
-		{
-			front	: new Plane(0, 0, 1, 0.5),
-			back	: new Plane(0, 0, -1, 0.5),
-			top		: new Plane(0, -1, 0, 0.5),
-			bottom	: new Plane(0, 1, 0, 0.5),
-			right	: new Plane(-1, 0, 0, 0.5),
-			left	: new Plane(1, 0, 0, 0.5)
-		};
+			{
+				front	: new Plane(0, 0, 1, 0.5),
+				back	: new Plane(0, 0, -1, 0.5),
+				top		: new Plane(0, -1, 0, 0.5),
+				bottom	: new Plane(0, 1, 0, 0.5),
+				right	: new Plane(-1, 0, 0, 0.5),
+				left	: new Plane(1, 0, 0, 0.5)
+			};
 		
 		private static const PICKING_GUIDE_EFFECT	: Effect	= new Effect(new PickingGuideShader());
 		
@@ -44,7 +43,7 @@ package aerys.minko.example.picking
 		private var _picking	: PickingController	= new PickingController();
 		
 		private var _target		: PickingBox		= null;
-
+		
 		private var _plane		: Plane				= null;
 		private var _delta		: Vector4			= null;
 		private var _guide		: Group				= null;
@@ -85,15 +84,15 @@ package aerys.minko.example.picking
 											target	: PickingBox) : void
 		{
 			_target = target;
-//			_target.selectedMeshChanged.add(selectedMeshChangedHandler);
+			//			_target.selectedMeshChanged.add(selectedMeshChangedHandler);
 			_target.planes.addController(_picking);
 		}
 		
 		/*private function selectedMeshChangedHandler(box		: PickingBox,
-													oldMesh	: Mesh,
-													newMesh	: Mesh) : void
+		oldMesh	: Mesh,
+		newMesh	: Mesh) : void
 		{
-			
+		
 		}*/
 		
 		private function mouseRollOverHandler(ctrl		: PickingController,
@@ -101,7 +100,7 @@ package aerys.minko.example.picking
 											  mouseX	: Number,
 											  mouseY	: Number) : void
 		{
-			target.material.setProperty(
+			target.properties.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);
@@ -116,7 +115,7 @@ package aerys.minko.example.picking
 											 mouseX	: Number,
 											 mouseY	: Number) : void
 		{
-			target.material.setProperty(
+			target.properties.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) & 0xffffff00
 			);
@@ -146,21 +145,19 @@ package aerys.minko.example.picking
 			_guide = new Group(
 				new Mesh(
 					QuadGeometry.quadGeometry,
-					new Material(
-						PICKING_GUIDE_EFFECT,
-						{
-							diffuseColor 	: color,
-							blending		: Blending.ADDITIVE,
-							size			: 1,
-							thickness		: 0.05,
-							maxDistance		: 10,
-							normal			: _plane.normal
-						}
-					)
+					{
+						diffuseColor 	: color,
+						blending		: Blending.ADDITIVE,
+						size			: 1,
+						thickness		: 0.05,
+						maxDistance		: 10,
+						normal			: _plane.normal
+					},
+					PICKING_GUIDE_EFFECT
 				)
 			);
 			
-			target.material.setProperty(
+			target.properties.setProperty(
 				'diffuseColor',
 				uint(target.bindings.getProperty('diffuseColor')) | 0x88
 			);
@@ -216,7 +213,7 @@ package aerys.minko.example.picking
 			_cursor.x = event.stageX;
 			_cursor.y = event.stageY;
 			
-//			_moved.execute(this, x, y, z);
+			//			_moved.execute(this, x, y, z);
 			
 			var scale : Vector4 = _target.selectedMesh.localToWorld.getScale();
 			

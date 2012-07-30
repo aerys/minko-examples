@@ -2,20 +2,15 @@ package aerys.minko.example.core.stencil
 {
 	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.basic.BasicShader;
-	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.Geometry;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.QuadGeometry;
+	import aerys.minko.scene.node.mesh.Mesh;
+	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
 	import aerys.minko.type.enum.DepthTest;
 	import aerys.minko.type.enum.StencilAction;
 	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	import aerys.minko.render.geometry.stream.IVertexStream;
-	import aerys.minko.render.geometry.stream.StreamUsage;
-	import aerys.minko.render.geometry.stream.VertexStream;
 	
 	/**
 	 * This example shows how to use stencil operations with Minko 3D 2.0b
