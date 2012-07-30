@@ -1,8 +1,7 @@
 package aerys.minko.example.core.celshading
 {
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.Shader;
 	import aerys.minko.type.math.Vector4;
 	
 	public class CelShadingShader extends BasicShader

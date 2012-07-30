@@ -1,15 +1,16 @@
 package aerys.minko.example.core.points
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.BillboardsGeometry;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.binding.DataProvider;
 	
 	public class PointsMesh extends Mesh
 	{
 		public static const MAX_NUM_POINTS	: uint	= 100;
 		
-		private static const EFFECT	: Effect	= new Effect(new PointsShader());
+		private static const MATERIAL	: Material	= new Material(new Effect(new PointsShader()));
 		
 		private var _pointsProperties	: DataProvider		= null;
 		private var _positions			: Vector.<Number>	= null;
@@ -21,13 +22,13 @@ package aerys.minko.example.core.points
 		}
 		
 		public function PointsMesh(numPoints	: uint,
-								   properties 	: Object	= null,
-								   effect		: Effect	= null)
+								   properties	: Object)
 		{
 			super(
 				new BillboardsGeometry(numPoints),
-				properties,
-				effect || EFFECT
+				properties
+					? (MATERIAL.clone() as Material).setProperties(properties) as Material
+					: MATERIAL
 			);
 			
 			_positions = new Vector.<Number>(numPoints * 4, true);

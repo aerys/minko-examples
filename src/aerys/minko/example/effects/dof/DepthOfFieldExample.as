@@ -1,13 +1,9 @@
 package aerys.minko.example.effects.dof
 {
-	import aerys.minko.Minko;
-	import aerys.minko.example.core.points.PointsExample;
-	import aerys.minko.render.effect.Effect;
 	import aerys.minko.render.effect.blur.BlurQuality;
 	import aerys.minko.render.effect.dof.DepthOfFieldEffect;
-	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.type.log.DebugLevel;
+	import aerys.minko.scene.node.Mesh;
 	
 	public class DepthOfFieldExample extends MinkoExampleApplication
 	{
@@ -16,6 +12,7 @@ package aerys.minko.example.effects.dof
 			super.initializeScene();
 			
 			var dof : DepthOfFieldEffect = new DepthOfFieldEffect(BlurQuality.LOW, 8);
+			var mat  
 
 			scene.postProcessingEffect = dof;
 			cameraController.distanceStep = 0;

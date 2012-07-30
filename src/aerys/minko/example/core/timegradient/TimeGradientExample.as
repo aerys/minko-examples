@@ -1,9 +1,9 @@
 package aerys.minko.example.core.timegradient
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
 
 	public class TimeGradientExample extends MinkoExampleApplication
 	{
@@ -14,8 +14,7 @@ package aerys.minko.example.core.timegradient
 			scene.addChild(
 				new Mesh(
 					CubeGeometry.cubeGeometry,
-					null,
-					new Effect(new TimeGradientShader(0xff0000ff, 0x0000ffff, 0, 3))
+					new Material(new Effect(new TimeGradientShader(0xff0000ff, 0x0000ffff, 0, 3)))
 				)
 			);
 		}

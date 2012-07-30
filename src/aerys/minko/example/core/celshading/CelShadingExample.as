@@ -1,10 +1,9 @@
 package aerys.minko.example.core.celshading
 {
-	import aerys.minko.Minko;
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
-	import aerys.minko.type.log.DebugLevel;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
 	
@@ -25,11 +24,13 @@ package aerys.minko.example.core.celshading
 			scene.addChild(
 				new Mesh(
 					new TeapotGeometry(20),
-					{
-						thickness 		: 0.05,
-						diffuseColor	: 0xffffffff
-					},
-					new Effect(new CelShadingShader())
+					new Material(
+						new Effect(new CelShadingShader()),
+						{
+							thickness 		: 0.05,
+							diffuseColor	: 0xffffffff
+						}
+					)
 				)
 			);
 		

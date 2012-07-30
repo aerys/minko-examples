@@ -1,8 +1,8 @@
 package aerys.minko.example.core.redcube
 {
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 
 	public class RedCubeExample extends MinkoExampleApplication
 	{
@@ -15,6 +15,5 @@ package aerys.minko.example.core.redcube
 				new BasicMaterial({ diffuseColor : 0xff0000ff })
 			));
 		}
-		
 	}
 }

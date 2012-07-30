@@ -1,21 +1,15 @@
 package aerys.minko.example.core.stencil 
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
-	import aerys.minko.render.resource.texture.TextureResource;
-	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.QuadGeometry;
+	import aerys.minko.render.material.basic.BasicMaterial;
+	import aerys.minko.scene.node.Group;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.DepthTest;
 	import aerys.minko.type.enum.StencilAction;
 	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	import aerys.minko.render.geometry.stream.IVertexStream;
-	import aerys.minko.render.geometry.stream.StreamUsage;
-	import aerys.minko.render.geometry.stream.VertexStream;
 	
 	/**
 	 * This example shows how to use stencil operations with Minko 3D 2.0b
@@ -35,7 +29,7 @@ package aerys.minko.example.core.stencil
 			// (portals drawn with almost the same concept but with a lot more passes
 			var mask : Mesh = new Mesh(
 				QuadGeometry.quadGeometry,
-				{ 
+				new BasicMaterial({ 
 					// disable depth write so objects behind can be displayed
 					depthWriteEnabled 		: false, 
 					stencilCompareMode		: DepthTest.EQUAL,
@@ -45,11 +39,7 @@ package aerys.minko.example.core.stencil
 					stencilReferenceValue	: 0,
 					// not really important, for debug purposes only
 					diffuseColor 			: 0x00FF00FF
-				},
-				new Effect(
-					// order of passes is important: this is the first pass
-					new BasicShader(null, 2)
-				)
+				})
 			);
 			// position the mask like if it was the top of the hole
 			mask.transform.appendTranslation(0, 0.5, 0.0); 
@@ -57,7 +47,7 @@ package aerys.minko.example.core.stencil
 			
 			var hole : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				{
+				new BasicMaterial({
 					triangleCulling			: TriangleCulling.FRONT,
 					diffuseMap 				: TextureLoader.loadClass(TEXTURE),
 					stencilCompareMode		: DepthTest.EQUAL,
@@ -65,11 +55,7 @@ package aerys.minko.example.core.stencil
 					stencilActionOnBothPass	: StencilAction.KEEP,
 					// this object only get drawn where stencil incremented by
 					stencilReferenceValue	: 1
-				},
-				new Effect(
-					// order of passes is important: this is the second pass
-					new BasicShader(null, 1)
-				)
+				})
 			);
 			
 			var group : Group = new Group(mask, hole);

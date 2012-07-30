@@ -1,7 +1,7 @@
 package aerys.minko.example.core.points
 {
 	import aerys.minko.render.RenderTarget;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
 	
 	public class PointsShader extends BasicShader

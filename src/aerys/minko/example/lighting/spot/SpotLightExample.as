@@ -14,7 +14,6 @@ package aerys.minko.example.lighting.spot
 		{
 			Minko.debugLevel = DebugLevel.CONTEXT;
 			
-			var ambientLight	: AmbientLight	= new AmbientLight();
 			var spotLight		: SpotLight		= new SpotLight();
 			
 			spotLight.shadowCastingType	= ShadowMappingType.MATRIX;
@@ -22,9 +21,11 @@ package aerys.minko.example.lighting.spot
 			spotLight.outerRadius		= Math.PI / 2;
 			spotLight.innerRadius		= 0;
 			
-			scene.addChild(ambientLight).addChild(spotLight);
+			scene.addChild(spotLight);
 			
-			spotLight.transform.lookAt(new Vector4(1, 1, 1));
+			spotLight.transform
+				.appendTranslation(0, 0, -20)
+				.lookAt(new Vector4(0, 0, 1));
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package aerys.minko.example.effects.blur
 {
-	import aerys.minko.example.core.light.DirectionalLightExample;
+	import aerys.minko.example.lighting.directional.DirectionalLightExample;
 	import aerys.minko.render.effect.blur.BlurEffect;
 	import aerys.minko.render.effect.blur.BlurQuality;
 	

@@ -1,7 +1,6 @@
 package aerys.minko.example.core.threewaygradient
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.stream.IVertexStream;
 	import aerys.minko.render.geometry.stream.StreamUsage;
@@ -9,6 +8,8 @@ package aerys.minko.example.core.threewaygradient
 	import aerys.minko.render.geometry.stream.format.VertexComponent;
 	import aerys.minko.render.geometry.stream.format.VertexFormat;
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
 
 	public class ThreeWayGradientExample extends MinkoExampleApplication
 	{
@@ -26,8 +27,7 @@ package aerys.minko.example.core.threewaygradient
 			scene.addChild(
 				new Mesh(
 					new Geometry(new <IVertexStream>[vertices.vertexStream]),
-					null,
-					new Effect(new ThreeWayGradientShader())
+					new Material(new Effect(new ThreeWayGradientShader()))
 				)
 			);
 		}

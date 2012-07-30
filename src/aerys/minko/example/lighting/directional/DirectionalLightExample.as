@@ -14,9 +14,9 @@ package aerys.minko.example.lighting.directional
 			_light = new DirectionalLight();
 			
 			_light.shadowCastingType	= ShadowMappingType.MATRIX;
-			_light.shadowMapSize		= 1024;
+			_light.shadowMapSize		= 512;
 			
-			scene.addChild(_light).addChild(new AmbientLight());
+			scene.addChild(_light);
 		}
 	}
 }

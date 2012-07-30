@@ -1,10 +1,9 @@
 package aerys.minko.example.core.animationcontroller
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;
@@ -31,10 +30,9 @@ package aerys.minko.example.core.animationcontroller
 			scene.addChild(
 				new Mesh(
 					CubeGeometry.cubeGeometry,
-					{ diffuseMap : TextureLoader.loadClass(EMBED_TEXTURE) },
-					new Effect(new BasicShader),
+					new BasicMaterial({diffuseMap : TextureLoader.loadClass(EMBED_TEXTURE)}),
 					new AnimationController(
-						new <ITimeline>[new MatrixRegularTimeline("transform", 1000, matrices)]
+						new <ITimeline>[new MatrixRegularTimeline('transform', 1000, matrices)]
 					)
 				)
 			);

@@ -1,13 +1,10 @@
 package aerys.minko.example.lighting.point
 {
-	import aerys.minko.scene.node.Sprite;
+	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.PointLight;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
-	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 
 	public class PointLightExample extends AbstractLightExampleApplication
 	{
@@ -16,6 +13,7 @@ package aerys.minko.example.lighting.point
 		override protected function initializeLights() : void
 		{
 			var pointLight : PointLight		= new PointLight();
+			
 			pointLight.shadowCastingType	= ShadowMappingType.CUBE;
 			pointLight.shadowMapSize		= 1024;
 			

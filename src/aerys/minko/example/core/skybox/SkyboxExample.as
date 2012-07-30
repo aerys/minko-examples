@@ -1,18 +1,12 @@
-/**
- * Created with IntelliJ IDEA.
- * User: mickael
- * Date: 22/04/12
- * Time: 17:54
- * To change this template use File | Settings | File Templates.
- */
 package aerys.minko.example.core.skybox
 {
 	
-	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.material.Material;
 	import aerys.minko.render.resource.texture.CubeTextureResource;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	
 	public class SkyboxExample extends MinkoExampleApplication
 	{
@@ -56,8 +50,7 @@ package aerys.minko.example.core.skybox
 			// create geometry with custom shader.
 	        var skybox : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				{ diffuseCubeMap: texture }, 
-				new Effect(new SkyBoxShader())
+				new Material(new Effect(new SkyBoxShader()), { diffuseCubeMap: texture })
 			);
 			
 			skybox.transform.setScale(50, 50, 50);

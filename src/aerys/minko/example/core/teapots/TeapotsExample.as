@@ -1,11 +1,11 @@
 package aerys.minko.example.core.teapots
 {
 	import aerys.minko.example.core.cubes.NormalsShader;
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.Geometry;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.monitor.Monitor;
 	
 	import flash.events.Event;
@@ -14,7 +14,7 @@ package aerys.minko.example.core.teapots
 	
 	public class TeapotsExample extends MinkoExampleApplication
 	{
-		private static const EFFECT		: Effect	= new Effect(new NormalsShader());
+		private static const MATERIAL	: Material	= new Material(new Effect(new NormalsShader()));
 		private static const TARGET_FPS	: Number	= 30;
 		private static const GEOMETRY	: Geometry	= new TeapotGeometry(17);
 		
@@ -43,7 +43,7 @@ package aerys.minko.example.core.teapots
 		
 		private function addTeapot() : void
 		{
-			var teapot : Mesh = new Mesh(GEOMETRY, null, EFFECT);
+			var teapot : Mesh = new Mesh(GEOMETRY, MATERIAL);
 			
 			teapot.transform
 				.appendUniformScale(0.03)

@@ -14,7 +14,7 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport(2);
+		private var _viewport			: Viewport			= new Viewport();
 		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
 		
@@ -52,9 +52,9 @@ package
 		
 		private function initialize(event : Event = null) : void
 		{
-			removeEventListener(Event.ADDED_TO_STAGE, initialize);
-			
 			Minko.debugLevel = DebugLevel.SHADER_AGAL;
+			
+			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
 			addChild(_viewport);
 			_viewport.backgroundColor = 0x666666ff;
