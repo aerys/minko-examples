@@ -1,13 +1,13 @@
 package aerys.minko.example.core.screenshot
 {
-	import aerys.minko.example.core.redcube.RedCubeExample;
+	import aerys.minko.example.core.primitives.PrimitivesExample;
 	
 	import flash.display.BitmapData;
 	import flash.events.KeyboardEvent;
 	import flash.net.FileReference;
 	import flash.ui.Keyboard;
 
-	public class ScreenshotExample extends RedCubeExample
+	public class ScreenshotExample extends PrimitivesExample
 	{
 		override protected function initializeScene() : void
 		{
