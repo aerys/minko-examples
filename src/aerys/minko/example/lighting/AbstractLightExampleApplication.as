@@ -1,12 +1,8 @@
 package aerys.minko.example.lighting
 {
-	import aerys.minko.render.Effect;
-	import aerys.minko.render.effect.lighting.LightingEffect;
-	import aerys.minko.render.effect.lighting.LightingProperties;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicProperties;
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
