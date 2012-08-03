@@ -1,5 +1,9 @@
 package aerys.minko.example.core.points
 {
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
+
 	public class PointsExample extends MinkoExampleApplication
 	{
 		private static const NUM_POINTS	: uint	= 10000;
@@ -8,29 +12,15 @@ package aerys.minko.example.core.points
 		{
 			super.initializeScene();
 			
-			for (var numPoints : uint = 0;
-				numPoints < NUM_POINTS;
-				numPoints += PointsMesh.MAX_NUM_POINTS)
-			{
-				var points : PointsMesh = new PointsMesh(
-					PointsMesh.MAX_NUM_POINTS,
-					{ diffuseColor: 0xffffffff }
-				);
-	
-				points.lock();
-				for (var i : uint = 0; i < PointsMesh.MAX_NUM_POINTS; ++i)
-				{
-					points.setPosition(
-						i,
-						(Math.random() - 0.5) * 10,
-						(Math.random() - 0.5) * 10,
-						(Math.random() - 0.5) * 10
-					);
-				}
-				points.unlock();
-				
-				scene.addChild(points);
-			}
+			viewport.backgroundColor = 0;
+			
+			scene.addChild(new Mesh(
+				new PointsGeometry(),
+				new Material(
+					new Effect(new PointsShader()),
+					{ pointSize : 0.1 }
+				)
+			));
 		}
 	}
 }
