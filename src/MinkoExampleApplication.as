@@ -56,7 +56,7 @@ package
 			
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
-			addChild(_viewport);
+			stage.addChildAt(_viewport, 0);
 			_viewport.backgroundColor = 0x666666ff;
 			
 			initializeScene();
