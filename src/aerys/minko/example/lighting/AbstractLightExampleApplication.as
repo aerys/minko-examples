@@ -2,30 +2,45 @@ package aerys.minko.example.lighting
 {
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.geometry.stream.StreamUsage;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
+	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
+	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
 	
 	public class AbstractLightExampleApplication extends MinkoExampleApplication
 	{
+		[Embed(source="../assets/textures/brickwork-texture.jpg")]
+		private static const BRICK_DIFFUSE	: Class;
+		
+		[Embed(source="../assets/textures/brickwork_normal-map.jpg")]
+		private static const BRICK_NORMALS	: Class;
+		
 		private var _teapotGroup		: Group;
 		
-		private var _cubeMaterial		: Material;
+		private var _cubeMaterial		: PhongMaterial;
 		private var _teapotsMaterial	: Material;
+		
+		public function get cubeMaterial() : PhongMaterial
+		{
+			return _cubeMaterial;
+		}
 		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
-			initializeLights();
+			cameraController.distance = 100;
+			cameraController.distanceStep = 0;
 			
-			scene.addChild(new AmbientLight());
+			scene.addChild(new AmbientLight(0xffffffff, 0.6));
 			
 			var mat : PhongMaterial = new PhongMaterial(scene);
 			
@@ -34,16 +49,25 @@ package aerys.minko.example.lighting
 			
 			_cubeMaterial = mat.clone() as PhongMaterial;
 			
-			var bigCube : Mesh = new Mesh(CubeGeometry.cubeGeometry, _cubeMaterial);
+			var bigCube : Mesh = new Mesh(new CubeGeometry(), _cubeMaterial);
 			
-			bigCube.transform.setScale(100, 100, 100);
+			bigCube.geometry
+				.computeTangentSpace(StreamUsage.DYNAMIC)
+				.flipNormals()
+				.disposeLocalData();
+			bigCube.transform.setScale(200, 200, 200);
+			_cubeMaterial.diffuseMap = TextureLoader.loadClass(BRICK_DIFFUSE);
+			_cubeMaterial.normalMap = TextureLoader.loadClass(BRICK_NORMALS);
+			_cubeMaterial.normalMappingType = NormalMappingType.NORMAL;
+			_cubeMaterial.diffuseMultiplier = 0.5;
+			_cubeMaterial.ambientMultiplier = 0.5;
 			_cubeMaterial.triangleCulling = TriangleCulling.FRONT;
-			_cubeMaterial.diffuseColor = 0xbbbbffff;
+			_cubeMaterial.diffuseColor = 0xbbbbbbff;
 			_cubeMaterial.castShadows = false;
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry : TeapotGeometry = new TeapotGeometry(3);
+			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
 
 			_teapotGroup = new Group();
 			
@@ -70,6 +94,8 @@ package aerys.minko.example.lighting
 			}
 			
 			scene.addChild(_teapotGroup);
+			
+			initializeLights();
 		}
 		
 		protected function initializeLights() : void
