@@ -18,7 +18,6 @@ package aerys.minko.example.lighting.spot
 			spotLight.outerRadius				= Math.PI / 2;
 			spotLight.innerRadius				= 0;
 			spotLight.shadowMapQuality			= ShadowMappingQuality.LOW;
-			spotLight.shadowMapSamplingDistance = 2;
 			
 			scene.addChild(spotLight);
 			
