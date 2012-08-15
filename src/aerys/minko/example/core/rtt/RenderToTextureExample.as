@@ -4,14 +4,12 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.material.vertex.VertexNormalShader;
 	import aerys.minko.render.material.vertex.VertexPositionShader;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.Sprite;
-	import aerys.minko.type.math.Vector4;
 
 	public class RenderToTextureExample extends MinkoExampleApplication
 	{
