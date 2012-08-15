@@ -1,5 +1,6 @@
 package aerys.minko.example.lighting
 {
+	import aerys.minko.Minko;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.geometry.stream.StreamUsage;
@@ -11,6 +12,7 @@ package aerys.minko.example.lighting
 	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
@@ -52,7 +54,7 @@ package aerys.minko.example.lighting
 			var bigCube : Mesh = new Mesh(new CubeGeometry(), _cubeMaterial);
 			
 			bigCube.geometry
-				.computeTangentSpace(StreamUsage.DYNAMIC)
+				.computeTangentSpace()
 				.flipNormals()
 				.disposeLocalData();
 			bigCube.transform.setScale(200, 200, 200);
@@ -68,7 +70,9 @@ package aerys.minko.example.lighting
 			scene.addChild(bigCube);
 			
 			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
-
+			
+			teapotGeometry.computeNormals().disposeLocalData();
+			
 			_teapotGroup = new Group();
 			
 			for (var teapotId : uint = 0; teapotId < 50; ++teapotId)
