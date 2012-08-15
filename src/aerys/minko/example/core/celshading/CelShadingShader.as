@@ -60,7 +60,7 @@ package aerys.minko.example.core.celshading
 			
 			lambertFactor.incrementBy(ambient);
 			
-			var diffuseColor 	: SFloat	= super.diffuse.getDiffuse();
+			var diffuseColor 	: SFloat	= super.diffuse.getDiffuseColor();
 			var lightColor 		: SFloat 	= sceneBindings.getParameter("lightDiffuseColor", 3);
 			
 			// outline
