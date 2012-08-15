@@ -1,15 +1,17 @@
 package aerys.minko.example.core.terrain
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.Geometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.geometry.Geometry;
+	import aerys.minko.render.geometry.primitive.QuadGeometry;
+	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
+	import aerys.minko.render.geometry.stream.iterator.VertexReference;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.basic.BasicMaterial;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	import aerys.minko.type.stream.StreamUsage;
-	import aerys.minko.type.stream.iterator.VertexIterator;
-	import aerys.minko.type.stream.iterator.VertexReference;
 	
 	import com.bit101.utils.MinimalConfigurator;
 	
@@ -50,10 +52,10 @@ package aerys.minko.example.core.terrain
 		{
 			var water : Mesh = new Mesh(
 				QuadGeometry.quadGeometry,
-				{
+				new BasicMaterial({
 					diffuseColor 	: 0x00336699,
 					blending		: Blending.ADDITIVE
-				}
+				})
 			);
 			
 			water.transform
@@ -105,11 +107,13 @@ package aerys.minko.example.core.terrain
 			
 			_terrain = new Mesh(
 				terrainGeometry,
-				{
-					lightEnabled	: true,
-					diffuseMap		: TextureLoader.loadClass(TERRAIN_TEXTURE)
-				},
-				new Effect(new TerrainShader())
+				new Material(
+					new Effect(new TerrainShader()),
+					{
+						lightEnabled	: true,
+						diffuseMap		: TextureLoader.loadClass(TERRAIN_TEXTURE)
+					}
+				)				
 			);
 			
 			_terrain.transform

@@ -1,57 +1,86 @@
 package aerys.minko.example.lighting
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicProperties;
-	import aerys.minko.render.effect.lighting.LightingEffect;
-	import aerys.minko.render.effect.lighting.LightingProperties;
+	import aerys.minko.Minko;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.TeapotGeometry;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.scene.node.light.AmbientLight;
+	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
+	import aerys.minko.type.loader.TextureLoader;
+	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
 	
 	public class AbstractLightExampleApplication extends MinkoExampleApplication
 	{
-		private var _lightingEffect : Effect;
-		private var _teapotGroup	: Group;
+		[Embed(source="../assets/textures/brickwork-texture.jpg")]
+		private static const BRICK_DIFFUSE	: Class;
 		
-		public function get lightingEffect() : Effect
+		[Embed(source="../assets/textures/brickwork_normal-map.jpg")]
+		private static const BRICK_NORMALS	: Class;
+		
+		private var _teapotGroup		: Group;
+		
+		private var _cubeMaterial		: PhongMaterial;
+		private var _teapotsMaterial	: Material;
+		
+		public function get cubeMaterial() : PhongMaterial
 		{
-			return _lightingEffect;
+			return _cubeMaterial;
 		}
 		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
-			_lightingEffect	= new LightingEffect(scene);
+			cameraController.distance = 100;
+			cameraController.distanceStep = 0;
 			
-			initializeLights();
+			scene.addChild(new AmbientLight(0xffffffff, 0.6));
 			
-			var bigCube : Mesh = new Mesh(CubeGeometry.cubeGeometry, null, _lightingEffect);
-			bigCube.transform.setScale(100, 100, 100);
-			bigCube.properties[BasicProperties.TRIANGLE_CULLING]	= TriangleCulling.FRONT;
-			bigCube.properties[BasicProperties.DIFFUSE_COLOR]		= 0xbbbbffff;
-			bigCube.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
-			bigCube.properties[LightingProperties.CAST_SHADOWS]		= true;
+			var mat : PhongMaterial = new PhongMaterial(scene);
+			
+			mat.castShadows = true;
+			mat.receiveShadows = true;
+			
+			_cubeMaterial = mat.clone() as PhongMaterial;
+			
+			var bigCube : Mesh = new Mesh(new CubeGeometry(), _cubeMaterial);
+			
+			bigCube.geometry
+				.computeTangentSpace()
+				.flipNormals()
+				.disposeLocalData();
+			bigCube.transform.setScale(200, 200, 200);
+			_cubeMaterial.diffuseMap = TextureLoader.loadClass(BRICK_DIFFUSE);
+			_cubeMaterial.normalMap = TextureLoader.loadClass(BRICK_NORMALS);
+			_cubeMaterial.normalMappingType = NormalMappingType.NORMAL;
+			_cubeMaterial.diffuseMultiplier = 0.5;
+			_cubeMaterial.ambientMultiplier = 0.5;
+			_cubeMaterial.triangleCulling = TriangleCulling.FRONT;
+			_cubeMaterial.diffuseColor = 0xbbbbbbff;
+			_cubeMaterial.castShadows = false;
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry : TeapotGeometry = new TeapotGeometry(3);
+			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
+			
+			teapotGeometry.computeNormals().disposeLocalData();
+			
 			_teapotGroup = new Group();
 			
 			for (var teapotId : uint = 0; teapotId < 50; ++teapotId)
 			{
-				var smallTeapot : Mesh = new Mesh(teapotGeometry, null, _lightingEffect);
+				var smallTeapot : Mesh = new Mesh(teapotGeometry);
 				
-				smallTeapot.properties[BasicProperties.DIFFUSE_COLOR] =
-					new Vector4(Math.random(), Math.random(), Math.random(), 1);
-				
-				smallTeapot.properties[LightingProperties.CAST_SHADOWS] = true;
-				smallTeapot.properties[LightingProperties.RECEIVE_SHADOWS]	= true;
+				mat.diffuseColor = ((Math.random() * 0xffffff) << 8) || 0xff;
+				smallTeapot.material = mat.clone() as Material;
 				
 				smallTeapot.transform.setTranslation(
 					50 * (Math.random() - .5),
@@ -69,6 +98,8 @@ package aerys.minko.example.lighting
 			}
 			
 			scene.addChild(_teapotGroup);
+			
+			initializeLights();
 		}
 		
 		protected function initializeLights() : void

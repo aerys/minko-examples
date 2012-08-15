@@ -1,18 +1,22 @@
 package aerys.minko.example.effects.hdr
 {
-	import aerys.minko.example.core.terrain.TerrainExample;
+	import aerys.minko.example.lighting.spot.SpotLightExample;
 	import aerys.minko.render.effect.hdr.HDREffect;
 	import aerys.minko.render.effect.hdr.HDRQuality;
 	
-	public class HDRExample extends TerrainExample
+	public class HDRExample extends SpotLightExample
 	{
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
-			scene.postProcessingEffect = new HDREffect(HDRQuality.NORMAL, 4);
+			cameraController.distance = 100;
+			cameraController.distanceStep = 0.;
+			cameraController.pitch -= .2;
+			
+			scene.postProcessingEffect = new HDREffect(HDRQuality.MEDIUM, 4);
 			scene.postProcessingProperties.setProperties({
-				hdrIntensity : .3
+				hdrIntensity : 0.5
 			});
 		}
 	}

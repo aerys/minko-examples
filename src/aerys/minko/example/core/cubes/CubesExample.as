@@ -1,8 +1,10 @@
 package aerys.minko.example.core.cubes
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.material.Material;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.monitor.Monitor;
 	
 	import flash.events.Event;
 	import flash.utils.getTimer;
@@ -10,7 +12,7 @@ package aerys.minko.example.core.cubes
 
 	public class CubesExample extends MinkoExampleApplication
 	{
-		private static const EFFECT		: Effect	= new Effect(new NormalsShader());
+		private static const MATERIAL	: Material	= new Material(new Effect(new NormalsShader()));
 		private static const TARGET_FPS	: Number	= 30;
 		
 		private var _lastTime	: int	= 0;
@@ -39,11 +41,7 @@ package aerys.minko.example.core.cubes
 		
 		private function addCube() : void
 		{
-			var cube : Mesh = new Mesh(
-				CubeGeometry.cubeGeometry,
-				null,
-				EFFECT
-			);
+			var cube : Mesh = new Mesh(CubeGeometry.cubeGeometry, MATERIAL);
 			
 			cube.transform
 				.lock()

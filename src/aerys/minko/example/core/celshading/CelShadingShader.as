@@ -1,8 +1,7 @@
 package aerys.minko.example.core.celshading
 {
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
-	import aerys.minko.render.shader.Shader;
 	import aerys.minko.type.math.Vector4;
 	
 	public class CelShadingShader extends BasicShader
@@ -61,7 +60,7 @@ package aerys.minko.example.core.celshading
 			
 			lambertFactor.incrementBy(ambient);
 			
-			var diffuseColor 	: SFloat	= super.diffuse.getDiffuse();
+			var diffuseColor 	: SFloat	= super.diffuse.getDiffuseColor();
 			var lightColor 		: SFloat 	= sceneBindings.getParameter("lightDiffuseColor", 3);
 			
 			// outline
