@@ -1,21 +1,13 @@
 package aerys.minko.example.lighting.normalmapping
 {
-	import aerys.minko.Minko;
-	import aerys.minko.render.effect.basic.BasicProperties;
-	import aerys.minko.render.effect.lighting.LightingEffect;
-	import aerys.minko.render.effect.lighting.LightingProperties;
+	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.light.DirectionalLight;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.Geometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.QuadGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.SphereGeometry;
-	import aerys.minko.type.data.DataProvider;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.Geometry;
+	import aerys.minko.render.geometry.primitive.SphereGeometry;
 	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.log.DebugLevel;
-	import aerys.monitor.Monitor;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -64,41 +56,33 @@ package aerys.minko.example.lighting.normalmapping
 			
 			ArcBallController(camera.getControllersByType(ArcBallController)[0]).distanceStep = 0.1;
 			
-			var lightingEffect	: LightingEffect	= new LightingEffect(scene);
-			var geometry		: Geometry			= new SphereGeometry(30);
+			scene.addChild(_light);
 			
-			for (var quadId : uint = 0; quadId < 3; ++quadId)
-			{
-				var quad			: Mesh					= new Mesh(geometry, null, lightingEffect);
-				var quadProperties	: DataProvider			= quad.properties;
-				
-				quadProperties[BasicProperties.DIFFUSE_MAP]	= TextureLoader.loadClass(DIFFUSE_MAP);
-				quad.transform.setTranslation(1.1 * quadId  - 1.1, 0, 0).setRotation(Math.PI, 0, 0);
-				
-				switch (quadId)
-				{
-					case 0:
-						quadProperties[LightingProperties.NORMAL_MAPPING_TYPE]			= NormalMappingType.NONE;
-						break;
-					
-					case 1:
-						quadProperties[LightingProperties.NORMAL_MAPPING_TYPE]			= NormalMappingType.NORMAL;
-						quadProperties[LightingProperties.NORMAL_MAP]					= TextureLoader.loadClass(NORMAL_MAP);
-						break;
-					
-					case 2:
-						quadProperties[LightingProperties.NORMAL_MAPPING_TYPE]			= NormalMappingType.PARALLAX;
-						quadProperties[LightingProperties.NORMAL_MAP]					= TextureLoader.loadClass(NORMAL_MAP);
-						quadProperties[LightingProperties.HEIGHT_MAP]					= TextureLoader.loadClass(HEIGHT_MAP);
-						quadProperties[LightingProperties.PARALLAX_MAPPING_NBSTEPS]		= 30;		// optional, defaults to 20
-						quadProperties[LightingProperties.PARALLAX_MAPPING_BUMP_SCALE]	= 0.03;		// optional, defaults to 0.03
-						break;
-				}
-				
-				scene.addChild(quad);
-			}
+			var sphere		: Mesh				= null;
+			var geometry	: Geometry			= new SphereGeometry(30);
+			var phong		: PhongMaterial		= new PhongMaterial(scene);
 			
-			scene.addChild(_light)
+			phong.diffuseMap = TextureLoader.loadClass(DIFFUSE_MAP);
+			sphere = new Mesh(geometry, phong);
+			sphere.transform.setTranslation(-1.1, 0, 0);
+			scene.addChild(sphere);
+			
+			var normalMapping	: PhongMaterial	= phong.clone() as PhongMaterial;
+			
+			normalMapping.normalMappingType = NormalMappingType.NORMAL;
+			normalMapping.normalMap = TextureLoader.loadClass(NORMAL_MAP);
+			sphere = new Mesh(geometry, normalMapping);
+			scene.addChild(sphere);
+			
+			var parallaxMapping : PhongMaterial	= normalMapping.clone() as PhongMaterial;
+			
+			parallaxMapping.normalMappingType = NormalMappingType.PARALLAX;
+			parallaxMapping.heightMap = TextureLoader.loadClass(HEIGHT_MAP);
+			parallaxMapping.numParallaxMappingSteps = 30;
+			parallaxMapping.parallaxMappingBumpScale = 0.03;
+			sphere = new Mesh(geometry, parallaxMapping);
+			sphere.transform.setTranslation(1.1, 0, 0);
+			scene.addChild(sphere);
 		}
 		
 		private function keyUpHandler(e : KeyboardEvent) : void
