@@ -1,8 +1,8 @@
 package aerys.minko.example.core.dynamictexture
 {
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.scene.controller.mesh.DynamicTextureController;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
+	import aerys.minko.scene.node.Mesh;
 
 	public class DynamicTextureExample extends MinkoExampleApplication
 	{
