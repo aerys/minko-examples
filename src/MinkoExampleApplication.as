@@ -52,8 +52,6 @@ package
 		
 		private function initialize(event : Event = null) : void
 		{
-			Minko.debugLevel = DebugLevel.SHADER_AGAL;
-			
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			
 			stage.addChildAt(_viewport, 0);
