@@ -1,5 +1,7 @@
 package aerys.minko.example.collada.astroboy
 {
+	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.type.animation.SkinningMethod;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
@@ -27,6 +29,8 @@ package aerys.minko.example.collada.astroboy
 			options.loadDependencies		= true;
 			options.mipmapTextures			= true;
 			options.dependencyLoaderClosure	= loadDependency;
+			options.vertexStreamUsage		= StreamUsage.READ;
+			options.skinningMethod			= SkinningMethod.SOFTWARE_MATRIX;
 			
 			scene.loadClass(DAE, options);
 		}
