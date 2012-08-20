@@ -22,21 +22,20 @@ package aerys.minko.example.core.animationcontroller
 			
 			var matrices : Vector.<Matrix4x4>	= new <Matrix4x4>[
 				new Matrix4x4().appendTranslation(-1),
-				new Matrix4x4().appendTranslation(1)
-							   .prependRotation(Math.PI, Vector4.Y_AXIS),
-				new Matrix4x4().appendTranslation(-1)
-							   .prependRotation(Math.PI * 2, Vector4.Y_AXIS)
+				new Matrix4x4().appendTranslation(1).prependRotation(Math.PI, Vector4.Y_AXIS),
+				new Matrix4x4().appendTranslation(-1).prependRotation(Math.PI * 2, Vector4.Y_AXIS)
 			];
 			
-			scene.addChild(
-				new Mesh(
-					CubeGeometry.cubeGeometry,
-					new BasicMaterial({diffuseMap : TextureLoader.loadClass(EMBED_TEXTURE)}),
-					new AnimationController(
-						new <ITimeline>[new MatrixRegularTimeline('transform', 1000, matrices)]
-					)
-				)
+			var cube : Mesh = new Mesh(
+				CubeGeometry.cubeGeometry,
+				new BasicMaterial({diffuseMap : TextureLoader.loadClass(EMBED_TEXTURE)})
 			);
+			
+			cube.addController(new AnimationController(
+				new <ITimeline>[new MatrixRegularTimeline('transform', 1000, matrices)]
+			));
+			
+			scene.addChild(cube);
 		}
 	}
 }
