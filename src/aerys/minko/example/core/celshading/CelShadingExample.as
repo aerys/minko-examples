@@ -18,21 +18,19 @@ package aerys.minko.example.core.celshading
 		{
 			super.initializeScene();
 			
-			camera.transform.setTranslation(0., 0., -7);
+			cameraController.distance = 10;
 			cameraController.lookAt.set(0, 1.5, 0);
 			
-			scene.addChild(
-				new Mesh(
-					new TeapotGeometry(20),
-					new Material(
-						new Effect(new CelShadingShader()),
-						{
-							thickness 		: 0.05,
-							diffuseColor	: 0xffffffff
-						}
-					)
+			scene.addChild(new Mesh(
+				new TeapotGeometry(20),
+				new Material(
+					new Effect(new CelShadingShader()),
+					{
+						thickness 		: 0.05,
+						diffuseColor	: 0xffffffff
+					}
 				)
-			);
+			));
 		
 			scene.properties.setProperties({
 				lightDiffuseColor	: 0xfffffffff,
@@ -40,7 +38,7 @@ package aerys.minko.example.core.celshading
 			});
 		}
 		
-		override protected function enterFrameHandler(event:Event):void
+		override protected function enterFrameHandler(event : Event):void
 		{
 			_lightMatrix.appendRotation(0.01, Vector4.Y_AXIS);
 			scene.properties.setProperty(
