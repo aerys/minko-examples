@@ -41,6 +41,9 @@ package aerys.minko.example.lighting.environment
 		{
 			super.initializeScene();
 			
+			cameraController.pitch = 1.2;
+			cameraController.distance = 20;
+			
 			// create materials
 			var blinnNewellMaterial : EnvironmentMappingMaterial = new EnvironmentMappingMaterial();
 			blinnNewellMaterial.reflectivity = 1.0;
