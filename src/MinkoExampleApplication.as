@@ -14,7 +14,7 @@ package
 	
 	public class MinkoExampleApplication extends Sprite
 	{
-		private var _viewport			: Viewport			= new Viewport();
+		private var _viewport			: Viewport			= new Viewport(2);
 		private var _camera				: Camera			= null;
 		private var _cameraController	: ArcBallController	= null;
 		
