@@ -17,6 +17,7 @@ package aerys.minko.example.core.rtt
 		{
 			super.initializeScene();
 			
+			cameraController.distance = 10;
 			cameraController.yaw = Math.PI * -.5;
 			
 			// create render targets
