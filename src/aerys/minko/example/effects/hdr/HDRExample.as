@@ -14,9 +14,10 @@ package aerys.minko.example.effects.hdr
 			cameraController.distanceStep = 0.;
 			cameraController.pitch -= .2;
 			
-			scene.postProcessingEffect = new HDREffect(HDRQuality.MEDIUM, 4);
+			scene.postProcessingEffect = new HDREffect(HDRQuality.MEDIUM, 6);
 			scene.postProcessingProperties.setProperties({
-				hdrIntensity : 0.5
+				hdrIntensity 	: .6,
+				hdrExponent		: 1.2
 			});
 		}
 	}
