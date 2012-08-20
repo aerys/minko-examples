@@ -69,7 +69,7 @@ package aerys.minko.example.lighting
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
+			var teapotGeometry : TeapotGeometry = new TeapotGeometry(8);
 			
 			teapotGeometry.computeNormals().disposeLocalData();
 			
