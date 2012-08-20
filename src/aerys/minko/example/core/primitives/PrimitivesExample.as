@@ -38,15 +38,12 @@ package aerys.minko.example.core.primitives
 			cube.transform.appendTranslation(-0.75);
 			scene.addChild(cube);
 			
-			for (var i : uint = 0; i < 300; ++i)
-			{
-				var sphere : Mesh = new Mesh(
-					SphereGeometry.sphereGeometry,
-					new BasicMaterial({diffuseColor : 0x0000ffff})
-				);
-				sphere.transform.appendTranslation(0.75);
-				scene.addChild(sphere);
-			}
+			var sphere : Mesh = new Mesh(
+				SphereGeometry.sphereGeometry,
+				new BasicMaterial({diffuseColor : 0x0000ffff})
+			);
+			sphere.transform.appendTranslation(0.75);
+			scene.addChild(sphere);
 			
 			var quad : Mesh = new Mesh(
 				QuadGeometry.doubleSidedQuadGeometry,
