@@ -20,20 +20,23 @@ package aerys.minko.example.core.spritesheet
 			
 //			camera.position.z = -2;
 			
-			scene.addChild(new Mesh(
+			var m : Mesh = new Mesh(
 				new BillboardsGeometry(1),
 				new Material(
 					new Effect(new SpritesheetShader()),
 					{ diffuseMap : TextureLoader.loadClass(ASSET_SPRITESHEET) }
-				),
-				new AnimationController(new <ITimeline>[
-					new ScalarRegularTimeline(
-						'properties.spritesheetFrameId',
-						1000,
-						new <Number>[0, 24]
-					)
-				])
-			));
+				)
+			);
+			
+			m.addController(new AnimationController(new <ITimeline>[
+				new ScalarRegularTimeline(
+					'properties.spritesheetFrameId',
+					1000,
+					new <Number>[0, 24]
+				)
+			]));
+			
+			scene.addChild(m);
 		}
 	}
 }
