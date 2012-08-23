@@ -28,7 +28,8 @@ package aerys.minko.example.picking
 			
 			var picking : PickingController = new PickingController();
 			
-			picking.bindDefaultInputs(stage);
+			viewport.doubleClickEnabled = true;
+			picking.bindDefaultInputs(viewport);
 			picking.useHandCursor = true;
 			picking.mouseClick.add(
 				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
@@ -36,7 +37,13 @@ package aerys.minko.example.picking
 					_log.text = 'click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
 				}
 			);
-			picking.mouseClick.add(
+			picking.mouseRightClick.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'right click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseDoubleClick.add(
 				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
 				{
 					_log.text = 'double click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
