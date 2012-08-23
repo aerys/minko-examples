@@ -10,6 +10,8 @@ package aerys.minko.example.lighting.spot
 	{
 		override protected function initializeLights() : void
 		{
+			super.initializeLights();
+			
 			var spotLight	: SpotLight	= new SpotLight();
 			
 			spotLight.diffuse					= 1;
