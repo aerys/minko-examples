@@ -26,7 +26,7 @@ package aerys.minko.example.picking
 		{
 			super.initializeScene();
 			
-			var picking : PickingController = new PickingController(30);
+			var picking : PickingController = new PickingController();
 			
 			picking.bindDefaultInputs(stage);
 			picking.useHandCursor = true;
