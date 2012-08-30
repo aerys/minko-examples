@@ -1,12 +1,8 @@
 package aerys.minko.example.collada.astroboy
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
-	import aerys.minko.scene.controller.mesh.SkinningController;
-	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.type.animation.SkinningMethod;
 	import aerys.minko.type.loader.ILoader;
-	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
@@ -23,9 +19,9 @@ package aerys.minko.example.collada.astroboy
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 0.5;
+			cameraController.distance = 15;
 			cameraController.distanceStep = 0.02;
-			cameraController.lookAt.set(0, 0.05, 0);
+			cameraController.lookAt.set(0, 3, 0);
 			
 			var options : ParserOptions		= new ParserOptions();
 			
@@ -33,6 +29,8 @@ package aerys.minko.example.collada.astroboy
 			options.loadDependencies		= true;
 			options.mipmapTextures			= true;
 			options.dependencyLoaderClosure	= loadDependency;
+			options.vertexStreamUsage		= StreamUsage.READ;
+			options.skinningMethod			= SkinningMethod.SOFTWARE_MATRIX;
 			
 			scene.loadClass(DAE, options);
 		}

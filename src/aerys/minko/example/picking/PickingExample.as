@@ -1,91 +1,74 @@
 package aerys.minko.example.picking
 {
+	import aerys.minko.Minko;
+	import aerys.minko.example.core.primitives.PrimitivesExample;
+	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.PickingController;
-	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.CubeGeometry;
-	import aerys.minko.scene.node.mesh.geometry.primitive.SphereGeometry;
-	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.math.Matrix4x4;
-	import aerys.minko.type.math.Vector4;
+	import aerys.minko.scene.node.Mesh;
 	
-	import flash.events.Event;
-	import flash.events.KeyboardEvent;
-	import flash.net.URLRequest;
-	import flash.ui.Keyboard;
-	import flash.utils.setTimeout;
-	
-	public class PickingExample extends MinkoExampleApplication
+	import flash.text.TextField;
+
+	public class PickingExample extends PrimitivesExample
 	{
-		private var _picking	: PickingController	= new PickingController(30);
+		private var _log	: TextField;
 		
-		private var _pickingBox	: PickingBox		= null;
-		private var _selected	: Mesh				= null;
-		private var _selectable	: Group				= new Group();
+		override protected function initializeUI():void
+		{
+			_log = new TextField();
+			_log.textColor = 0xffffffff;
+			_log.height = 600;
+			_log.width = 200;
+			stage.addChild(_log);
+		}
 		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
-			scene.properties.setProperties({
-				lightEnabled		: true,
-				lightDiffuseColor	: 0xffffff,
-				lightDiffuse		: 0.8,
-				lightAmbientColor	: 0xffffff,
-				lightAmbient		: 0.2,
-				lightDirection		: new Vector4(-1, -1, 1)
-			});
+			var picking : PickingController = new PickingController();
 			
-			var sphere : Mesh = new Mesh(
-				new SphereGeometry(20),
+			viewport.doubleClickEnabled = true;
+			picking.bindDefaultInputs(viewport);
+			picking.useHandCursor = true;
+			picking.mouseClick.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
 				{
-					diffuseColor	: 0xffffffff,
-					lightEnabled	: true
+					_log.text = 'click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseRightClick.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'right click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseDoubleClick.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'double click: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseRollOut.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'roll out: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseRollOver.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'roll over: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
+				}
+			);
+			picking.mouseMove.add(
+				function(ctrl : PickingController, mesh : Mesh, mouseX : Number, mouseY : Number) : void
+				{
+					_log.text = 'move: ' + (mesh ? mesh.name : null) + '\n' + _log.text;
 				}
 			);
 			
-			var cube : Mesh = new Mesh(
-				CubeGeometry.cubeGeometry,
-				{
-					diffuseColor	: 0xffffffff,
-					lightEnabled	: true
-				}
-			);
-			
-			cube.transform.appendTranslation(1, 0, 0).appendUniformScale(2);
-			
-			_pickingBox = new PickingBox(viewport, camera, stage);
-			
-			_picking.bindDefaultInputs(stage);
-			_picking.mouseDown.add(mouseDownHandler);
-			
-			_selectable.addController(_picking);
-			_selectable.addChild(sphere);
-			_selectable.addChild(cube);
-			scene.addChild(_selectable);
-			
-			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-		}
-		
-		private function mouseDownHandler(ctrl		: PickingController,
-										  target	: Mesh,
-										  mouseX	: Number,
-										  mouseY	: Number) : void
-		{
-			if (target)
-			{
-				_pickingBox.selectedMesh = target;
-				_pickingBox.parent = scene;
-			}
-		}
-		
-		private function keyDownHandler(event : KeyboardEvent) : void
-		{
-			if (event.keyCode == Keyboard.ESCAPE)
-			{
-				_pickingBox.selectedMesh = null;
-				_pickingBox.parent = null;
-			}
+			scene.addController(picking);
 		}
 	}
 }

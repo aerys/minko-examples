@@ -1,11 +1,11 @@
 package aerys.minko.example.effects.wireframe
 {
-	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.Effect;
 	import aerys.minko.render.effect.wireframe.WireframeShader;
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
-	import aerys.minko.render.geometry.stream.StreamUsage;
 
 	public class WireframeExample extends MinkoExampleApplication
 	{
@@ -17,12 +17,14 @@ package aerys.minko.example.effects.wireframe
 			cameraController.distance = 10;
 			
 			scene.addChild(new Mesh(
-				new WireframeGeometry(new TeapotGeometry(10, StreamUsage.READ)),
-				{
-					wireframeWireColor		: 0xffffff77,
-					wireframeWireThickness	: 10
-				},
-				new Effect(new WireframeShader())
+				new WireframeGeometry(new TeapotGeometry(10)),
+				new Material(
+					new Effect(new WireframeShader()),
+					{
+						wireframeWireColor		: 0xffffff77,
+						wireframeWireThickness	: 10
+					}
+				)
 			));
 		}
 	}

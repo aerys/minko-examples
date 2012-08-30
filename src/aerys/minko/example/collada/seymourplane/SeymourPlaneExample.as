@@ -1,8 +1,5 @@
 package aerys.minko.example.collada.seymourplane
 {
-	import aerys.minko.render.effect.Effect;
-	import aerys.minko.render.effect.basic.BasicShader;
-	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
@@ -17,8 +14,8 @@ package aerys.minko.example.collada.seymourplane
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 0.5;
-			cameraController.distanceStep = 0.02;
+			cameraController.distance = 30;
+			cameraController.distanceStep = 1;
 			
 			var options : ParserOptions		= new ParserOptions();
 			

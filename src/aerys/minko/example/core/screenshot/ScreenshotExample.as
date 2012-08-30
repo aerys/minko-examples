@@ -1,15 +1,15 @@
 package aerys.minko.example.core.screenshot
 {
-	import aerys.minko.example.core.light.DirectionalLightExample;
+	import aerys.minko.example.core.primitives.PrimitivesExample;
 	
 	import flash.display.BitmapData;
 	import flash.events.KeyboardEvent;
 	import flash.net.FileReference;
 	import flash.ui.Keyboard;
 
-	public class ScreenshotExample extends DirectionalLightExample
+	public class ScreenshotExample extends PrimitivesExample
 	{
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			

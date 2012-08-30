@@ -1,8 +1,9 @@
 package aerys.minko.example.core.raytracer
 {
-	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.SFloat;
+	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.part.BlendingShaderPart;
+	import aerys.minko.render.shader.part.PostProcessingShaderPart;
 	import aerys.minko.type.enum.Blending;
 	
 	public final class RayTracerShader extends Shader
@@ -10,22 +11,24 @@ package aerys.minko.example.core.raytracer
 		private const BACKGROUND_COLOR	: SFloat	= float4(0, 0, 0, 1);
 		private const PLANE_THICKNESS	: SFloat	= float(0.001);
 		
-		private const TYPE_PLANE		: String	= "plane";
-		private const TYPE_SPHERE		: String	= "sphere";
+		private const TYPE_PLANE		: String	= 'plane';
+		private const TYPE_SPHERE		: String	= 'sphere';
 		
-		private var _blendingPart	: BlendingShaderPart	= null;
-		private var _position		: SFloat				= null;
+		private var _postProcessing	: PostProcessingShaderPart	= null;
+		private var _blending		: BlendingShaderPart		= null;
+		private var _position		: SFloat					= null;
 		
 		public function RayTracerShader()
 		{
 			super();
 			
-			_blendingPart = new BlendingShaderPart(this);
+			_postProcessing = new PostProcessingShaderPart(this);
+			_blending = new BlendingShaderPart(this);
 		}
 		
 		override protected function getVertexPosition() : SFloat
 		{
-			_position = multiply(vertexXYZ, float4(2, 2, 1, 1));
+			_position = _postProcessing.vertexPosition;
 			
 			return _position;
 		}
@@ -77,7 +80,7 @@ package aerys.minko.example.core.raytracer
 						break ;
 				}
 				
-				output = _blendingPart.blend(
+				output = _blending.blend(
 					multiply(intersect, object.color),
 					output,
 					Blending.ALPHA

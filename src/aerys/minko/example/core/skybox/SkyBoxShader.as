@@ -1,6 +1,7 @@
 package aerys.minko.example.core.skybox
 {
 	import aerys.minko.render.RenderTarget;
+	import aerys.minko.render.geometry.stream.format.VertexComponent;
 	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.ShaderSettings;
@@ -9,7 +10,6 @@ package aerys.minko.example.core.skybox
 	import aerys.minko.type.enum.SamplerMipMapping;
 	import aerys.minko.type.enum.SamplerWrapping;
 	import aerys.minko.type.enum.TriangleCulling;
-	import aerys.minko.type.stream.format.VertexComponent;
 	
 	public class SkyBoxShader extends Shader
 	{

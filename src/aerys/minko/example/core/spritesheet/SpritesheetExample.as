@@ -1,9 +1,10 @@
 package aerys.minko.example.core.spritesheet
 {
-	import aerys.minko.render.effect.Effect;
+	import aerys.minko.render.Effect;
+	import aerys.minko.render.geometry.primitive.BillboardsGeometry;
+	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.controller.AnimationController;
-	import aerys.minko.scene.node.mesh.Mesh;
-	import aerys.minko.scene.node.mesh.geometry.primitive.BillboardsGeometry;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.ScalarRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;
@@ -19,18 +20,23 @@ package aerys.minko.example.core.spritesheet
 			
 //			camera.position.z = -2;
 			
-			scene.addChild(new Mesh(
+			var m : Mesh = new Mesh(
 				new BillboardsGeometry(1),
-				{ diffuseMap : TextureLoader.loadClass(ASSET_SPRITESHEET) },
-				new Effect(new SpritesheetShader()),
-				new AnimationController(new <ITimeline>[
-					new ScalarRegularTimeline(
-						'properties.spritesheetFrameId',
-						1000,
-						new <Number>[0, 24]
-					)
-				])
-			));
+				new Material(
+					new Effect(new SpritesheetShader()),
+					{ diffuseMap : TextureLoader.loadClass(ASSET_SPRITESHEET) }
+				)
+			);
+			
+			m.addController(new AnimationController(new <ITimeline>[
+				new ScalarRegularTimeline(
+					'properties.spritesheetFrameId',
+					1000,
+					new <Number>[0, 24]
+				)
+			]));
+			
+			scene.addChild(m);
 		}
 	}
 }

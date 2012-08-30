@@ -1,7 +1,7 @@
 package aerys.minko.example.core.terrain
 {
 	import aerys.minko.render.RenderTarget;
-	import aerys.minko.render.effect.basic.BasicShader;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;
 	
 	public class TerrainShader extends BasicShader
@@ -11,7 +11,7 @@ package aerys.minko.example.core.terrain
 			super(target, priority);
 		}
 		
-		override protected function getPixelColor():SFloat
+		override protected function getPixelColor() : SFloat
 		{
 			var diffuseMap	: SFloat	= meshBindings.getTextureParameter('diffuseMap');
 			var uv			: SFloat	= interpolate(float2(0, vertexXYZ.z));
