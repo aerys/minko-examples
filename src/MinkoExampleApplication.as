@@ -1,11 +1,9 @@
 package
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.Viewport;
 	import aerys.minko.scene.controller.camera.ArcBallController;
-	import aerys.minko.scene.node.Camera;
 	import aerys.minko.scene.node.Scene;
-	import aerys.minko.type.log.DebugLevel;
+	import aerys.minko.scene.node.camera.Camera;
 	import aerys.monitor.Monitor;
 	
 	import flash.display.Sprite;
