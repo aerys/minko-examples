@@ -1,9 +1,7 @@
 package aerys.minko.example.lighting
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
-	import aerys.minko.render.geometry.stream.StreamUsage;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
@@ -12,7 +10,6 @@ package aerys.minko.example.lighting
 	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.Event;
@@ -21,7 +18,6 @@ package aerys.minko.example.lighting
 	{
 		[Embed(source="../assets/textures/brickwork-texture.jpg")]
 		private static const BRICK_DIFFUSE	: Class;
-		
 		[Embed(source="../assets/textures/brickwork_normal-map.jpg")]
 		private static const BRICK_NORMALS	: Class;
 		
@@ -41,8 +37,6 @@ package aerys.minko.example.lighting
 			
 			cameraController.distance = 100;
 			cameraController.distanceStep = 0;
-			
-			scene.addChild(new AmbientLight(0xffffffff, 0.6));
 			
 			var mat : PhongMaterial = new PhongMaterial(scene);
 			
@@ -69,7 +63,7 @@ package aerys.minko.example.lighting
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
+			var teapotGeometry : TeapotGeometry = new TeapotGeometry(8);
 			
 			teapotGeometry.computeNormals().disposeLocalData();
 			
@@ -104,6 +98,7 @@ package aerys.minko.example.lighting
 		
 		protected function initializeLights() : void
 		{
+			scene.addChild(new AmbientLight(0xffffffff, 0.6));
 		}
 		
 		override protected function enterFrameHandler(e : Event):void
