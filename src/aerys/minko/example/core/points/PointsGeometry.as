@@ -44,8 +44,10 @@ package aerys.minko.example.core.points
 			}
 			
 			super(
-				new <IVertexStream>[new VertexStream(StreamUsage.STATIC, PointsShader.VERTEX_FORMAT, vertices)],
-				new IndexStream(StreamUsage.STATIC, indices)
+				new <IVertexStream>[
+					VertexStream.fromVector(StreamUsage.STATIC, PointsShader.VERTEX_FORMAT, vertices)
+				],
+				IndexStream.fromVector(StreamUsage.STATIC, indices)
 			);
 		}
 	}
