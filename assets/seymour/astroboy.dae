@@ -13195,7 +13195,7 @@
   </library_lights>
   <library_images>
     <image id="boy_10.tga" name="boy_10_tga">
-      <init_from>file:///C:/Personal/Clean/Collada/collada-dom-2.2/collada-dom/viewer/bin/boy_10.tga</init_from>
+      <init_from>file:///C:/Personal/Clean/Collada/collada-dom-2.2/collada-dom/viewer/bin/boy_10.jpg</init_from>
     </image>
   </library_images>
   <library_materials>
