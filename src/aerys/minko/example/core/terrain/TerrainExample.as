@@ -116,6 +116,8 @@ package aerys.minko.example.core.terrain
 				)				
 			);
 			
+			terrainGeometry.computeNormals().disposeLocalData();
+			
 			_terrain.transform
 				.appendRotation(Math.PI * 0.5, Vector4.X_AXIS)
 				.appendTranslation(0, 0.5, 0)
