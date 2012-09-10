@@ -1,11 +1,11 @@
 package aerys.minko.example.effects.wireframe
 {
-	import aerys.minko.Minko;
 	import aerys.minko.render.effect.wireframe.WireframeMaterial;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
-	import aerys.minko.type.log.DebugLevel;
+	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.enum.TriangleCulling;
 
 	public class WireframeExample extends MinkoExampleApplication
 	{
@@ -19,8 +19,10 @@ package aerys.minko.example.effects.wireframe
 			var material : WireframeMaterial = new WireframeMaterial();
 			
 			material.diffuseColor = 0;
+			material.blending = Blending.ADDITIVE;
+			material.triangleCulling = TriangleCulling.NONE;
 			material.wireframeColor = 0xffffff77;
-			material.wireframeThickness = 10.;
+			material.wireframeThickness = 20.;
 			
 			scene.addChild(new Mesh(
 				new WireframeGeometry(new TeapotGeometry(10)),
