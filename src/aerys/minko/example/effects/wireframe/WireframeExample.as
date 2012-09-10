@@ -1,30 +1,30 @@
 package aerys.minko.example.effects.wireframe
 {
-	import aerys.minko.render.Effect;
-	import aerys.minko.render.effect.wireframe.WireframeShader;
+	import aerys.minko.Minko;
+	import aerys.minko.render.effect.wireframe.WireframeMaterial;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
-	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.mesh.geometry.WireframeGeometry;
+	import aerys.minko.type.log.DebugLevel;
 
 	public class WireframeExample extends MinkoExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
-		
+			
 			cameraController.lookAt.set(0, 1.5, 0);
 			cameraController.distance = 10;
 			
+			var material : WireframeMaterial = new WireframeMaterial();
+			
+			material.diffuseColor = 0;
+			material.wireframeColor = 0xffffff77;
+			material.wireframeThickness = 10.;
+			
 			scene.addChild(new Mesh(
 				new WireframeGeometry(new TeapotGeometry(10)),
-				new Material(
-					new Effect(new WireframeShader()),
-					{
-						wireframeWireColor		: 0xffffff77,
-						wireframeWireThickness	: 10
-					}
-				)
+				material
 			));
 		}
 	}
