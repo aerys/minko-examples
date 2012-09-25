@@ -19,6 +19,7 @@ package aerys.minko.example.picking
 			_log.textColor = 0xffffffff;
 			_log.height = 600;
 			_log.width = 200;
+			_log.selectable = false;
 			stage.addChild(_log);
 		}
 		
