@@ -20,7 +20,7 @@ package aerys.minko.example.core.vertexiterator
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 7;
+			cameraController.distance = 10;
 			cameraController.lookAt.set(0, 1.5, 0);
 			
 			var positionMaterial : Material = new BasicMaterial({
@@ -48,7 +48,6 @@ package aerys.minko.example.core.vertexiterator
 				
 				var normal : Mesh = new Mesh(CubeGeometry.cubeGeometry, normalMaterial);
 				
-				normal.frustumCulling = FrustumCulling.DISABLED;
 				normal.transform
 					.orientTo(
 						new Vector4(vertex.nx, vertex.ny, vertex.nz),
