@@ -17,7 +17,8 @@ package aerys.minko.example.core.culling
 				new BasicMaterial({diffuseColor:0x0000ffff}),
 				new BasicMaterial({diffuseColor:0xffff00ff})
 			];
-			for (var i : uint = 0; i < 1000; ++i)
+			
+			for (var i : uint = 0; i < 20000; ++i)
 			{
 				var cube : Mesh = new Mesh(
 					CubeGeometry.cubeGeometry,
