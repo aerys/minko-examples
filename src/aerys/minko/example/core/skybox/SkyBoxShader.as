@@ -45,8 +45,11 @@ package aerys.minko.example.core.skybox
 				SamplerDimension.CUBE
 			);
 			
-			var skyboxPixelPosition	: SFloat = interpolate(localToWorld(getVertexAttribute(VertexComponent.XYZ)));
-			var uvw					: SFloat = normalize(subtract(skyboxPixelPosition, cameraPosition));
+			var skyboxPixelPosition	: SFloat 	= interpolate(add(
+				localToWorld(getVertexAttribute(VertexComponent.XYZ)),
+				cameraPosition
+			));
+			var uvw					: SFloat 	= normalize(subtract(skyboxPixelPosition, cameraPosition));
 			
 			return sampleTexture(cubicTexture, uvw);
 		}
