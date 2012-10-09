@@ -11,7 +11,6 @@ package aerys.minko.example.core.vertexiterator
 	import aerys.minko.render.material.vertex.VertexNormalShader;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.Blending;
-	import aerys.minko.type.enum.FrustumCulling;
 	import aerys.minko.type.math.Vector4;
 
 	public class VertexIteratorExample extends MinkoExampleApplication
@@ -32,14 +31,15 @@ package aerys.minko.example.core.vertexiterator
 				blending		: Blending.ALPHA
 			});
 			
-			var geometry : Geometry = new TeapotGeometry(5).computeNormals();
+			var geometry : Geometry = new TeapotGeometry(5).computeNormals().disposeLocalData();
 			var vertices : VertexIterator = new VertexIterator(geometry.getVertexStream(0));
+			
+			scene.addChild(new Mesh(geometry, new Material(new Effect(new VertexNormalShader()))));
 			
 			for each (var vertex : VertexReference in vertices)
 			{
 				var position : Mesh = new Mesh(CubeGeometry.cubeGeometry, positionMaterial);
 				
-				position.frustumCulling = FrustumCulling.DISABLED;
 				position.transform
 					.appendUniformScale(.025)
 					.appendTranslation(vertex.x, vertex.y, vertex.z);
@@ -57,9 +57,7 @@ package aerys.minko.example.core.vertexiterator
 					.prependScale(0.01, 0.01, 0.1)
 				
 				scene.addChild(normal);
-			}			
-			
-			scene.addChild(new Mesh(geometry, new Material(new Effect(new VertexNormalShader()))));
+			}
 		}
 	}
 }
