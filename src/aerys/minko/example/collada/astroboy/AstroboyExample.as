@@ -26,7 +26,6 @@ package aerys.minko.example.collada.astroboy
 			var options : ParserOptions		= new ParserOptions();
 			
 			options.parser						= ColladaParser;
-			options.loadDependencies			= true;
 			options.mipmapTextures				= true;
 			options.dependencyLoaderFunction	= loadDependency;
 			options.vertexStreamUsage			= StreamUsage.READ;

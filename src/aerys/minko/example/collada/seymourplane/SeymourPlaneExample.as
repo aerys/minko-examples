@@ -10,7 +10,7 @@ package aerys.minko.example.collada.seymourplane
 
 	public class SeymourPlaneExample extends MinkoExampleApplication
 	{
-		override protected function initializeScene():void
+		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
@@ -19,17 +19,16 @@ package aerys.minko.example.collada.seymourplane
 			
 			var options : ParserOptions		= new ParserOptions();
 			
-			options.parser					= ColladaParser;
-			options.loadDependencies		= true;
-			options.mipmapTextures			= true;
-			options.dependencyLoaderClosure	= dependencyLoaderClosure;
+			options.parser						= ColladaParser;
+			options.mipmapTextures				= true;
+			options.dependencyLoaderFunction	= dependencyLoader;
 			
 			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options);
 		}
 		
-		private function dependencyLoaderClosure(dependencyPath	: String,
-												 isTexture		: Boolean,
-												 options		: ParserOptions) : ILoader
+		private function dependencyLoader(dependencyPath	: String,
+										  isTexture			: Boolean,
+										  options			: ParserOptions) : ILoader
 		{
 			var loader : ILoader;
 			
