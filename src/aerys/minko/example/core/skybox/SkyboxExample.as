@@ -33,7 +33,7 @@ package aerys.minko.example.core.skybox
 			super.initializeScene();
 			
 			// lock camera to center
-			ArcBallController(camera.getController(1)).distanceStep = 0;
+			cameraController.distanceStep = 0.;
 			
 			// create cubemap
 			var texture : CubeTextureResource = new CubeTextureResource(1024);
