@@ -75,7 +75,6 @@ package aerys.minko.example.lighting.normalmapping
 			
 			normalMapping.normalMappingType = NormalMappingType.NORMAL;
 			normalMapping.normalMap = TextureLoader.loadClass(NORMAL_MAP);
-			normalMapping.specularMultiplier = 0.;
 			sphere = new Mesh(geometry, normalMapping);
 			scene.addChild(sphere);
 			
