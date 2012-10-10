@@ -8,6 +8,7 @@ package aerys.minko.example.core.skybox
 	import aerys.minko.render.resource.texture.CubeTextureResource;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.type.enum.FrustumCulling;
 	
 	public class SkyboxExample extends PrimitivesExample
 	{
@@ -51,6 +52,7 @@ package aerys.minko.example.core.skybox
 				new Material(new Effect(new SkyboxShader()), { diffuseCubeMap: texture })
 			);
 			
+			skybox.frustumCulling = FrustumCulling.DISABLED;
 			skybox.transform.setScale(500, 500, 500);
 			
 	        scene.addChild(skybox);
