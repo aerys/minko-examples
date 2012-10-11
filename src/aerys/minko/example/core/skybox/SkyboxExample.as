@@ -53,7 +53,8 @@ package aerys.minko.example.core.skybox
 			);
 			
 			skybox.frustumCulling = FrustumCulling.DISABLED;
-			skybox.transform.setScale(500, 500, 500);
+			var scale:Number = camera.zFar;
+			skybox.transform.setScale(scale, scale, scale);
 			
 	        scene.addChild(skybox);
 	    }
