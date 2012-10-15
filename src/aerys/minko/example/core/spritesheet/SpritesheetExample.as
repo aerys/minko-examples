@@ -30,7 +30,7 @@ package aerys.minko.example.core.spritesheet
 			
 			m.addController(new AnimationController(new <ITimeline>[
 				new ScalarRegularTimeline(
-					'properties.spritesheetFrameId',
+					'material.spritesheetFrameId',
 					1000,
 					new <Number>[0, 24]
 				)
