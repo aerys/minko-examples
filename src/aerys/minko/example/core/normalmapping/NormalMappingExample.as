@@ -1,4 +1,4 @@
-package aerys.minko.example.lighting.normalmapping
+package aerys.minko.example.core.normalmapping
 {
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
@@ -20,7 +20,7 @@ package aerys.minko.example.lighting.normalmapping
 	 * 
 	 * @author Romain Gilliotte
 	 */	
-	public class NormalMappingExample extends MinkoExampleApplication
+	public class NormalMappingExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/parallaxmapping/collage.jpg")]
 		private static const DIFFUSE_MAP	: Class;
