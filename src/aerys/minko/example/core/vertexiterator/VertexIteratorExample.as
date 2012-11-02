@@ -13,7 +13,7 @@ package aerys.minko.example.core.vertexiterator
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.math.Vector4;
 
-	public class VertexIteratorExample extends MinkoExampleApplication
+	public class VertexIteratorExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{

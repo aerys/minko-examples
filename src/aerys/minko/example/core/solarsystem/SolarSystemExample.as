@@ -8,7 +8,7 @@ package aerys.minko.example.core.solarsystem
 	
 	import flash.events.Event;
 
-	public class SolarSystemExample extends MinkoExampleApplication
+	public class SolarSystemExample extends AbstractExampleApplication
 	{
 		private var _sun		: Mesh;
 		private var _mercury	: Mesh;

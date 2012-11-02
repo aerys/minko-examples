@@ -4,13 +4,12 @@ package aerys.minko.example.core.cubes
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.monitor.Monitor;
 	
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
 
-	public class CubesExample extends MinkoExampleApplication
+	public class CubesExample extends AbstractExampleApplication
 	{
 		private static const MATERIAL	: Material	= new Material(new Effect(new NormalsShader()));
 		private static const TARGET_FPS	: Number	= 30;

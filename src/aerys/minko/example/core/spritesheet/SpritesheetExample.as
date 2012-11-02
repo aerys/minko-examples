@@ -9,7 +9,7 @@ package aerys.minko.example.core.spritesheet
 	import aerys.minko.type.animation.timeline.ScalarRegularTimeline;
 	import aerys.minko.type.loader.TextureLoader;
 
-	public class SpritesheetExample extends MinkoExampleApplication
+	public class SpritesheetExample extends AbstractExampleApplication
 	{
 		[Embed("../assets/explosion.png")]
 		private static const ASSET_SPRITESHEET	: Class;

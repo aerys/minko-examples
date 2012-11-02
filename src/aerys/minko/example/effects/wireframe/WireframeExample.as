@@ -7,7 +7,7 @@ package aerys.minko.example.effects.wireframe
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.TriangleCulling;
 
-	public class WireframeExample extends MinkoExampleApplication
+	public class WireframeExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{

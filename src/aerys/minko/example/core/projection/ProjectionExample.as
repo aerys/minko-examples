@@ -16,7 +16,7 @@ package aerys.minko.example.core.projection
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 
-	public class ProjectionExample extends MinkoExampleApplication
+	public class ProjectionExample extends AbstractExampleApplication
 	{
 		private static const NUM_POINTS	: uint	= 10;
 		

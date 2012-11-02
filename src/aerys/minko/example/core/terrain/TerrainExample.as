@@ -18,7 +18,7 @@ package aerys.minko.example.core.terrain
 	import flash.display.BitmapData;
 	import flash.events.MouseEvent;
 
-	public class TerrainExample extends MinkoExampleApplication
+	public class TerrainExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/terrain.jpg")]
 		private static const TERRAIN_TEXTURE	: Class;

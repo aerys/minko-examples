@@ -4,7 +4,7 @@ package aerys.minko.example.core.dynamictexture
 	import aerys.minko.scene.controller.mesh.DynamicTextureController;
 	import aerys.minko.scene.node.Mesh;
 
-	public class DynamicTextureExample extends MinkoExampleApplication
+	public class DynamicTextureExample extends AbstractExampleApplication
 	{
 		[Embed("../assets/minko_logo.swf")]
 		private static const MINKO_LOGO_SWF	: Class;

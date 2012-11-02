@@ -6,7 +6,7 @@ package aerys.minko.example.effects.dof
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
 	
-	public class DepthOfFieldExample extends MinkoExampleApplication
+	public class DepthOfFieldExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene():void
 		{

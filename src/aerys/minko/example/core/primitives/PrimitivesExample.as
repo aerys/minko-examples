@@ -9,7 +9,7 @@ package aerys.minko.example.core.primitives
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
 
-	public class PrimitivesExample extends MinkoExampleApplication
+	public class PrimitivesExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{

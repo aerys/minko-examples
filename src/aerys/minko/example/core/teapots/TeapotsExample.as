@@ -12,7 +12,7 @@ package aerys.minko.example.core.teapots
 	import flash.utils.getTimer;
 	
 	
-	public class TeapotsExample extends MinkoExampleApplication
+	public class TeapotsExample extends AbstractExampleApplication
 	{
 		private static const MATERIAL	: Material	= new Material(new Effect(new NormalsShader()));
 		private static const TARGET_FPS	: Number	= 30;
