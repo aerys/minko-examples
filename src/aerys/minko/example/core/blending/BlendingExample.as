@@ -20,7 +20,7 @@ package aerys.minko.example.core.blending
 	 * @author Jean-Marc Le Roux
 	 * 
 	 */
-	public class BlendingExample extends MinkoExampleApplication
+	public class BlendingExample extends AbstractExampleApplication
 	{
 		private var _sharedProperties	: DataProvider	= new DataProvider({
 			blending	: Blending.NORMAL

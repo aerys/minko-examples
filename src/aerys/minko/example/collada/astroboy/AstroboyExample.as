@@ -7,7 +7,7 @@ package aerys.minko.example.collada.astroboy
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
 
-	public class AstroboyExample extends MinkoExampleApplication
+	public class AstroboyExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/seymour/astroboy.dae", mimeType="application/octet-stream")]
 		private static const DAE : Class;
