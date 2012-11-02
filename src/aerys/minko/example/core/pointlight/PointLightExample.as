@@ -1,12 +1,10 @@
-package aerys.minko.example.lighting.point
+package aerys.minko.example.core.pointlight
 {
-	import aerys.minko.example.lighting.AbstractLightExampleApplication;
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.PointLight;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
@@ -19,6 +17,8 @@ package aerys.minko.example.lighting.point
 		
 		override protected function initializeLights() : void
 		{
+            super.initializeLights();
+            
 			cameraController.maxDistance = 100;
 			cameraController.distance = 75;
 			
@@ -29,20 +29,22 @@ package aerys.minko.example.lighting.point
 			);
 			
 			pointLight.shadowCastingType	= ShadowMappingType.CUBE;
-			pointLight.shadowMapSize		= 256;
+            pointLight.shadowZNear          = 0.1;
+            pointLight.shadowZFar           = 100.;
+			pointLight.shadowMapSize		= 1024;
+            pointLight.attenuationDistance  = 80;
 			
 			lightGroup.addController(new AnimationController(new <ITimeline>[new MatrixRegularTimeline(
 				'transform',
 				5000,
 				new <Matrix4x4>[
-					new Matrix4x4(),
 					new Matrix4x4().appendTranslation(0, 25),
 					new Matrix4x4().appendTranslation(0, -25),
-					new Matrix4x4()
+                    new Matrix4x4().appendTranslation(0, 25)
 				]
 			)]));
-			
-			scene.addChild(new AmbientLight(0xffffffff, .2)).addChild(lightGroup);
+            
+			scene.addChild(lightGroup);
 		}
 	}
 }

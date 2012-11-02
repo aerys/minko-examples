@@ -1,4 +1,4 @@
-package aerys.minko.example.lighting.environment
+package aerys.minko.example.core.environmentmapping
 {
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
@@ -8,7 +8,7 @@ package aerys.minko.example.lighting.environment
 	import aerys.minko.type.enum.EnvironmentMappingType;
 	import aerys.minko.type.loader.TextureLoader;
 
-	public class EnvironmentMappingExample extends MinkoExampleApplication
+	public class EnvironmentMappingExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/reflections/blinn-newell.jpg")]
 		private static const BLINN_NEWELL_MAP	: Class;
