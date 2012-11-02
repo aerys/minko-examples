@@ -8,7 +8,7 @@ package aerys.minko.example.core.raycasting
 	
 	import flash.events.MouseEvent;
 
-	public class RaycastingExample extends MinkoExampleApplication
+	public class RaycastingExample extends AbstractExampleApplication
 	{
 		private var _selected			: Mesh		= null;
 		

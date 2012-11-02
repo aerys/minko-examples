@@ -15,7 +15,7 @@ package aerys.minko.example.core.stencil
 	 * This example shows how to use stencil operations with Minko 3D 2.0b
 	 * @author Palinkas, Adam
 	 */
-	public class StencilExample extends MinkoExampleApplication
+	public class StencilExample extends AbstractExampleApplication
 	{		
 		[Embed("../assets/wall.png")]
 		private static const TEXTURE	: Class;

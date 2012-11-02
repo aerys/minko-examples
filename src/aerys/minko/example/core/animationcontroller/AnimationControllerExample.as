@@ -12,7 +12,7 @@ package aerys.minko.example.core.animationcontroller
 	import aerys.minko.type.math.HLSAMatrix4x4;
 	import aerys.minko.type.math.Matrix4x4;
 
-	public class AnimationControllerExample extends MinkoExampleApplication
+	public class AnimationControllerExample extends AbstractExampleApplication
 	{
 		[Embed("../assets/checker.jpg")]
 		private static const EMBED_TEXTURE : Class;

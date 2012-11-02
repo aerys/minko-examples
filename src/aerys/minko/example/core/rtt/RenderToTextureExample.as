@@ -11,7 +11,7 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.Sprite;
 
-	public class RenderToTextureExample extends MinkoExampleApplication
+	public class RenderToTextureExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{

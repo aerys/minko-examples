@@ -5,7 +5,7 @@ package aerys.minko.example.core.timegradient
 	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
 
-	public class TimeGradientExample extends MinkoExampleApplication
+	public class TimeGradientExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene():void
 		{

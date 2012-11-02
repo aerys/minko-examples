@@ -7,7 +7,7 @@ package aerys.minko.example.core.texture
 	import aerys.minko.type.enum.SamplerFiltering;
 	import aerys.minko.type.loader.TextureLoader;
 
-	public class TextureExample extends MinkoExampleApplication
+	public class TextureExample extends AbstractExampleApplication
 	{
 		[Embed("../assets/checker.jpg")]
 		private static const ASSET_TEXTURE	: Class;

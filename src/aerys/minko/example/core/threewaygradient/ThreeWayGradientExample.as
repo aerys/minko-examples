@@ -11,7 +11,7 @@ package aerys.minko.example.core.threewaygradient
 	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
 
-	public class ThreeWayGradientExample extends MinkoExampleApplication
+	public class ThreeWayGradientExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
