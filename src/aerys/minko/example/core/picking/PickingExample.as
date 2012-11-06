@@ -1,4 +1,4 @@
-package aerys.minko.example.picking
+package aerys.minko.example.core.picking
 {
 	import aerys.minko.Minko;
 	import aerys.minko.example.core.primitives.PrimitivesExample;
@@ -6,6 +6,7 @@ package aerys.minko.example.picking
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.type.enum.PickingTechnique;
 	
 	import flash.text.TextField;
 
@@ -27,7 +28,9 @@ package aerys.minko.example.picking
 		{
 			super.initializeScene();
 			
-			var picking : PickingController = new PickingController();
+			var picking : PickingController = new PickingController(
+                PickingTechnique.RAYCASTING
+            );
 			
 			viewport.doubleClickEnabled = true;
 			picking.bindDefaultInputs(viewport);
