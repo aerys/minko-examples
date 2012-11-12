@@ -39,8 +39,8 @@ package aerys.minko.example.core.vertexattributes
 			var vertexPosition 	: SFloat 	= getVertexAttribute(VertexComponent.XYZ);
 			// Reading a custom VertexAttribute is the same way
 			var offset 			: SFloat 	= getVertexAttribute(ShatterVertexComponent.SHATTER_VECTOR);
+			// We want to animate the shattering
 			var time 			: SFloat 	= multiply(this.time, 0.0005);
-			// Applying a function varying along the time to make it a little dynamic
 			var shift 			: SFloat 	= absolute(max(0.0, cos(add(offset.w, time))));
 			
 			offset = damping(offset.xyz, float3(0, 0, 0), float(1. / 1.5), shift);
