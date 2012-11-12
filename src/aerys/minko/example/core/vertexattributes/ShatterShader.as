@@ -2,18 +2,10 @@ package aerys.minko.example.core.vertexattributes
 {
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.geometry.stream.format.VertexComponent;
-	import aerys.minko.render.geometry.stream.format.VertexComponentType;
-	import aerys.minko.render.geometry.stream.format.VertexFormat;
-	import aerys.minko.render.material.basic.BasicShader;
-	import aerys.minko.render.material.phong.PhongShader;
 	import aerys.minko.render.shader.SFloat;
 	import aerys.minko.render.shader.Shader;
-	import aerys.minko.render.shader.ShaderSettings;
 	import aerys.minko.render.shader.part.phong.LightAwareDiffuseShaderPart;
 	import aerys.minko.render.shader.part.phong.PhongShaderPart;
-	import aerys.minko.type.enum.Blending;
-	import aerys.minko.type.enum.DepthTest;
-	import aerys.minko.type.enum.TriangleCulling;
 	
 	public class ShatterShader extends Shader
 	{
