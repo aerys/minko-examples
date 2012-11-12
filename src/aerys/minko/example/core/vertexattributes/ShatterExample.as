@@ -1,10 +1,6 @@
 package aerys.minko.example.core.vertexattributes
 {
-	import aerys.minko.Minko;
-	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.Geometry;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.SphereGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.geometry.stream.IVertexStream;
 	import aerys.minko.render.geometry.stream.IndexStream;
@@ -12,32 +8,21 @@ package aerys.minko.example.core.vertexattributes
 	import aerys.minko.render.geometry.stream.VertexStream;
 	import aerys.minko.render.geometry.stream.VertexStreamList;
 	import aerys.minko.render.geometry.stream.format.VertexComponent;
-	import aerys.minko.render.geometry.stream.format.VertexComponentType;
 	import aerys.minko.render.geometry.stream.format.VertexFormat;
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
 	import aerys.minko.render.geometry.stream.iterator.VertexReference;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.render.material.basic.BasicProperties;
 	import aerys.minko.render.material.phong.PhongEffect;
 	import aerys.minko.render.material.phong.PhongMaterial;
-	import aerys.minko.render.resource.VertexBuffer3DResource;
-	import aerys.minko.render.shader.compiler.ShaderCompilerFlag;
 	import aerys.minko.scene.node.Group;
-	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.PointLight;
-	import aerys.minko.scene.node.light.SpotLight;
-	import aerys.minko.type.enum.ShadowMappingQuality;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.enum.TriangleCulling;
-	import aerys.minko.type.log.DebugLevel;
 	import aerys.minko.type.math.Vector4;
 	
-	import flash.display3D.VertexBuffer3D;
-	import flash.events.KeyboardEvent;
-	import flash.ui.Keyboard;
 	import flash.utils.ByteArray;
 	import flash.utils.Endian;
 
