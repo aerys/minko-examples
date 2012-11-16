@@ -42,11 +42,6 @@ package aerys.minko.example.core.keyboardscript
 		{
 			super();
 			
-			initialize(controllers);
-		}
-		
-		private function initialize(controllers : Array) : void
-		{
 			_scripts = Vector.<AbstractController>(controllers);
 			_focusIn = new Signal('FocusScript.focusIn');
 			_focusOut = new Signal('FocusScript.focusOut');
