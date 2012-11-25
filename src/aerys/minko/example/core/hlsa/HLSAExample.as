@@ -1,23 +1,23 @@
 package aerys.minko.example.core.hlsa
 {
-	import aerys.minko.example.core.directionallight.DirectionalLightExample;
-	import aerys.minko.example.core.spotlight.SpotLightExample;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.type.enum.Blending;
-	import aerys.minko.type.math.HLSAMatrix4x4;
-	
-	import com.bit101.utils.MinimalConfigurator;
-	
-	import flash.events.Event;
-	import flash.events.MouseEvent;
-	
-	public class HLSAExample extends SpotLightExample
-	{
+    import aerys.minko.example.core.directionallight.DirectionalLightExample;
+    import aerys.minko.example.core.spotlight.SpotLightExample;
+    import aerys.minko.scene.node.Mesh;
+    import aerys.minko.type.enum.Blending;
+    import aerys.minko.type.math.HLSAMatrix4x4;
+    
+    import com.bit101.utils.MinimalConfigurator;
+    
+    import flash.events.Event;
+    import flash.events.MouseEvent;
+    
+    public class HLSAExample extends SpotLightExample
+    {
         private var _colorTransform : HLSAMatrix4x4;
         
-		override protected function initializeScene() : void
-		{
-			super.initializeScene();
+        override protected function initializeScene() : void
+        {
+            super.initializeScene();
             
             _colorTransform = new HLSAMatrix4x4();
             
@@ -26,46 +26,46 @@ package aerys.minko.example.core.hlsa
                 mesh.material.diffuseTransform = _colorTransform;
                 mesh.material.blending = Blending.ALPHA;
             }
-		}
-		
-		override protected function initializeUI() : void
-		{
-			var cfg : MinimalConfigurator = new MinimalConfigurator(this);
-			
-			cfg.parseXML(
-				<comps>
-					<Panel width="200" x="10" y="10">
-						<HBox x="10" y="10">
-							<HSlider name="hue"
+        }
+        
+        override protected function initializeUI() : void
+        {
+            var cfg : MinimalConfigurator = new MinimalConfigurator(this);
+            
+            cfg.parseXML(
+                <comps>
+                    <Panel width="200" x="10" y="10">
+                        <HBox x="10" y="10">
+                            <HSlider name="hue"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="0"/>
-							<Label text="Hue"/>
-						</HBox>
-						<HBox x="10" y="50">
-							<HSlider name="luminance"
+                            <Label text="Hue"/>
+                        </HBox>
+                        <HBox x="10" y="50">
+                            <HSlider name="luminance"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="1"/>
-							<Label text="Luminance"/>
-						</HBox>
-						<HBox x="10" y="30">
-							<HSlider name="saturation"
+                            <Label text="Luminance"/>
+                        </HBox>
+                        <HBox x="10" y="30">
+                            <HSlider name="saturation"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="1"/>
-							<Label text="Saturation"/>
-						</HBox>
-						<HBox x="10" y="70">
-							<HSlider name="alpha"
+                            <Label text="Saturation"/>
+                        </HBox>
+                        <HBox x="10" y="70">
+                            <HSlider name="alpha"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="1"/>
-							<Label text="Alpha"/>
-						</HBox>
-					</Panel>
-				</comps>
-			);
-		}
-		
-		public function sliderChangedHandler(event : Event) : void
-		{
+                            <Label text="Alpha"/>
+                        </HBox>
+                    </Panel>
+                </comps>
+            );
+        }
+        
+        public function sliderChangedHandler(event : Event) : void
+        {
             switch (event.target.name)
             {
                 case 'hue':
@@ -81,6 +81,6 @@ package aerys.minko.example.core.hlsa
                     _colorTransform.alpha = event.target.value;
                     break;
             }
-		}
-	}
+        }
+    }
 }
