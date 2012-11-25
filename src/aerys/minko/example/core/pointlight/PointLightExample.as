@@ -7,7 +7,7 @@ package aerys.minko.example.core.pointlight
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.PointLight;
 	import aerys.minko.type.animation.timeline.ITimeline;
-	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
+	import aerys.minko.type.animation.timeline.MatrixTimeline;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Matrix4x4;
 
@@ -34,9 +34,13 @@ package aerys.minko.example.core.pointlight
 			pointLight.shadowMapSize		= 1024;
             pointLight.attenuationDistance  = 80;
 			
-			lightGroup.addController(new AnimationController(new <ITimeline>[new MatrixRegularTimeline(
+			lightGroup.addController(new AnimationController(new <ITimeline>[new MatrixTimeline(
 				'transform',
-				5000,
+				new <uint>[
+                    0,
+                    5000,
+                    10000
+                ],
 				new <Matrix4x4>[
 					new Matrix4x4().appendTranslation(0, 25),
 					new Matrix4x4().appendTranslation(0, -25),

@@ -1,15 +1,9 @@
 package aerys.minko.example.core.spotlight
 {
-	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.light.SpotLight;
-	import aerys.minko.type.animation.timeline.ITimeline;
-	import aerys.minko.type.animation.timeline.MatrixRegularTimeline;
 	import aerys.minko.type.enum.ShadowMappingQuality;
 	import aerys.minko.type.enum.ShadowMappingType;
-	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.utils.setTimeout;
 
 	public class SpotLightExample extends AbstractLightExampleApplication
 	{
