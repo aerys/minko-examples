@@ -76,10 +76,13 @@ package
 			
 			for (var teapotId : uint = 0; teapotId < 50; ++teapotId)
 			{
-				var smallTeapot : Mesh = new Mesh(teapotGeometry);
+				var smallTeapot : Mesh = new Mesh(
+                    teapotGeometry,
+                    mat.clone() as Material,
+                    'teapot'
+                );
 				
-				mat.diffuseColor = ((Math.random() * 0xffffff) << 8) || 0xff;
-				smallTeapot.material = mat.clone() as Material;
+				smallTeapot.material.diffuseColor = ((Math.random() * 0xffffff) << 8) | 0xff;
 				
 				smallTeapot.transform.setTranslation(
 					50 * (Math.random() - .5),
