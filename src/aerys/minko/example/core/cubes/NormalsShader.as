@@ -7,7 +7,7 @@ package aerys.minko.example.core.cubes
 	
 	public final class NormalsShader extends Shader
 	{
-		override protected function initializeSettings(settings:ShaderSettings):void
+		override protected function initializeSettings(settings : ShaderSettings) : void
 		{
 			settings.blending = Blending.ADDITIVE;
 			settings.depthWriteEnabled = false;

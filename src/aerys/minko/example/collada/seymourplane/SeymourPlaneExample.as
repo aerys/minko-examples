@@ -1,14 +1,13 @@
 package aerys.minko.example.collada.seymourplane
 {
 	import aerys.minko.type.loader.ILoader;
-	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
 	
 	import flash.net.URLRequest;
 
-	public class SeymourPlaneExample extends MinkoExampleApplication
+	public class SeymourPlaneExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
@@ -40,11 +39,6 @@ package aerys.minko.example.collada.seymourplane
 				
 				loader = new TextureLoader(true);
 				loader.load(new URLRequest(correctedURL));
-			}
-			else
-			{
-				loader = new SceneLoader(options);
-				loader.load(new URLRequest(dependencyPath));
 			}
 			
 			return loader;

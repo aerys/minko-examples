@@ -4,10 +4,8 @@ package aerys.minko.example.core.points
 	import aerys.minko.render.material.Material;
 	import aerys.minko.scene.node.Mesh;
 
-	public class PointsExample extends MinkoExampleApplication
+	public class PointsExample extends AbstractExampleApplication
 	{
-		private static const NUM_POINTS	: uint	= 16000;
-		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();

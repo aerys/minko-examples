@@ -1,14 +1,16 @@
 package aerys.minko.example.core.skybox
 {
 	
+	import aerys.minko.example.core.primitives.PrimitivesExample;
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.resource.texture.CubeTextureResource;
 	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.type.enum.FrustumCulling;
 	
-	public class SkyboxExample extends MinkoExampleApplication
+	public class SkyboxExample extends PrimitivesExample
 	{
 		[Embed(source="../assets/skybox/negx.jpg")]
 		private static const NEG_X : Class;
@@ -32,9 +34,6 @@ package aerys.minko.example.core.skybox
 		{
 			super.initializeScene();
 			
-			// lock camera to center
-			ArcBallController(camera.getController(1)).distanceStep = 0;
-			
 			// create cubemap
 			var texture : CubeTextureResource = new CubeTextureResource(1024);
 			texture.setContentFromBitmapDatas(
@@ -50,10 +49,12 @@ package aerys.minko.example.core.skybox
 			// create geometry with custom shader.
 	        var skybox : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
-				new Material(new Effect(new SkyBoxShader()), { diffuseCubeMap: texture })
+				new Material(new Effect(new SkyboxShader()), { diffuseCubeMap: texture })
 			);
 			
-			skybox.transform.setScale(50, 50, 50);
+			skybox.frustumCulling = FrustumCulling.DISABLED;
+			var scale:Number = camera.zFar;
+			skybox.transform.setScale(scale, scale, scale);
 			
 	        scene.addChild(skybox);
 	    }

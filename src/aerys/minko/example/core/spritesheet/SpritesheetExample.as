@@ -6,10 +6,10 @@ package aerys.minko.example.core.spritesheet
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.animation.timeline.ITimeline;
-	import aerys.minko.type.animation.timeline.ScalarRegularTimeline;
+	import aerys.minko.type.animation.timeline.ScalarTimeline;
 	import aerys.minko.type.loader.TextureLoader;
 
-	public class SpritesheetExample extends MinkoExampleApplication
+	public class SpritesheetExample extends AbstractExampleApplication
 	{
 		[Embed("../assets/explosion.png")]
 		private static const ASSET_SPRITESHEET	: Class;
@@ -29,9 +29,9 @@ package aerys.minko.example.core.spritesheet
 			);
 			
 			m.addController(new AnimationController(new <ITimeline>[
-				new ScalarRegularTimeline(
-					'properties.spritesheetFrameId',
-					1000,
+				new ScalarTimeline(
+					'material.spritesheetFrameId',
+					new <uint>[0, 1000],
 					new <Number>[0, 24]
 				)
 			]));

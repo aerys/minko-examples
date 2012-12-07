@@ -4,11 +4,14 @@ package aerys.minko.example.core.terrain
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.QuadGeometry;
 	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.render.geometry.stream.VertexStream;
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
 	import aerys.minko.render.geometry.stream.iterator.VertexReference;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.scene.node.light.AmbientLight;
+	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
@@ -18,7 +21,7 @@ package aerys.minko.example.core.terrain
 	import flash.display.BitmapData;
 	import flash.events.MouseEvent;
 
-	public class TerrainExample extends MinkoExampleApplication
+	public class TerrainExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/terrain.jpg")]
 		private static const TERRAIN_TEXTURE	: Class;
@@ -93,10 +96,13 @@ package aerys.minko.example.core.terrain
 				
 			var terrainGeometry : Geometry	= new QuadGeometry(false, SIZE, SIZE, StreamUsage.DYNAMIC);
 			var heightmap : BitmapData = new BitmapData(SIZE, SIZE, false, 0);
-			var vertices : VertexIterator = new VertexIterator(terrainGeometry.getVertexStream());
+            var vertexStream : VertexStream = terrainGeometry.getVertexStream() as VertexStream;
+			var vertices : VertexIterator = new VertexIterator(vertexStream);
 			
 			heightmap.perlinNoise(200, 200, 8, Math.random() * 0xffffffff, false, true, 7, true);
 			
+            vertexStream.lock();
+            
 			for each (var vertex : VertexReference in vertices)
 			{
 				var x : uint = (vertex.x + 0.5) * (SIZE - 1);
@@ -104,6 +110,8 @@ package aerys.minko.example.core.terrain
 				
 				vertex.z = heightmap.getPixel(x, y) / 0xffffff;
 			}
+            
+            vertexStream.unlock();
 			
 			_terrain = new Mesh(
 				terrainGeometry,
@@ -122,8 +130,16 @@ package aerys.minko.example.core.terrain
 				.appendRotation(Math.PI * 0.5, Vector4.X_AXIS)
 				.appendTranslation(0, 0.5, 0)
 				.appendUniformScale(100);
-			
-			scene.addChild(_terrain);
+            
+            var light : DirectionalLight = new DirectionalLight();
+            
+            light.diffuse = .5;
+            light.specular = 0.;
+            light.transform.lookAt(Vector4.ZERO, Vector4.ONE);
+            
+            scene.addChild(light)
+                .addChild(new AmbientLight(0xffffffff, .5))
+			    .addChild(_terrain);
 		}
 	}
 }

@@ -3,28 +3,34 @@ package aerys.minko.example.core.raycasting
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicMaterial;
+	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.scene.node.light.AmbientLight;
+	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.Blending;
+	import aerys.minko.type.math.Vector4;
 	
 	import flash.events.MouseEvent;
 
-	public class RaycastingExample extends MinkoExampleApplication
+	public class RaycastingExample extends AbstractExampleApplication
 	{
-		private var _selected			: Mesh		= null;
-		
-		private var _selectedMaterial	: Material	= new BasicMaterial({
-			blending		: Blending.ALPHA,
-			diffuseColor	: 0xff00007f
-		});
-		private var _material			: Material	= new BasicMaterial({
-			blending		: Blending.ALPHA,
-			diffuseColor	: 0xffffff1f
-		});
+		private var _selected			: Mesh;
+		private var _selectedMaterial	: Material;
+		private var _material			: Material;
 		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
-
+            
+            _material = new PhongMaterial(scene, { diffuseColor : 0xffffffff });
+            _selectedMaterial = new PhongMaterial(scene, { diffuseColor : 0xff0000ff });
+            
+            var light : DirectionalLight = new DirectionalLight();
+            
+            light.transform.lookAt(Vector4.ZERO, new Vector4(.8, 1, .5));
+            
+            scene.addChild(light).addChild(new AmbientLight(0xffffffff, .5));
+            
 			cameraController.distance = 20;
 			cameraController.pitch = 0.8;
 			cameraController.yaw = Math.PI / 4;

@@ -10,13 +10,14 @@ package aerys.minko.example.core.skybox
 	import aerys.minko.type.enum.SamplerMipMapping;
 	import aerys.minko.type.enum.SamplerWrapping;
 	import aerys.minko.type.enum.TriangleCulling;
+	import aerys.minko.type.math.Vector4;
 	
-	public class SkyBoxShader extends Shader
+	public class SkyboxShader extends Shader
 	{
 		private var _priority		: Number;
 		private var _renderTarget	: RenderTarget;
 		
-		public function SkyBoxShader(priority		: Number		= 0,
+		public function SkyboxShader(priority		: Number		= 0,
 									 renderTarget	: RenderTarget	= null)
 		{
 			_priority		= priority;
@@ -32,7 +33,13 @@ package aerys.minko.example.core.skybox
 		
 		override protected function getVertexPosition() : SFloat
 		{
-			return localToScreen(getVertexAttribute(VertexComponent.XYZ));
+			var position 	: SFloat 	= localToWorld(vertexXYZ);
+
+			// center the geometry on the camera
+			position.incrementBy(float4(cameraPosition, 0));
+			position = worldToView(position);
+			
+			return viewToScreen(position);
 		}
 		
 		override protected function getPixelColor() : SFloat
@@ -45,8 +52,7 @@ package aerys.minko.example.core.skybox
 				SamplerDimension.CUBE
 			);
 			
-			var skyboxPixelPosition	: SFloat = interpolate(localToWorld(getVertexAttribute(VertexComponent.XYZ)));
-			var uvw					: SFloat = normalize(subtract(skyboxPixelPosition, cameraPosition));
+			var uvw : SFloat = normalize(interpolate(vertexXYZ));
 			
 			return sampleTexture(cubicTexture, uvw);
 		}

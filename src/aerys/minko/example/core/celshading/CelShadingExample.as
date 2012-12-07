@@ -9,7 +9,7 @@ package aerys.minko.example.core.celshading
 	
 	import flash.events.Event;
 
-	public class CelShadingExample extends MinkoExampleApplication
+	public class CelShadingExample extends AbstractExampleApplication
 	{
 		private var _lightDirection	: Vector4	= new Vector4(1., -.5, 0.);
 		private var _lightMatrix	: Matrix4x4	= new Matrix4x4();

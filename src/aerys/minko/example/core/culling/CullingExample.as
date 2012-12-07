@@ -4,8 +4,10 @@ package aerys.minko.example.core.culling
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
+	
+	import flash.events.Event;
 
-	public class CullingExample extends MinkoExampleApplication
+	public class CullingExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
@@ -31,8 +33,16 @@ package aerys.minko.example.core.culling
 					(Math.random() - 0.5) * 500
 				);
 				
+				cube.transform.prependUniformScale(.5);
+				
 				scene.addChild(cube);
 			}
+		}
+		
+		override protected function enterFrameHandler(event:Event):void
+		{
+			cameraController.yaw += .01;
+			super.enterFrameHandler(event);
 		}
 	}
 }

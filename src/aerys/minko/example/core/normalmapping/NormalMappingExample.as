@@ -1,11 +1,12 @@
-package aerys.minko.example.lighting.normalmapping
+package aerys.minko.example.core.normalmapping
 {
-	import aerys.minko.render.material.phong.PhongMaterial;
-	import aerys.minko.scene.controller.camera.ArcBallController;
-	import aerys.minko.scene.node.light.DirectionalLight;
-	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
+	import aerys.minko.render.material.phong.PhongMaterial;
+	import aerys.minko.scene.controller.camera.ArcBallController;
+	import aerys.minko.scene.node.Mesh;
+	import aerys.minko.scene.node.light.AbstractLight;
+	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.NormalMappingType;
 	import aerys.minko.type.loader.TextureLoader;
 	
@@ -19,7 +20,7 @@ package aerys.minko.example.lighting.normalmapping
 	 * 
 	 * @author Romain Gilliotte
 	 */	
-	public class NormalMappingExample extends MinkoExampleApplication
+	public class NormalMappingExample extends AbstractExampleApplication
 	{
 		[Embed(source="../assets/parallaxmapping/collage.jpg")]
 		private static const DIFFUSE_MAP	: Class;
@@ -30,7 +31,7 @@ package aerys.minko.example.lighting.normalmapping
 		[Embed(source="../assets/parallaxmapping/collage-bump.jpg")]
 		private static const HEIGHT_MAP		: Class;
 		
-		private var _light : DirectionalLight = new DirectionalLight(0xffffffff, 1, 1.0, 128);
+		private var _light : AbstractLight;
 		
 		override protected function initializeUI() : void
 		{
@@ -56,11 +57,14 @@ package aerys.minko.example.lighting.normalmapping
 			
 			ArcBallController(camera.getControllersByType(ArcBallController)[0]).distanceStep = 0.1;
 			
+			_light = new DirectionalLight(0xffffffff, 1, 1.0, 128);
 			scene.addChild(_light);
 			
 			var sphere		: Mesh				= null;
 			var geometry	: Geometry			= new SphereGeometry(30);
 			var phong		: PhongMaterial		= new PhongMaterial(scene);
+			
+			geometry.computeTangentSpace(false);
 			
 			phong.diffuseMap = TextureLoader.loadClass(DIFFUSE_MAP);
 			sphere = new Mesh(geometry, phong);
@@ -107,9 +111,9 @@ package aerys.minko.example.lighting.normalmapping
 		
 		override protected function enterFrameHandler(e : Event) : void
 		{
-			super.enterFrameHandler(e);
-			
 			_light.transform.copyFrom(camera.transform);
+			
+			super.enterFrameHandler(e);
 		}
 	}
 }
