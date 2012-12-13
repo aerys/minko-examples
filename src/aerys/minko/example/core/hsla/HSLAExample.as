@@ -38,7 +38,7 @@ package aerys.minko.example.core.hsla
                         <HBox x="10" y="10">
                             <HSlider name="hue"
                                      event="change:sliderChangedHandler"
-                                     minimum="0" maximum="1" value="0"/>
+                                     minimum="0" maximum="6.28" value="0"/>
                             <Label text="Hue"/>
                         </HBox>
                         <HBox x="10" y="30">
