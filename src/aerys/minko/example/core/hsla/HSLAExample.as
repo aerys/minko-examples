@@ -1,25 +1,25 @@
-package aerys.minko.example.core.hlsa
+package aerys.minko.example.core.hsla
 {
     import aerys.minko.example.core.directionallight.DirectionalLightExample;
     import aerys.minko.example.core.spotlight.SpotLightExample;
     import aerys.minko.scene.node.Mesh;
     import aerys.minko.type.enum.Blending;
-    import aerys.minko.type.math.HLSAMatrix4x4;
+    import aerys.minko.type.math.HSLAMatrix4x4;
     
     import com.bit101.utils.MinimalConfigurator;
     
     import flash.events.Event;
     import flash.events.MouseEvent;
     
-    public class HLSAExample extends SpotLightExample
+    public class HSLAExample extends SpotLightExample
     {
-        private var _colorTransform : HLSAMatrix4x4;
+        private var _colorTransform : HSLAMatrix4x4;
         
         override protected function initializeScene() : void
         {
             super.initializeScene();
             
-            _colorTransform = new HLSAMatrix4x4();
+            _colorTransform = new HSLAMatrix4x4();
             
             for each (var mesh : Mesh in scene.get("//mesh[name='teapot']"))
             {
@@ -41,17 +41,17 @@ package aerys.minko.example.core.hlsa
                                      minimum="0" maximum="1" value="0"/>
                             <Label text="Hue"/>
                         </HBox>
-                        <HBox x="10" y="50">
-                            <HSlider name="luminance"
-                                     event="change:sliderChangedHandler"
-                                     minimum="0" maximum="1" value="1"/>
-                            <Label text="Luminance"/>
-                        </HBox>
                         <HBox x="10" y="30">
                             <HSlider name="saturation"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="1"/>
                             <Label text="Saturation"/>
+                        </HBox>
+                        <HBox x="10" y="50">
+                            <HSlider name="luminance"
+                                     event="change:sliderChangedHandler"
+                                     minimum="0" maximum="1" value="1"/>
+                            <Label text="Luminance"/>
                         </HBox>
                         <HBox x="10" y="70">
                             <HSlider name="alpha"
