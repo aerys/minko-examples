@@ -45,7 +45,8 @@ package aerys.minko.example.core.pointlight
 					new Matrix4x4().appendTranslation(0, 25),
 					new Matrix4x4().appendTranslation(0, -25),
                     new Matrix4x4().appendTranslation(0, 25)
-				]
+				],
+				true
 			)]));
             
 			scene.addChild(lightGroup);
