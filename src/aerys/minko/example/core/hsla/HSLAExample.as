@@ -1,4 +1,4 @@
-package aerys.minko.example.core.hlsa
+package aerys.minko.example.core.hsla
 {
     import aerys.minko.example.core.directionallight.DirectionalLightExample;
     import aerys.minko.example.core.spotlight.SpotLightExample;
@@ -38,20 +38,20 @@ package aerys.minko.example.core.hlsa
                         <HBox x="10" y="10">
                             <HSlider name="hue"
                                      event="change:sliderChangedHandler"
-                                     minimum="-1" maximum="1" value="0"/>
+                                     minimum="0" maximum="6.28" value="0"/>
                             <Label text="Hue"/>
-                        </HBox>
-                        <HBox x="10" y="50">
-                            <HSlider name="luminance"
-                                     event="change:sliderChangedHandler"
-                                     minimum="0" maximum="1" value="1"/>
-                            <Label text="Luminance"/>
                         </HBox>
                         <HBox x="10" y="30">
                             <HSlider name="saturation"
                                      event="change:sliderChangedHandler"
                                      minimum="0" maximum="1" value="1"/>
                             <Label text="Saturation"/>
+                        </HBox>
+                        <HBox x="10" y="50">
+                            <HSlider name="luminance"
+                                     event="change:sliderChangedHandler"
+                                     minimum="0" maximum="1" value="1"/>
+                            <Label text="Luminance"/>
                         </HBox>
                         <HBox x="10" y="70">
                             <HSlider name="alpha"
