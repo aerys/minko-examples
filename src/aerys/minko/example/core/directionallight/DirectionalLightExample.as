@@ -20,11 +20,10 @@ package aerys.minko.example.core.directionallight
             directionalLight.shadowSpread		= 2;
             directionalLight.shadowWidth		= 100;
             directionalLight.shadowZFar         = 200;
+            directionalLight.shadowBias         = 1 / 256;
 			
             directionalLight.transform.lookAt(Vector4.Z_AXIS, new Vector4(0., 0., -70));
             
-			scene.properties.setProperty(PhongProperties.SHADOW_BIAS, 1 / 256);
-			
 			scene.addChild(directionalLight);
 		}
 	}
