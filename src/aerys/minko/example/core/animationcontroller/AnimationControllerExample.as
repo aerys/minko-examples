@@ -8,7 +8,7 @@ package aerys.minko.example.core.animationcontroller
 	import aerys.minko.type.animation.timeline.MatrixTimeline;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.loader.TextureLoader;
-	import aerys.minko.type.math.HLSAMatrix4x4;
+	import aerys.minko.type.math.HSLAMatrix4x4;
 	import aerys.minko.type.math.Matrix4x4;
 
 	public class AnimationControllerExample extends AbstractExampleApplication
@@ -31,9 +31,9 @@ package aerys.minko.example.core.animationcontroller
 			];
 			
 			var colors : Vector.<Matrix4x4> = new <Matrix4x4>[
-                new HLSAMatrix4x4(),
-                new HLSAMatrix4x4(0., 1., 1., .25),
-                new HLSAMatrix4x4()
+                new HSLAMatrix4x4(),
+                new HSLAMatrix4x4(0., 1., 1., .25),
+                new HSLAMatrix4x4()
             ];;
 
 			var animationCtrl : AnimationController = new AnimationController(
@@ -48,7 +48,7 @@ package aerys.minko.example.core.animationcontroller
 				new BasicMaterial({
 					diffuseMap 			: TextureLoader.loadClass(EMBED_TEXTURE),
 					diffuseColor		: 0xffffffff,
-					diffuseTransform	: new HLSAMatrix4x4(),
+					diffuseTransform	: new HSLAMatrix4x4(),
 					blending			: Blending.ALPHA
 				})
 			);
