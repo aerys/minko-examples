@@ -17,8 +17,8 @@ package aerys.minko.example.core.skybox
 		private var _priority		: Number;
 		private var _renderTarget	: RenderTarget;
 		
-		public function SkyboxShader(priority		: Number		= 0,
-									 renderTarget	: RenderTarget	= null)
+		public function SkyboxShader(renderTarget	: RenderTarget	= null,
+									 priority		: Number		= 0)
 		{
 			_priority		= priority;
 			_renderTarget	= renderTarget;
