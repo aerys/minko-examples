@@ -1,13 +1,13 @@
 package aerys.minko.example.core.projection
 {
-	import aerys.minko.scene.controller.ScriptController;
+	import aerys.minko.scene.controller.AbstractScriptController;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.camera.Camera;
 	import aerys.minko.type.math.Vector4;
 	
 	import flash.display.DisplayObject;
 	
-	public class ProjectionScript extends ScriptController
+	public class ProjectionScript extends AbstractScriptController
 	{
 		private var _sprite			: DisplayObject;
 		
