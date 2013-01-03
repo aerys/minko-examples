@@ -1,7 +1,7 @@
 package aerys.minko.example.core.keyboardscript
 {
 	import aerys.minko.scene.controller.AbstractController;
-	import aerys.minko.scene.controller.ScriptController;
+	import aerys.minko.scene.controller.AbstractScriptController;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.Scene;
@@ -15,7 +15,7 @@ package aerys.minko.example.core.keyboardscript
 	 * @author Jean-Marc Le Roux
 	 * 
 	 */
-	public class FocusScript extends ScriptController
+	public class FocusScript extends AbstractScriptController
 	{
 		private var _focused	: Mesh;
 		private var _scripts	: Vector.<AbstractController>;
