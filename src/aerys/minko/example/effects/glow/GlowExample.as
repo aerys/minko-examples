@@ -17,7 +17,7 @@ package aerys.minko.example.effects.glow
 			
 			var color		: uint			= ((Math.random() * 0xffffff) << 8) | 0xff;
 			var material	: Material		= new Material(
-				new GlowEffect(),
+				new GlowEffect(0.7),
 				{ diffuseColor : color }
 			);
 			
