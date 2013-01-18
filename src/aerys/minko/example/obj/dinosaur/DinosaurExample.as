@@ -46,7 +46,8 @@ package aerys.minko.example.obj.dinosaur
 				function(loader : SceneLoader, scene : Group) : void
 				{
 					// look at the mesh
-					cameraController.distance = 100.;
+					cameraController.yaw = 2.;
+					cameraController.distance = 60.;
 					cameraController.lookAt.copyFrom(
 						scene.get('//mesh')[0].geometry.boundingSphere.center
 					);
