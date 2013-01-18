@@ -1,6 +1,5 @@
 package aerys.minko.example.obj.dinosaur
 {
-	import aerys.minko.render.geometry.stream.StreamUsage;
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.light.AmbientLight;
@@ -10,8 +9,6 @@ package aerys.minko.example.obj.dinosaur
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.obj.MtlLoader;
 	import aerys.minko.type.parser.obj.ObjParser;
-	
-	import flash.utils.Dictionary;
 
 	public class DinosaurExample extends AbstractExampleApplication
 	{
