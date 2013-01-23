@@ -30,7 +30,7 @@ package aerys.minko.example.core.animationcontroller
 			
 			_animation = new AnimationController(
 				new <ITimeline>[
-					new MatrixTimeline('transform', time, transforms, true, true)
+					new MatrixTimeline('transform', time, transforms, true)
 				]
 			);
 		}
@@ -39,7 +39,7 @@ package aerys.minko.example.core.animationcontroller
 		{
 			var cube : ISceneNode = super.createCube();
 			
-//			cube = new Group(cube);
+			cube = new Group(cube);
 			cube.addController(_animation);
 			
 			return cube;

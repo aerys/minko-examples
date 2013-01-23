@@ -37,7 +37,7 @@ package aerys.minko.example.core.texture
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
 					diffuseMap 			: texture,
-					diffuseFiltering	: SamplerFiltering.NEAREST
+					diffuseMapFiltering	: SamplerFiltering.NEAREST
 				})
 			);
 			
@@ -47,7 +47,7 @@ package aerys.minko.example.core.texture
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
 					diffuseMap 			: texture,
-					diffuseFiltering	: SamplerFiltering.LINEAR
+					diffuseMapFiltering	: SamplerFiltering.LINEAR
 				})
 			);
 			
@@ -56,9 +56,9 @@ package aerys.minko.example.core.texture
 			var cubeDX1 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
-					diffuseMap 		: textureDX1,
-					diffuseFormat	: textureDX1.samplerFormat,
-					blending		: Blending.ALPHA
+					diffuseMap 		    : textureDX1,
+					diffuseMapFormat	: textureDX1.format,
+					blending	    	: Blending.ALPHA
 				})
 			);
 			
@@ -67,9 +67,9 @@ package aerys.minko.example.core.texture
 			var cubeDX5 : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
-					diffuseMap 		: textureDX5,
-					diffuseFormat	: textureDX5.samplerFormat,
-					blending		: Blending.ALPHA
+					diffuseMap 		    : textureDX5,
+					diffuseMapFormat	: textureDX5.format,
+					blending		    : Blending.ALPHA
 				})
 			);
 			
@@ -78,9 +78,9 @@ package aerys.minko.example.core.texture
 			var cubeJPEGXR : Mesh = new Mesh(
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
-					diffuseMap 		: textureJPEFXR,
-					diffuseFormat	: textureJPEFXR.samplerFormat,
-					blending		: Blending.ALPHA
+					diffuseMap 		    : textureJPEFXR,
+					diffuseMaptFormat	: textureJPEFXR.format,
+					blending		    : Blending.ALPHA
 				})
 			);
 			
