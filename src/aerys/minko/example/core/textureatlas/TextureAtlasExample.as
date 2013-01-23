@@ -1,4 +1,4 @@
-package aerys.minko.example.core.textureatlas_
+package aerys.minko.example.core.textureatlas
 {
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
