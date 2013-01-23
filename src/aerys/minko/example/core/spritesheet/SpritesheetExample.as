@@ -3,6 +3,8 @@ package aerys.minko.example.core.spritesheet
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.BillboardsGeometry;
 	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.basic.BasicProperties;
+	import aerys.minko.render.shader.part.DiffuseShaderPart;
 	import aerys.minko.scene.controller.AnimationController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.animation.timeline.ITimeline;
@@ -27,7 +29,7 @@ package aerys.minko.example.core.spritesheet
 					{ diffuseMap : TextureLoader.loadClass(ASSET_SPRITESHEET) }
 				)
 			);
-			
+
 			m.addController(new AnimationController(new <ITimeline>[
 				new ScalarTimeline(
 					'material.spritesheetFrameId',
