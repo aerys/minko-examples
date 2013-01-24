@@ -12,7 +12,7 @@ package aerys.minko.example.core.fpscamera
 	import flash.events.FullScreenEvent;
 	import flash.events.MouseEvent;
 	
-	public class FPSCameraExample extends AbstractLightExampleApplication
+	public class FirstPersonCameraControllerExample extends AbstractLightExampleApplication
 	{
 		private var _fpsCameraController	: FirstPersonCameraController	= null;
 		
