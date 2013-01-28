@@ -19,7 +19,7 @@ package aerys.minko.example.collada.pirate
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 175;
+			cameraController.distance = 250;
 			cameraController.yaw = 1.;
 			cameraController.distanceStep = 0.02;
 			cameraController.lookAt.set(0, 75, 0);
