@@ -14,9 +14,10 @@ package aerys.minko.example.core.picking
 	{
 		private var _log	: TextField;
 		
-		override protected function initializeUI():void
+		override protected function initializeUI() : void
 		{
 			_log = new TextField();
+			_log.mouseEnabled = false;
 			_log.textColor = 0xffffffff;
 			_log.height = 600;
 			_log.width = 200;
@@ -29,7 +30,7 @@ package aerys.minko.example.core.picking
 			super.initializeScene();
 			
 			var picking : PickingController = new PickingController(
-                PickingTechnique.RAYCASTING
+                PickingTechnique.RAYCASTING_BOX | PickingTechnique.PIXEL_PICKING
             );
 			
 			viewport.doubleClickEnabled = true;
