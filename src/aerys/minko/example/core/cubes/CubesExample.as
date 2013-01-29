@@ -18,7 +18,6 @@ package aerys.minko.example.core.cubes
 		private static const TARGET_FPS	: Number	= 30;
 		
 		private var _lastTime	: int	= 0;
-		private var _cubeGroup : Group = new Group();
 		
 		override protected function initializeScene() : void
 		{
@@ -27,7 +26,6 @@ package aerys.minko.example.core.cubes
 			viewport.backgroundColor = 0;
 			
 			_lastTime = getTimer();
-			scene.addChild(_cubeGroup);
 		}
 		
 		override protected function enterFrameHandler(event : Event) : void
@@ -36,14 +34,9 @@ package aerys.minko.example.core.cubes
 			
 			if (1000. / (time - _lastTime) > TARGET_FPS)
 				for (var i : uint = 0; i < 10; ++i)
-					_cubeGroup.addChild(createCube());
+					scene.addChild(createCube());
 			
 			_lastTime = time;
-			
-			if (scene.contains(_cubeGroup))
-				scene.removeChild(_cubeGroup);
-			else
-				scene.addChild(_cubeGroup);
 			
 			super.enterFrameHandler(event);
 		}
