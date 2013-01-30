@@ -22,8 +22,8 @@ package aerys.minko.example.core.raycasting
 		{
 			super.initializeScene();
             
-            _material = new PhongMaterial(scene, { diffuseColor : 0xffffffff });
-            _selectedMaterial = new PhongMaterial(scene, { diffuseColor : 0xff0000ff });
+            _material = new PhongMaterial({ diffuseColor : 0xffffffff });
+            _selectedMaterial = new PhongMaterial({ diffuseColor : 0xff0000ff });
             
             var light : DirectionalLight = new DirectionalLight();
             
