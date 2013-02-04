@@ -18,7 +18,6 @@ package aerys.minko.example.core.variance
 			directionalLight.shadowMapSize				= 1024;
 			directionalLight.shadowWidth				= 100;
 			directionalLight.shadowZFar        			= 250;
-			directionalLight.depthAlgorithm				= DepthAlgorithm.LINEAR;
 			directionalLight.lightBleedingBias			= 0.1;
 			directionalLight.lightBleedingInterpolation	= LightBleedingInterpolation.LINSTEP;
 			
