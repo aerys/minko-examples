@@ -1,6 +1,5 @@
 package aerys.minko.example.core.exponential
 {
-	import aerys.minko.render.shader.part.depth.DepthAlgorithm;
 	import aerys.minko.render.shader.part.phong.attenuation.LightBleedingInterpolation;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.ShadowMappingType;
