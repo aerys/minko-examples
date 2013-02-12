@@ -31,6 +31,8 @@ package aerys.minko.example.core.lines
 			VERTEX_LINE_SPREAD
 		);
 		
+		public static const MAX_NUM_LINES		: uint				= 16000;
+		
 		private var _currentX	: Number;
 		private var _currentY	: Number;
 		private var _currentZ	: Number;
@@ -59,6 +61,9 @@ package aerys.minko.example.core.lines
 		
 		public function lineTo(x : Number, y : Number, z : Number) : LinesGeometry
 		{
+			if (_numLines == MAX_NUM_LINES)
+				throw new Error();
+			
 			_vstream.pushFloats(new <Number>[
 				_currentX, _currentY, _currentZ, 1, x, y, z, 0, -1,
 				_currentX, _currentY, _currentZ, 1, x, y, z, 0, 1,
