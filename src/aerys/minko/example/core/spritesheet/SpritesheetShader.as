@@ -36,9 +36,9 @@ package aerys.minko.example.core.spritesheet
 			var uv			: SFloat = add(0.5, interpolate(vertexXY));
 			var diffuseMap	: SFloat = meshBindings.getTextureParameter(
 				"diffuseMap",
-				meshBindings.getConstant("diffuseFiltering", SamplerFiltering.LINEAR),
-				meshBindings.getConstant("diffuseMipMapping", SamplerMipMapping.LINEAR),
-				meshBindings.getConstant("diffuseWrapping", SamplerWrapping.CLAMP)
+				meshBindings.getProperty("diffuseFiltering", SamplerFiltering.LINEAR),
+				meshBindings.getProperty("diffuseMipMapping", SamplerMipMapping.LINEAR),
+				meshBindings.getProperty("diffuseWrapping", SamplerWrapping.CLAMP)
 			);
 			
 			var spriteSheetOffset	: SFloat = float2(
