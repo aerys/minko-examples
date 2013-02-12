@@ -1,32 +1,45 @@
 package aerys.minko.example.core.lines
 {
+	import aerys.minko.render.geometry.primitive.TeapotGeometry;
+	import aerys.minko.render.geometry.stream.iterator.TriangleIterator;
+	import aerys.minko.render.geometry.stream.iterator.TriangleReference;
+	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
+	import aerys.minko.render.geometry.stream.iterator.VertexReference;
 	import aerys.minko.scene.node.Mesh;
 
 	public class LinesExample extends AbstractExampleApplication
 	{
-		private var _line	: Mesh;
+		private var _lines	: Mesh;
 		
 		override protected function initializeScene():void
 		{
 			super.initializeScene();
 			
+			viewport.antiAliasing = 4;
+			
 			var linesGeom : LinesGeometry = new LinesGeometry();
+			var teapot	: TeapotGeometry = new TeapotGeometry(6);
+			var triangles : TriangleIterator = new TriangleIterator(teapot.getVertexStream(), teapot.indexStream);
 			
-			linesGeom
-				.lineTo(0, 1, 0)
-				.lineTo(1, 1, 0)
-				.moveTo(0, 1, 0)
-				.lineTo(0, 1, 1);
+			for each (var triangle : TriangleReference in triangles)
+			{
+				linesGeom.moveTo(triangle.v0.x, triangle.v0.y, triangle.v0.z)
+					.lineTo(triangle.v1.x, triangle.v1.y, triangle.v1.z)
+					.lineTo(triangle.v2.x, triangle.v2.y, triangle.v2.z)
+					.lineTo(triangle.v0.x, triangle.v0.y, triangle.v0.z);
+			}
 			
-			_line = new Mesh(
+			_lines = new Mesh(
 				linesGeom,
 				new LinesMaterial({
-					diffuseColor 	: 0x0000ffff,
+					diffuseColor 	: 0xffffffff,
 					lineThickness	: 1.
 				})
 			);
 			
-			scene.addChild(_line);
+			_lines.y = -1.45;
+			
+			scene.addChild(_lines);
 		}
 	}
 }
