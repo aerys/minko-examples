@@ -8,7 +8,6 @@ package
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.type.enum.NormalMappingType;
-	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
 	
@@ -41,7 +40,7 @@ package
 			cameraController.yaw = -1.;
 			cameraController.distanceStep = 0;
 			
-			var mat : PhongMaterial = new PhongMaterial(scene);
+			var mat : PhongMaterial = new PhongMaterial();
 			
 			mat.castShadows = true;
 			mat.receiveShadows = true;
