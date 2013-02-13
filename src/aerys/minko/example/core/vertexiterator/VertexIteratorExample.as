@@ -8,7 +8,7 @@ package aerys.minko.example.core.vertexiterator
 	import aerys.minko.render.geometry.stream.iterator.VertexReference;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.render.material.vertex.VertexNormalShader;
+	import aerys.minko.render.shader.vertex.VertexNormalShader;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.math.Vector4;
