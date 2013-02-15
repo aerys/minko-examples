@@ -7,7 +7,7 @@ package aerys.minko.example.core.projection
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
 	import aerys.minko.render.geometry.stream.iterator.VertexReference;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.vertex.VertexNormalShader;
+	import aerys.minko.render.shader.vertex.VertexNormalShader;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.math.Vector4;

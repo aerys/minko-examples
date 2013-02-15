@@ -14,36 +14,36 @@ package aerys.minko.example.collada.skeletondebug
 	
 	public class SkeletonDebugExample extends AbstractExampleApplication
 	{
-		[Embed(source="../assets/seymour/astroboy.dae", mimeType="application/octet-stream")]
+		[Embed(source="../assets/pirate/pirate.dae", mimeType="application/octet-stream")]
 		private static const DAE : Class;
 		
-		[Embed (source="../assets/seymour/boy_10.jpg")]
+		[Embed(source="../assets/pirate/pirate_diffuse.jpg")]
 		private static const TEXTURE : Class;
 		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 10;
+			cameraController.distance = 250;
+			cameraController.yaw = 1.;
 			cameraController.distanceStep = 0.02;
-			cameraController.yaw = .8;
-			cameraController.lookAt.set(0, 3, 0);
+			cameraController.lookAt.set(0, 75, 0);
 			
 			var options : ParserOptions		= new ParserOptions();
 			
 			options.parser						= ColladaParser;
 			options.mipmapTextures				= true;
-            options.dependencyLoaderFunction	= loadDependency;
-			options.vertexStreamUsage			= StreamUsage.READ;
-			options.skinningMethod				= SkinningMethod.SOFTWARE_MATRIX;
+			options.dependencyLoaderFunction	= loadDependency;
+			options.vertexStreamUsage			= StreamUsage.DYNAMIC;
+			options.skinningMethod				= SkinningMethod.HARDWARE_MATRIX;
 			
 			scene.loadClass(DAE, options).complete.add(function(loader : SceneLoader, result : Group) : void
 			{
-				var jointsDebugCtrl : JointsDebugController = new JointsDebugController();
-                var bonesDebugCtrl : BonesDebugController = new BonesDebugController();
+				var jointsDebugCtrl : JointsDebugController = new JointsDebugController(1.6);
+				var bonesDebugCtrl	: BonesDebugController	= new BonesDebugController(.4);
 				
 				for each (var m : Mesh in result.get('//mesh[hasController(SkinningController)]'))
-					m.addController(jointsDebugCtrl).addController(bonesDebugCtrl);
+				m.addController(jointsDebugCtrl).addController(bonesDebugCtrl);
 			});
 		}
 		
