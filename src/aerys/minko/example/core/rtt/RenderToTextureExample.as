@@ -5,8 +5,8 @@ package aerys.minko.example.core.rtt
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicShader;
-	import aerys.minko.render.material.vertex.VertexNormalShader;
-	import aerys.minko.render.material.vertex.VertexPositionShader;
+	import aerys.minko.render.shader.vertex.VertexNormalShader;
+	import aerys.minko.render.shader.vertex.VertexPositionShader;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.Sprite;

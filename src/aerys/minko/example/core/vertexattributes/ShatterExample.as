@@ -39,10 +39,10 @@ package aerys.minko.example.core.vertexattributes
 			initLight();
 			
 			var shatterShader : ShatterShader = new ShatterShader();
-			var material : PhongMaterial = new PhongMaterial(scene, {
+			var material : PhongMaterial = new PhongMaterial({
 				triangleCulling : TriangleCulling.NONE
 				},
-				new PhongEffect(scene, shatterShader)
+				new PhongEffect(shatterShader)
 			);
 			material.castShadows = true;
 			material.receiveShadows = true;
