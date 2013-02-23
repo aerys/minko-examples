@@ -5,6 +5,7 @@ package aerys.minko.example.effects.dof
 	import aerys.minko.render.effect.dof.DepthOfFieldEffect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
+	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.scene.node.Mesh;
 	
 	public class DepthOfFieldExample extends AbstractExampleApplication
@@ -16,7 +17,7 @@ package aerys.minko.example.effects.dof
 			var dof 	: DepthOfFieldEffect 	= new DepthOfFieldEffect(BlurQuality.LOW, 8);
 			var mat 	: BasicMaterial			= new BasicMaterial(
 				{diffuseColor : 0xffffffff},
-				new Effect().addExtraPass(dof.depthPass)
+				new Effect(new BasicShader(), dof.depthPass)
 			);
 
 			scene.postProcessingEffect = dof;
