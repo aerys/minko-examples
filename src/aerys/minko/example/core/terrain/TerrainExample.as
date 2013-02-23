@@ -47,6 +47,15 @@ package aerys.minko.example.core.terrain
 				lightDirection		: new Vector4(0, -1, -.2)
 			});
 			
+			var light : DirectionalLight = new DirectionalLight();
+			
+			light.diffuse = .5;
+			light.specular = 0.;
+			light.transform.lookAt(Vector4.ZERO, Vector4.ONE);
+			
+			scene.addChild(light)
+				.addChild(new AmbientLight(0xffffffff, .5))
+			
 			initializeWater();
 			initializeTerrain();
 		}
@@ -131,15 +140,7 @@ package aerys.minko.example.core.terrain
 				.appendTranslation(0, 0.5, 0)
 				.appendUniformScale(100);
             
-            var light : DirectionalLight = new DirectionalLight();
-            
-            light.diffuse = .5;
-            light.specular = 0.;
-            light.transform.lookAt(Vector4.ZERO, Vector4.ONE);
-            
-            scene.addChild(light)
-                .addChild(new AmbientLight(0xffffffff, .5))
-			    .addChild(_terrain);
+            scene.addChild(_terrain);
 		}
 	}
 }
