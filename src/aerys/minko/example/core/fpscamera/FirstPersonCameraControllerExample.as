@@ -28,7 +28,7 @@ package aerys.minko.example.core.fpscamera
 			_fpsCameraController.bindDefaultControls(stage);
 			
 			// Move back the camera.
-			_fpsCameraController.walk(-100);
+			_fpsCameraController.walk(-99);
 			
 			// Handle fullscreen mode.
 			stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullScreenChangedHandler);			
