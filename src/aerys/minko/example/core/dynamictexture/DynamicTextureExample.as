@@ -1,6 +1,7 @@
 package aerys.minko.example.core.dynamictexture
 {
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
+	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.mesh.DynamicTextureController;
 	import aerys.minko.scene.node.Mesh;
 
@@ -13,7 +14,7 @@ package aerys.minko.example.core.dynamictexture
 		{
 			super.initializeScene();
 			
-			var cube : Mesh = new Mesh(CubeGeometry.cubeGeometry);
+			var cube : Mesh = new Mesh(CubeGeometry.cubeGeometry, new BasicMaterial());
 			
 			cube.addController(new DynamicTextureController(
 				new MINKO_LOGO_SWF(),
