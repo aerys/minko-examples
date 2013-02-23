@@ -25,7 +25,7 @@ package aerys.minko.example.core.sound
 			// Add a mesh to the scene (it'll be our sound emitter).
 			var mesh				: Mesh				= new Mesh(
 				CubeGeometry.cubeGeometry,
-				new PhongMaterial(scene, { diffuseColor: int(Math.random() * int.MAX_VALUE) })
+				new PhongMaterial({ diffuseColor: int(Math.random() * int.MAX_VALUE) })
 			);
 			
 			scene.addChild(mesh);
