@@ -23,7 +23,7 @@ package aerys.minko.example.core.blending
 	public class BlendingExample extends AbstractExampleApplication
 	{
 		private var _sharedProperties	: DataProvider	= new DataProvider({
-			blending	: Blending.NORMAL
+			blending	: Blending.OPAQUE
 		});
 		
 		override protected function initializeScene():void
@@ -87,7 +87,7 @@ package aerys.minko.example.core.blending
 			switch (event.target.label)
 			{
 				case 'Normal' :
-					_sharedProperties.blending = Blending.NORMAL;
+					_sharedProperties.blending = Blending.OPAQUE;
 					break ;
 				case 'Alpha' :
 					_sharedProperties.blending = Blending.ALPHA;
