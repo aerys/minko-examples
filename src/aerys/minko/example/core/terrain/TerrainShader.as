@@ -23,8 +23,9 @@ package aerys.minko.example.core.terrain
             // splatting
 			var uv			: SFloat	= interpolate(float2(0, vertexXYZ.z));
 			var diffuse		: SFloat	= sampleTexture(diffuseMap, uv);
+			var phong   	: SFloat	= add(_phong.getDynamicLighting(), _phong.getStaticLighting());
 			
-			return _phong.applyPhongLighting(diffuse);
+			return float4(multiply(diffuse.rgb, phong), diffuse.a);
 		}
 	}
 }
