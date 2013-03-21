@@ -8,7 +8,7 @@ package aerys.minko.example.core.edgedetection.shaders {
 	 * 	Adapted from http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter09.html
 	 */
 
-	public class EdgeDectectionShaderPart extends SamplingShaderPart {
+	public class EdgeDetectionShaderPart extends SamplingShaderPart {
 		
 		private var e_barrier 	: SFloat = float2	( .99 , .0001);
 		private var e_weights 	: SFloat = float2	( .4 , .5 );
@@ -17,7 +17,7 @@ package aerys.minko.example.core.edgedetection.shaders {
 		private var _depthMap	: ITextureResource	= null;
 		private var _normalMap	: ITextureResource	= null;
 		
-		public function EdgeDectectionShaderPart(	main : Shader, 
+		public function EdgeDetectionShaderPart(	main : Shader, 
 													depthMap	: ITextureResource,
 													normalMap	: ITextureResource,
 													resolution : SFloat){

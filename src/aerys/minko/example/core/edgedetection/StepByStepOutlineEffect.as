@@ -2,7 +2,7 @@ package aerys.minko.example.core.edgedetection {
 	
 	import aerys.minko.example.core.edgedetection.shaders.AntiAliasingShader;
 	import aerys.minko.example.core.edgedetection.shaders.FastBlurShader;
-	import aerys.minko.example.core.edgedetection.shaders.EdgeDectectionShader;
+	import aerys.minko.example.core.edgedetection.shaders.EdgeDetectionShader;
 	import aerys.minko.example.core.edgedetection.shaders.SubstractingShader;
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.RenderTarget;
@@ -50,14 +50,14 @@ package aerys.minko.example.core.edgedetection {
 			
 			switch (_stopAfterStep) {
 				case 1:
-					addExtraPass(new EdgeDectectionShader(_depthMap.textureResource, _normalMap.textureResource, null, 3));
+					addExtraPass(new EdgeDetectionShader(_depthMap.textureResource, _normalMap.textureResource, null, 3));
 					break;
 				case 2:
-					addExtraPass(new EdgeDectectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
+					addExtraPass(new EdgeDetectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
 					addExtraPass(new FastBlurShader(_outlineMap.textureResource, 2, null, 2));
 					break;
 				default:
-					addExtraPass(new EdgeDectectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
+					addExtraPass(new EdgeDetectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
 					addExtraPass(new FastBlurShader(_outlineMap.textureResource, 2, blured, 2));
 					if(_useAsAntialiasing){
 						addExtraPass(new AntiAliasingShader(blured.textureResource, null, 1));

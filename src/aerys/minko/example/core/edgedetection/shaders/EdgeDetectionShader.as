@@ -6,18 +6,18 @@ package aerys.minko.example.core.edgedetection.shaders {
 	import aerys.minko.render.shader.Shader;
 	import aerys.minko.render.shader.part.PostProcessingShaderPart;
 	
-	public class EdgeDectectionShader extends Shader{
+	public class EdgeDetectionShader extends Shader{
 		
 		private var _postProcessing	: PostProcessingShaderPart		= null;
-		private var _part			: EdgeDectectionShaderPart	 	= null;
+		private var _part			: EdgeDetectionShaderPart	 	= null;
 		
-		public function EdgeDectectionShader(	depthMap		: ITextureResource,
+		public function EdgeDetectionShader(	depthMap		: ITextureResource,
 									  			normalMap		: ITextureResource,
 												renderTarget	: RenderTarget		= null,
 												priority		: Number			= 0.0){
 			super(renderTarget, priority);
 			_postProcessing = new PostProcessingShaderPart(this);
-			_part 			= new EdgeDectectionShaderPart(	this, depthMap, normalMap, float2(depthMap.width, depthMap.height));
+			_part 			= new EdgeDetectionShaderPart(	this, depthMap, normalMap, float2(depthMap.width, depthMap.height));
 		}	
 		
 		override protected function getVertexPosition():SFloat{

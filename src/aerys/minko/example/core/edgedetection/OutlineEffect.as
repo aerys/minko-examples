@@ -1,6 +1,6 @@
 package aerys.minko.example.core.edgedetection {
 	
-	import aerys.minko.example.core.edgedetection.shaders.EdgeDectectionShader;
+	import aerys.minko.example.core.edgedetection.shaders.EdgeDetectionShader;
 	import aerys.minko.example.core.edgedetection.shaders.FastBlurShader;
 	import aerys.minko.example.core.edgedetection.shaders.SubstractingShader;
 	import aerys.minko.render.Effect;
@@ -42,7 +42,7 @@ package aerys.minko.example.core.edgedetection {
 				0xffffffff
 			); 
 			
-			addExtraPass(new EdgeDectectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
+			addExtraPass(new EdgeDetectionShader(_depthMap.textureResource, _normalMap.textureResource, _outlineMap, 3));
 			addExtraPass(new FastBlurShader(_outlineMap.textureResource, 2, blured, 2));
 			addExtraPass(new SubstractingShader(blured.textureResource, null, 1));
 		}

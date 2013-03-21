@@ -23,16 +23,20 @@ package aerys.minko.example.core.edgedetection {
 	import aerys.monitor.Monitor;
 	
 	/**
-	 * This example illustrates how to use depth and normal information of the scene
+	 * This example illustrates how to use the depth and normal information of the scene
 	 * to detect edges/corners and create a cartoon effect or a software antialiasing solution
 	 * 
-	 * First, vertex depths and normals are pre computed on the scene and stored in 2 differents RGBA maps.
-	 * The scene is then normally rendered in the backbuffer like with all the other post processing effects.
-	 * During the post processing, the 2 maps are filtered to evaluate how much a pixel looks like an edge.
-	 * Depths of nearby pixels are compared and disruption in the normals (ie, corners) are detected.
+	 * How it works:
+	 * First, vertex depths and normals are pre-computed on the scene and stored in 2 differents textures.
+	 * The scene is rendered and stored in the backbuffer like with all the other post processing effects.
+	 * During the post processing, the 2 maps are filtered to evaluate how much a pixel "looks like an edge".
+	 * Depths of near pixels are compared and disruption in the normals (ie, corners) are detected.
 	 * The 2 filters are then combined in one image showing the edges in white.
-	 * This image is finally substracted or used as a blur mask on the backbuffer.
+	 * This image is finally substracted from / used as a blur mask on the backbuffer.
 	 * 
+	 * This example uses StepByStepOutlineEffect.as which is a more configurable version of the effect allowing partial processing.
+	 * A "real" version is available in OutlineEffect.as
+	 *  
 	 * When running the example, press R to go through all the rendering modes.
 	 * 0 (default)	: no processing
 	 * 1 			: RGBDepthMap, the depth of the scene from the camera point of view in a nice rainbow scale
@@ -45,7 +49,9 @@ package aerys.minko.example.core.edgedetection {
 	 * 6			: we blur only part of the image, the edges, effectively applying selective antialiasing. 
 	 * 				  This can be used to have AA on a post processing filter where hardware AA is not available.
 	 *  
-	 *  @author Jeremy Comte
+	 * 
+	 * The idea comes from: http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter09.html
+	 * 
 	 */
 
 	public class EdgeDetectionExample extends AbstractExampleApplication { 
