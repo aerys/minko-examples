@@ -30,7 +30,7 @@ package aerys.minko.example.core.edgedetection.shaders.post
 		
 		override protected function getPixelColor() : SFloat 
 		{
-			return _part.getOutline( interpolate(vertexUV.xy) );
+			return _part.getOutline(interpolate(vertexUV.xy));
 		}
 	}
 }

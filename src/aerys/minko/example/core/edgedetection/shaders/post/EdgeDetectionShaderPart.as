@@ -34,7 +34,8 @@ package aerys.minko.example.core.edgedetection.shaders.post
 			return combineOutlines( normalOutline, depthOutline );
 		}
 		
-		public function combineOutlines(normalOutline	: SFloat, depthOutline	: SFloat) : SFloat
+		public function combineOutlines(	normalOutline	: SFloat,
+											depthOutline	: SFloat) : SFloat
 		{
 			var weight : SFloat = multiply(subtract(1, float2(normalOutline, depthOutline)), _kernel);
 			return add(weight.x, weight.y);
