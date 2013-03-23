@@ -15,7 +15,7 @@ package aerys.minko.example.core.edgedetection.shaders.pre
 		
 		protected override function initShader(map : RenderTarget) : Shader 
 		{
-			return new VertexNormalShader(map);
+			return new VertexNormalShader(map, 75);
 		}
 		
 	}

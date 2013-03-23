@@ -16,7 +16,7 @@ package aerys.minko.example.core.edgedetection.shaders.pre
 		
 		protected override function initShader(map : RenderTarget) : Shader 
 		{
-			return new NonLinearZBufferShader(map);
-		}
+			return new NonLinearZBufferShader(map, 50);
+		} 
 	}
 }
