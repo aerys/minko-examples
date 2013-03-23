@@ -1,21 +1,24 @@
-package aerys.minko.example.core.edgedetection.shaders {
-	
+package aerys.minko.example.core.edgedetection.shaders 
+{
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.shader.SFloat;
 
-	public class RGBDepthShader extends InverseExponentialZBufferShader {
-		
+	public class RGBDepthShader extends InverseExponentialZBufferShader 
+	{
 		public function RGBDepthShader(	target		: RenderTarget	= null,
 										priority	: Number		= 0.,
-										exponant 	: int 			= -8){
+										exponant 	: int 			= -8)
+		{
 			super(target, priority, exponant);
 		}
 		
-		override protected function getPixelColor() : SFloat{
+		override protected function getPixelColor() : SFloat
+		{
 			return rgb(getDepth());
 		}
 		
-		protected function rgb(t : SFloat) : SFloat {
+		protected function rgb(t : SFloat) : SFloat 
+		{
 			t = clamp(t, 0., 1.);
 			//b -> c
 			var rgb : SFloat = float3(0., multiply( 4., subtract(t, 0.25)), 1.);

@@ -1,9 +1,13 @@
-package aerys.minko.example.core.edgedetection {
-	
+package aerys.minko.example.core.edgedetection 
+{
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
 	
+	import aerys.minko.example.core.edgedetection.effects.AntiAliasedOutlineEffect;
+	import aerys.minko.example.core.edgedetection.effects.OutlineEffect;
+	import aerys.minko.example.core.edgedetection.effects.SmoothOutlineEffect;
+	import aerys.minko.example.core.edgedetection.effects.SubstractedOutlineEffect;
 	import aerys.minko.example.core.edgedetection.shaders.RGBDepthShader;
 	import aerys.minko.example.core.edgedetection.shaders.pre.DepthMapPass;
 	import aerys.minko.example.core.edgedetection.shaders.pre.NormalMapPass;
@@ -30,18 +34,15 @@ package aerys.minko.example.core.edgedetection {
 	 * First, vertex depths and normals are pre-computed on the scene and stored in 2 differents textures.
 	 * The scene is rendered and stored in the backbuffer like with all the other post processing effects.
 	 * During the post processing, the 2 maps are filtered to evaluate how much a pixel "looks like an edge".
-	 * Depths of near pixels are compared and disruption in the normals (ie, corners) are detected.
+	 * -> Depths of near pixels are compared and disruption in the normals (ie, corners) are detected.
 	 * The 2 filters are then combined in one image showing the edges in white.
-	 * This image is finally substracted from / used as a blur mask on the backbuffer.
+	 * This image is finally substracted from or used as a blur mask on the backbuffer.
 	 * 
-	 * This example uses StepByStepOutlineEffect.as which is a more configurable version of the effect allowing partial processing.
-	 * A "real" version is available in OutlineEffect.as
-	 *  
 	 * When running the example, press R to go through all the rendering modes.
 	 * 0 (default)	: no processing
 	 * 1 			: RGBDepthMap, the depth of the scene from the camera point of view in a nice rainbow scale
 	 * 2			: Normal Map, the vertex normals like in the other example available on the wiki
-	 * 3			: edge detection, this example uses the algorithm used in Stalker but many solution would work
+	 * 3			: edge detection, this example uses the algorithm used in the game Stalker but many other solutions would work
 	 * 4			: fast blur to remove small gaps in the filter
 	 * 5			: we substract the edge map from the back buffer so all the pixels on the edges turn black
 	 * 				  we could also mix the backbuffer with another color to get a colored outline
@@ -50,23 +51,25 @@ package aerys.minko.example.core.edgedetection {
 	 * 				  This can be used to have AA on a post processing filter where hardware AA is not available.
 	 *  
 	 * 
-	 * The idea comes from: http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter09.html
+	 * Ideas and more theory at:
+	 * 		http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter09.html
+	 * 		http://http.developer.nvidia.com/GPUGems3/gpugems3_ch19.html
 	 * 
 	 */
 
-	public class EdgeDetectionExample extends AbstractExampleApplication { 
+	public class EdgeDetectionExample extends AbstractExampleApplication 
+	{ 
+		private var _teapotGroup				: Group;
+		private var _cubeMaterial 				: Material;
 		
-		private var _teapotGroup			: Group;
-		private var _cubeMaterial 			: Material;
+		private var _outlineEffect 				: OutlineEffect;
+		private var _smoothedOutlineEffect  	: SmoothOutlineEffect;
+		private var _substractedOutlineEffect	: SubstractedOutlineEffect;
+		private var _antiAliasedOutlineEffect	: AntiAliasedOutlineEffect;
 		
-		private var outlineEffectStep1 		: StepByStepOutlineEffect;
-		private var outlineEffectStep2  	: StepByStepOutlineEffect;
-		private var outlineEffectSubtracted	: StepByStepOutlineEffect;
-		private var outlineEffectAA			: StepByStepOutlineEffect;
-		
-		private var phongEffect				: Effect;
-		private var rgbDepthEffect			: Effect;
-		private var normalEffect			: Effect;
+		private var _phongEffect				: Effect;
+		private var _rgbDepthEffect				: Effect;
+		private var _normalEffect				: Effect;
 		
 		private static const RENDERING_TITLES : Array = [	
 			"NO POST PROCESSING", 
@@ -77,10 +80,11 @@ package aerys.minko.example.core.edgedetection {
 			"SUBSTRACTED OUTLINE",
 			"ANTIALIASED OUTLINE"]; 
 		
-		public 	var renderingMode : int = 0;
-		public 	var rendering:String =  "PRESS R TO START!";
+		private	var _renderingMode 	: int 		= 0;
+		public 	var rendering		: String 	= "PRESS R TO START!";
 		
-		override protected function initializeScene() : void {
+		override protected function initializeScene() : void 
+		{
 			super.initializeScene();
 			cameraController.distance = 100;
 			cameraController.yaw = -1.;
@@ -88,7 +92,7 @@ package aerys.minko.example.core.edgedetection {
 			
 			initShaders();
 			
-			var mat : PhongMaterial = new PhongMaterial(scene, phongEffect);
+			var mat : PhongMaterial = new PhongMaterial(scene, _phongEffect);
 			mat.castShadows = true;
 			mat.receiveShadows = true;
 			
@@ -149,7 +153,8 @@ package aerys.minko.example.core.edgedetection {
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 		}
 		
-		protected function initializeLights() : void {
+		protected function initializeLights() : void 
+		{
 			scene.addChild(new AmbientLight(0xffffffff, 0.6));
 			cameraController.maxDistance = 100;
 			cameraController.distance = 75;
@@ -165,26 +170,29 @@ package aerys.minko.example.core.edgedetection {
 			scene.addChild(pointLight);
 		}
 		
-		protected function initShaders() : void {
-			var depthMapPass	: DepthMapPass 	= new DepthMapPass();
-			var normalMapPass	: NormalMapPass = new NormalMapPass();
+		protected function initShaders() : void 
+		{
+			var depthMapPass : DepthMapPass = new DepthMapPass();
+			var normalMapPass : NormalMapPass = new NormalMapPass();
 			
-			outlineEffectStep1 		= new StepByStepOutlineEffect(depthMapPass.map, normalMapPass.map, 1);
-			outlineEffectStep2 		= new StepByStepOutlineEffect(depthMapPass.map, normalMapPass.map, 2);
-			outlineEffectSubtracted = new StepByStepOutlineEffect(depthMapPass.map, normalMapPass.map);
-			outlineEffectAA			= new StepByStepOutlineEffect(depthMapPass.map, normalMapPass.map, -1, true, 1024); 
+			_outlineEffect = new OutlineEffect(depthMapPass.map, normalMapPass.map);
+			_smoothedOutlineEffect = new SmoothOutlineEffect(depthMapPass.map, normalMapPass.map);
+			_substractedOutlineEffect = new SubstractedOutlineEffect(depthMapPass.map, normalMapPass.map);
+			_antiAliasedOutlineEffect = new AntiAliasedOutlineEffect(depthMapPass.map, normalMapPass.map, 1024); 
 			
-			rgbDepthEffect 	= new Effect(new RGBDepthShader());
-			normalEffect	= new Effect(new VertexNormalShader());
-			phongEffect 	= new PhongEffect();
+			_rgbDepthEffect = new Effect(new RGBDepthShader());
+			_normalEffect = new Effect(new VertexNormalShader());
+			_phongEffect = new PhongEffect();
 			
-			phongEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
-			rgbDepthEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
-			normalEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
+			_phongEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
+			_rgbDepthEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
+			_normalEffect.addExtraPass(depthMapPass.pass).addExtraPass(normalMapPass.pass);
 		}
 		
-		protected function onKeyDown(event:KeyboardEvent) : void {
-			switch(event.keyCode){
+		protected function onKeyDown(event:KeyboardEvent) : void 
+		{
+			switch(event.keyCode)
+			{
 				case Keyboard.R:
 					cycleRenderingMode();
 					break;
@@ -193,50 +201,56 @@ package aerys.minko.example.core.edgedetection {
 			}
 		}      
 		
-		protected function cycleRenderingMode() : void {
-			if(++renderingMode >= RENDERING_TITLES.length){
-				renderingMode = 0;
+		protected function cycleRenderingMode() : void 
+		{
+			if(++_renderingMode >= RENDERING_TITLES.length)
+			{
+				_renderingMode = 0;
 			}
 			
-			switch(renderingMode) {
+			switch(_renderingMode) 
+			{
 				case 0:
 					scene.postProcessingEffect = null;
-					switchEffect(phongEffect);
+					switchEffect(_phongEffect);
 					break;
 				case 1:
-					switchEffect(rgbDepthEffect);
+					switchEffect(_rgbDepthEffect);
 					break;
 				case 2: 
-					switchEffect(normalEffect);
+					switchEffect(_normalEffect);
 					break;
 				case 3: 
-					switchEffect(phongEffect);
-					scene.postProcessingEffect = outlineEffectStep1;
+					switchEffect(_phongEffect);
+					scene.postProcessingEffect = _outlineEffect;
 					break;
 				case 4: 
-					scene.postProcessingEffect = outlineEffectStep2;
+					scene.postProcessingEffect = _smoothedOutlineEffect;
 					break;
 				case 5: 
-					scene.postProcessingEffect = outlineEffectSubtracted;
+					scene.postProcessingEffect = _substractedOutlineEffect;
 					break;
 				case 6: 
-					scene.postProcessingEffect = outlineEffectAA;
+					scene.postProcessingEffect = _antiAliasedOutlineEffect;
 					break;
 				default:
 					break;
 			}
 			
-			rendering = RENDERING_TITLES[renderingMode];
+			rendering = RENDERING_TITLES[_renderingMode];
 		}
 		
-		protected function switchEffect( effect : Effect ) : void {
-			for ( var i : int ; i < _teapotGroup.numChildren ; i++ ){
+		protected function switchEffect( effect : Effect ) : void 
+		{
+			for ( var i : int ; i < _teapotGroup.numChildren ; i++ )
+			{
 				(_teapotGroup.getChildAt(i) as Mesh).material.effect = effect;
 			}
 			_cubeMaterial.effect = effect;
 		}
 		
-		override protected function enterFrameHandler(e : Event):void {
+		override protected function enterFrameHandler(e : Event) : void 
+		{
 			super.enterFrameHandler(e);
 			_teapotGroup.transform.appendRotation(0.001, Vector4.Y_AXIS);
 		}
