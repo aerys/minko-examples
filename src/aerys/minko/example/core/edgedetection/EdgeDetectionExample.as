@@ -13,7 +13,6 @@ package aerys.minko.example.core.edgedetection
 	import aerys.minko.example.core.edgedetection.shaders.pre.NormalMapPass;
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.phong.PhongEffect;
 	import aerys.minko.render.material.phong.PhongMaterial;
@@ -21,8 +20,6 @@ package aerys.minko.example.core.edgedetection
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
-	import aerys.minko.scene.node.light.PointLight;
-	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Vector4;
 	import aerys.monitor.Monitor;
 	
@@ -59,7 +56,7 @@ package aerys.minko.example.core.edgedetection
 
 	public class EdgeDetectionExample extends AbstractExampleApplication 
 	{ 
-		private var _teapotGroup				: Group;
+		private var _rotatingGroup				: Group;
 		private var _cubeMaterial 				: Material;
 		
 		private var _outlineEffect 				: OutlineEffect;
@@ -86,7 +83,7 @@ package aerys.minko.example.core.edgedetection
 		override protected function initializeScene() : void 
 		{
 			super.initializeScene();
-			cameraController.distance = 100;
+			cameraController.distance = 30;
 			cameraController.yaw = -1.;
 			cameraController.distanceStep = 5;
 			
@@ -114,60 +111,36 @@ package aerys.minko.example.core.edgedetection
 			
 			scene.addChild(bigCube);
 			
-			var teapotGeometry : TeapotGeometry = new TeapotGeometry(4);
+			var smallCubeGeometry : CubeGeometry = new CubeGeometry();
+			smallCubeGeometry.computeNormals().disposeLocalData();
 			
-			teapotGeometry.computeNormals().disposeLocalData();
+			_rotatingGroup = new Group();
 			
-			_teapotGroup = new Group();
-			
-			for (var teapotId : uint = 0; teapotId < 50; ++teapotId) {
-				var smallTeapot : Mesh = new Mesh(
-					teapotGeometry,
-					mat.clone() as Material,
-					'teapot'
-				);
-				
-				smallTeapot.material.diffuseColor = ((Math.random() * 0xffffff) << 8) | 0xff;
-				
-				smallTeapot.transform.setTranslation(
-					50 * (Math.random() - .5),
-					50 * (Math.random() - .5),
-					50 * (Math.random() - .5)
-				);
-				
-				smallTeapot.transform.setRotation(
-					2 * Math.PI * Math.random(),
-					2 * Math.PI * Math.random(),
-					2 * Math.PI * Math.random()
-				);
-				
-				_teapotGroup.addChild(smallTeapot);
+			//Let's make a diamond made of cubes (non visible diamonds are omitted)
+			for (var x : int = -5; x <= 5; x++) 
+			{
+				for (var z : int = -5; z <= 5; z++) 
+				{
+					for (var y : int = -5; y <= 5; y++)
+					{
+						if((Math.abs(x) + Math.abs(z) + Math.abs(y)) == 5) //distance from the center is 5
+						{
+							var smallCube : Mesh = new Mesh(smallCubeGeometry, mat.clone() as Material);
+							smallCube.material.diffuseColor = ((Math.random() * 0xffffff) << 8) | 0xff;
+							smallCube.transform.setTranslation(x, y, z);
+							_rotatingGroup.addChild(smallCube);
+						}
+					}
+				}
 			}
 			
-			scene.addChild(_teapotGroup);
+			scene.addChild(_rotatingGroup);
 			
-			initializeLights();
+			scene.addChild(new AmbientLight(0xffffffff, 1));
 			
 			Monitor.monitor.watch(this, ['rendering']);
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-		}
-		
-		protected function initializeLights() : void 
-		{
-			scene.addChild(new AmbientLight(0xffffffff, 0.6));
-			cameraController.maxDistance = 100;
-			cameraController.distance = 75;
-			
-			var pointLight : PointLight		= new PointLight();
-			
-			pointLight.shadowCastingType	= ShadowMappingType.EXPONENTIAL;
-			pointLight.shadowZNear          = 0.1;
-			pointLight.shadowZFar           = 100.;
-			pointLight.shadowMapSize		= 1024;
-			pointLight.attenuationDistance  = 80;
-			
-			scene.addChild(pointLight);
 		}
 		
 		protected function initShaders() : void 
@@ -242,9 +215,9 @@ package aerys.minko.example.core.edgedetection
 		
 		protected function switchEffect( effect : Effect ) : void 
 		{
-			for ( var i : int ; i < _teapotGroup.numChildren ; i++ )
+			for ( var i : int ; i < _rotatingGroup.numChildren ; i++ )
 			{
-				(_teapotGroup.getChildAt(i) as Mesh).material.effect = effect;
+				(_rotatingGroup.getChildAt(i) as Mesh).material.effect = effect;
 			}
 			_cubeMaterial.effect = effect;
 		}
@@ -252,7 +225,7 @@ package aerys.minko.example.core.edgedetection
 		override protected function enterFrameHandler(e : Event) : void 
 		{
 			super.enterFrameHandler(e);
-			_teapotGroup.transform.appendRotation(0.001, Vector4.Y_AXIS);
+			_rotatingGroup.transform.appendRotation(0.001, Vector4.Y_AXIS);
 		}
 		
 	}
