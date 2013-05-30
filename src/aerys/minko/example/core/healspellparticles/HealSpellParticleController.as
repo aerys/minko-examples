@@ -20,7 +20,7 @@ package aerys.minko.example.core.healspellparticles
 	
 	public class HealSpellParticleController extends ParticleSystemController
 	{
-		[Embed("../../../../../../assets/particles/heal.png")]
+		[Embed("../assets/particles/heal.png")]
 		private static const HEAL_TEXTURE	: Class;
 		
 		public function HealSpellParticleController()

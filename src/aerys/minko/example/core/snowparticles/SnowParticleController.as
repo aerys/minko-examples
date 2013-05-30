@@ -15,7 +15,7 @@ package aerys.minko.example.core.snowparticles
 	
 	public class SnowParticleController extends ParticleSystemController
 	{
-		[Embed("../../../../../../assets/particles/bubble.png")]
+		[Embed("../assets/particles/bubble.png")]
 		private static const SNOW_TEXTURE	: Class;
 		
 		public function SnowParticleController(density : Number = 0.5)
