@@ -44,7 +44,7 @@ package aerys.minko.example.core.worldspaceparticles
 			
 			var newMeshPosition : Vector4 = ray.origin.clone();
 			
-			for(var i : int = 0; i < 15; ++i)
+			for(var i : int = 0; i < 50; ++i)
 				newMeshPosition = Vector4.add(newMeshPosition, ray.direction);
 			
 			_mesh.transform.setTranslation(

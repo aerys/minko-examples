@@ -24,8 +24,8 @@ package aerys.minko.example.core.worldspaceparticles
 		
 		public function WorldParticleController()
 		{
-			var particleRate			: Number				= 100;
-			var particleLifeTime		: Constant				= new Constant(0.5);
+			var particleRate			: Number				= 300;
+			var particleLifeTime		: Constant				= new Constant(1);
 			var particleEmitterShape	: SphereEmitterShape	= new SphereEmitterShape(0.1,0); 
 			
 			super(
