@@ -8,6 +8,7 @@ package aerys.minko.example.core.snowparticles
 	import aerys.minko.particles.sampler.RandomBetweenColors;
 	import aerys.minko.particles.sampler.RandomBetweenConstants;
 	import aerys.minko.particles.shape.CylinderEmitterShape;
+	import aerys.minko.particles.type.enum.ParticleEmissionDirection;
 	import aerys.minko.scene.controller.EnterFrameController;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
@@ -33,7 +34,7 @@ package aerys.minko.example.core.snowparticles
 				particleRate,
 				particleLifeTime,
 				particleEmitterShape,
-				0,
+				ParticleEmissionDirection.NONE,
 				Constant.SAMPLER_ZERO
 			);
 			
