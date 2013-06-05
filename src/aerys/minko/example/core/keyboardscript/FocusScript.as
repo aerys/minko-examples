@@ -51,10 +51,11 @@ package aerys.minko.example.core.keyboardscript
 		{
 			if (mouse.leftButtonDown)
 			{
-				var scene 	: Scene 				= target.root as Scene;
-				var ray 	: Ray 					= scene.activeCamera.unproject(mouse.x, mouse.y);
-				var focused : Mesh 					= scene.cast(ray)[0] as Mesh;
-				var c 		: AbstractController	= null;
+				var scene 		: Scene 				= target.root as Scene;
+				var ray 		: Ray 					= scene.activeCamera.unproject(mouse.x, mouse.y);
+				var castedNodes	: Vector.<ISceneNode> 	= scene.cast(ray);
+				var focused 	: Mesh 					= castedNodes.length > 0 ? castedNodes[0] as Mesh : null;
+				var c 			: AbstractController	= null;
 				
 				if (_focused)
 				{
