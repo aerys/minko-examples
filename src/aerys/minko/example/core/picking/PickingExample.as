@@ -1,14 +1,11 @@
 package aerys.minko.example.core.picking
 {
-	import aerys.minko.Minko;
+	import flash.text.TextField;
+	
 	import aerys.minko.example.core.primitives.PrimitivesExample;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.controller.PickingController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.PickingTechnique;
-	
-	import flash.text.TextField;
 
 	public class PickingExample extends PrimitivesExample
 	{

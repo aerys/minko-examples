@@ -2,6 +2,7 @@ package aerys.minko.example.obj
 {
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
+	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.loader.ILoader;
@@ -49,7 +50,7 @@ package aerys.minko.example.obj
 					cameraController.yaw = 2.;
 					cameraController.distance = 60.;
 					cameraController.lookAt.copyFrom(
-						scene.get('//mesh')[0].geometry.boundingSphere.center
+						(scene.get('//mesh')[0] as Mesh).geometry.boundingSphere.center
 					);
 					
 					// add some lights

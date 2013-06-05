@@ -4,9 +4,7 @@ package aerys.minko.example.particles.worldspaceparticles
 	
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Ray;
 	import aerys.minko.type.math.Vector4;
 

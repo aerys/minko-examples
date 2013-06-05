@@ -5,7 +5,7 @@ package aerys.minko.example.core.variance
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Vector4;
 
-	public final class VarianceDirectionalLight extends AbstractLightExampleApplication
+	public final class VarianceDirectionalLightExample extends AbstractLightExampleApplication
 	{
 		override protected function initializeLights() : void
 		{

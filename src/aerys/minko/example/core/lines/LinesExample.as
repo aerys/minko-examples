@@ -1,15 +1,11 @@
 package aerys.minko.example.core.lines
 {
+	import aerys.minko.render.geometry.primitive.LineGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.geometry.stream.iterator.TriangleIterator;
 	import aerys.minko.render.geometry.stream.iterator.TriangleReference;
-	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
-	import aerys.minko.render.geometry.stream.iterator.VertexReference;
-	import aerys.minko.scene.controller.camera.ArcBallController;
-	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.scene.node.camera.OrthographicCamera;
-	import aerys.minko.render.geometry.primitive.LineGeometry;
 	import aerys.minko.render.material.line.LineMaterial;
+	import aerys.minko.scene.node.Mesh;
 
 	public class LinesExample extends AbstractExampleApplication
 	{

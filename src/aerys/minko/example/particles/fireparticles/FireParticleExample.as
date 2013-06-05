@@ -11,11 +11,11 @@ package aerys.minko.example.particles.fireparticles
 	import aerys.minko.particles.sampler.RandomBetweenColors;
 	import aerys.minko.particles.sampler.RandomBetweenConstants;
 	import aerys.minko.particles.shape.SphereEmitterShape;
+	import aerys.minko.render.effect.hdr.HDREffect;
 	import aerys.minko.render.geometry.Geometry;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.phong.PhongMaterial;
-	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.PointLight;

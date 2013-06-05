@@ -1,6 +1,9 @@
 package aerys.minko.example.particles.snowparticles
 {
 	import aerys.minko.example.particles.snowparticles.SnowParticleController;
+	import aerys.minko.render.effect.blur.BlurEffect;
+	import aerys.minko.render.effect.blur.BlurQuality;
+	import aerys.minko.render.effect.hdr.HDREffect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;

@@ -39,7 +39,7 @@ package aerys.minko.example.particles.snowparticles
 			);
 			
 			//speed			
-			add(
+			addModifier(
 				new StartVelocity(
 					Constant.SAMPLER_ZERO,
 					new RandomBetweenConstants(-3. , 3.),
@@ -48,14 +48,14 @@ package aerys.minko.example.particles.snowparticles
 			);
 			
 			//size
-			add(
+			addModifier(
 				new StartSize(
 					new RandomBetweenConstants(0.9, 1.5)
 				)
 			);
 			
 			//color
-			add(
+			addModifier(
 				new StartColor(
 					new RandomBetweenColors(
 						0xAAAAFFFF,

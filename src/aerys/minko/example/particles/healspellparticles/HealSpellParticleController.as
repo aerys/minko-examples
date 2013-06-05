@@ -38,7 +38,7 @@ package aerys.minko.example.particles.healspellparticles
 			);
 			
 			//speed			
-			add(
+			addModifier(
 				new StartVelocity(
 					Constant.SAMPLER_ZERO,
 					new RandomBetweenConstants(-20., 0.),
@@ -46,7 +46,7 @@ package aerys.minko.example.particles.healspellparticles
 				)
 			);
 			
-			add(
+			addModifier(
 				new StartForce(
 					new RandomBetweenConstants(-20., 20.),
 					new RandomBetweenConstants(-10., -2.),
@@ -56,20 +56,20 @@ package aerys.minko.example.particles.healspellparticles
 			
 			
 			//size
-			add(
+			addModifier(
 				new StartSize(
 					new RandomBetweenConstants(1.5, 5)
 				)
 			);
 			
-			add(
+			addModifier(
 				new SizeOverTime(
 					new LinearlyInterpolatedNumber(1, 0.7)
 				)
 			);
 			
 			//color
-			add(
+			addModifier(
 				new StartColor(
 					new RandomBetweenColors(
 						0x006619FF,
@@ -78,7 +78,7 @@ package aerys.minko.example.particles.healspellparticles
 				)
 			);
 			
-			add(
+			addModifier(
 				new ColorOverTime(
 					new LinearlyInterpolatedColor(
 						0x0066B2FF,

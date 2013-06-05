@@ -38,7 +38,7 @@ package aerys.minko.example.particles.worldspaceparticles
 			);
 						
 			//color
-			add(
+			addModifier(
 				new StartColor(
 					new ConstantColor(
 						0xFF0000FF
@@ -46,7 +46,7 @@ package aerys.minko.example.particles.worldspaceparticles
 				)
 			);
 			
-			add(
+			addModifier(
 				new ColorOverTime(
 					new LinearlyInterpolatedColor(
 						0xFFFF00FF,
