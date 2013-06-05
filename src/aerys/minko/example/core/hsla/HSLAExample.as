@@ -1,15 +1,13 @@
 package aerys.minko.example.core.hsla
 {
-    import aerys.minko.example.core.directionallight.DirectionalLightExample;
+    import com.bit101.utils.MinimalConfigurator;
+    
+    import flash.events.Event;
+    
     import aerys.minko.example.core.spotlight.SpotLightExample;
     import aerys.minko.scene.node.Mesh;
     import aerys.minko.type.enum.Blending;
     import aerys.minko.type.math.HSLAMatrix4x4;
-    
-    import com.bit101.utils.MinimalConfigurator;
-    
-    import flash.events.Event;
-    import flash.events.MouseEvent;
     
     public class HSLAExample extends SpotLightExample
     {
@@ -72,7 +70,7 @@ package aerys.minko.example.core.hsla
                     _colorTransform.hue = event.target.value;
                     break;
                 case 'luminance':
-                    _colorTransform.luminance = event.target.value;
+                    _colorTransform.luminance = event.target.value == 0 ? 0.0001 : event.target.value;
                     break;
                 case 'saturation':
                     _colorTransform.saturation = event.target.value;

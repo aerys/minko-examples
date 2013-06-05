@@ -1,11 +1,10 @@
 package aerys.minko.example.core.exponential
 {
-	import aerys.minko.render.shader.part.phong.attenuation.LightBleedingInterpolation;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Vector4;
 
-	public final class ExponentialDirectionalLight extends AbstractLightExampleApplication
+	public final class ExponentialDirectionalLightExample extends AbstractLightExampleApplication
 	{
 		override protected function initializeLights() : void
 		{

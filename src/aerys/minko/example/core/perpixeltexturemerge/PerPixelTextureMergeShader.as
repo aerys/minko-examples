@@ -1,4 +1,4 @@
-package aerys.minko.example.core.multitexturing
+package aerys.minko.example.core.perpixeltexturemerge
 {
 	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.shader.SFloat;

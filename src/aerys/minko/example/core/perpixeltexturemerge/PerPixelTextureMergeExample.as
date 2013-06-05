@@ -1,7 +1,6 @@
-package aerys.minko.example.core.multitexturing
+package aerys.minko.example.core.perpixeltexturemerge
 {
 	import aerys.minko.render.Effect;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.QuadGeometry;
 	import aerys.minko.render.geometry.stream.StreamUsage;
 	import aerys.minko.render.geometry.stream.VertexStream;
@@ -10,12 +9,9 @@ package aerys.minko.example.core.multitexturing
 	import aerys.minko.render.geometry.stream.format.VertexComponentType;
 	import aerys.minko.render.geometry.stream.format.VertexFormat;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	
-	import org.osmf.net.StreamingURLResource;
 
 	public class PerPixelTextureMergeExample extends AbstractExampleApplication
 	{
@@ -51,7 +47,6 @@ package aerys.minko.example.core.multitexturing
 			for (var i : uint = 0; i < numVertices; ++i)
 			{
 				var coeficient : Vector4 = new Vector4(Math.random(), Math.random(), Math.random(), 0).normalize();
-				
 				coefsStreamData.push(coeficient.x, coeficient.y, coeficient.z);
 			}
 			
