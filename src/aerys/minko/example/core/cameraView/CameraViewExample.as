@@ -36,6 +36,8 @@ package aerys.minko.example.core.cameraView
 			
 			initSecondCamera();
 			initExtraPass();
+			
+			mouseClickEvent(null);
 		}
 		
 		private function sceneLoaded(sceneLoader : SceneLoader, data : ISceneNode) : void
