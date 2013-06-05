@@ -65,19 +65,19 @@ package aerys.minko.example.particles.fireparticles
 			particleController.rate 		= 200.0;
 
 			// provide a modifier to control initial particle color
-			particleController.add(new StartColor(new RandomBetweenColors(0x3f1205ff, 0x7f260fff)));
+			particleController.addModifier(new StartColor(new RandomBetweenColors(0x3f1205ff, 0x7f260fff)));
 			
 			// provide modifiers to control the particle size (at the beginning, and across time)
-			particleController.add(new StartSize(new RandomBetweenConstants(5.0, 10.0)));
-			particleController.add(new SizeOverTime(new LinearlyInterpolatedNumber(1.0, 0.0)));
+			particleController.addModifier(new StartSize(new RandomBetweenConstants(5.0, 10.0)));
+			particleController.addModifier(new SizeOverTime(new LinearlyInterpolatedNumber(1.0, 0.0)));
 			
 			// provide modifiers to control the particle velocity (at the beginning, and across time)
-			particleController.add(new StartVelocity(
+			particleController.addModifier(new StartVelocity(
 				new RandomBetweenConstants(0.0, 5.0),
 				new RandomBetweenConstants(5.0, 50.0),
 				new RandomBetweenConstants(0.0, 5.0))
 			);
-			particleController.add(new VelocityOverTime(
+			particleController.addModifier(new VelocityOverTime(
 				new LinearlyInterpolatedNumber(1.0, 0.0),
 				new LinearlyInterpolatedNumber(1.0, 0.0),
 				new LinearlyInterpolatedNumber(1.0, 0.0)
@@ -86,7 +86,7 @@ package aerys.minko.example.particles.fireparticles
 			// provide a modifier to randomly pick one of the sprites from the mesh's diffuse map
 			var numRows	: uint	= 2;
 			var numCols	: uint	= 2;
-			particleController.add(new StartSprite(
+			particleController.addModifier(new StartSprite(
 				numRows, 
 				numCols, 
 				new RandomBetweenConstants(0, numRows*numCols-1)
@@ -112,11 +112,11 @@ package aerys.minko.example.particles.fireparticles
 				var cloneX		: Number 		= distance * Math.cos(angle);
 				var cloneZ		: Number		= distance * Math.sin(angle);
 				
-				fireClone.transform.appendTranslation(cloneX, 20.0, cloneZ);
-				fireLight.transform.appendTranslation(cloneX, 20.0, cloneZ);
-				
-				scene.addChild(fireClone);
-				scene.addChild(fireLight);
+				var fireGroup	: Group	= new Group();
+				fireGroup.addChild(fireClone);
+				fireGroup.addChild(fireLight);
+				fireGroup.transform.appendTranslation(cloneX, 20.0, cloneZ);
+				scene.addChild(fireGroup);
 			}
 			
 			// add an additional textured mesh for the room
