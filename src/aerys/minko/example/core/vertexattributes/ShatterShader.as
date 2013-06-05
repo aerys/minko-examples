@@ -42,12 +42,10 @@ package aerys.minko.example.core.vertexattributes
 		
 		override protected function getPixelColor() : SFloat
 		{
-			var color	 : SFloat = _diffuse.getDiffuseColor();
-			var lighting : SFloat = _phong.getLightingColor();
+			var diffuse	: SFloat	= _diffuse.getDiffuseColor();
+			var phong	: SFloat	= add(_phong.getDynamicLighting(), _phong.getStaticLighting());
 			
-			color = float4(multiply(lighting, color.rgb), color.a);
-			
-			return color;
+			return float4(multiply(diffuse.rgb, phong), diffuse.a);
 		}
 	}
 }

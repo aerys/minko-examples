@@ -1,5 +1,6 @@
 package aerys.minko.example.collada.seymourplane
 {
+	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
@@ -22,9 +23,15 @@ package aerys.minko.example.collada.seymourplane
 			options.mipmapTextures				= true;
 			options.dependencyLoaderFunction	= dependencyLoader;
 			
-			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options);
+			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options)
+				.complete.add(sceneLoadCompleteHandler);
 		}
 		
+		private function sceneLoadCompleteHandler(sceneLoader : SceneLoader, result : ISceneNode) : void
+		{
+			scene.activeCamera.addController(cameraController);
+		}
+
 		private function dependencyLoader(dependencyPath	: String,
 										  isTexture			: Boolean,
 										  options			: ParserOptions) : ILoader
