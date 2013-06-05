@@ -2,12 +2,10 @@ package aerys.minko.example.core.texture
 {
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.render.material.basic.BasicProperties;
 	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.enum.SamplerFiltering;
-	import aerys.minko.type.enum.TriangleCulling;
 	import aerys.minko.type.loader.TextureLoader;
 	
 	public class TextureExample extends AbstractExampleApplication
