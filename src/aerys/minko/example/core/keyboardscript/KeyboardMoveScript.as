@@ -1,6 +1,6 @@
 package aerys.minko.example.core.keyboardscript
 {
-	import aerys.minko.scene.controller.ScriptController;
+	import aerys.minko.scene.controller.AbstractScriptController;
 	import aerys.minko.scene.node.ISceneNode;
 	
 	import flash.ui.Keyboard;
@@ -17,7 +17,7 @@ package aerys.minko.example.core.keyboardscript
 	 * @author Jean-Marc Le Roux
 	 * 
 	 */
-	public class KeyboardMoveScript extends ScriptController
+	public class KeyboardMoveScript extends AbstractScriptController
 	{
 		override protected function update(target : ISceneNode) : void
 		{

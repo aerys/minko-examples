@@ -1,7 +1,7 @@
 package aerys.minko.example.core.keyboardscript
 {
 	import aerys.minko.scene.controller.AbstractController;
-	import aerys.minko.scene.controller.ScriptController;
+	import aerys.minko.scene.controller.AbstractScriptController;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.Scene;
@@ -15,7 +15,7 @@ package aerys.minko.example.core.keyboardscript
 	 * @author Jean-Marc Le Roux
 	 * 
 	 */
-	public class FocusScript extends ScriptController
+	public class FocusScript extends AbstractScriptController
 	{
 		private var _focused	: Mesh;
 		private var _scripts	: Vector.<AbstractController>;
@@ -42,11 +42,6 @@ package aerys.minko.example.core.keyboardscript
 		{
 			super();
 			
-			initialize(controllers);
-		}
-		
-		private function initialize(controllers : Array) : void
-		{
 			_scripts = Vector.<AbstractController>(controllers);
 			_focusIn = new Signal('FocusScript.focusIn');
 			_focusOut = new Signal('FocusScript.focusOut');
@@ -56,10 +51,11 @@ package aerys.minko.example.core.keyboardscript
 		{
 			if (mouse.leftButtonDown)
 			{
-				var scene 	: Scene 				= target.root as Scene;
-				var ray 	: Ray 					= scene.activeCamera.unproject(mouse.x, mouse.y);
-				var focused : Mesh 					= scene.cast(ray)[0] as Mesh;
-				var c 		: AbstractController	= null;
+				var scene 		: Scene 				= target.root as Scene;
+				var ray 		: Ray 					= scene.activeCamera.unproject(mouse.x, mouse.y);
+				var castedNodes	: Vector.<ISceneNode> 	= scene.cast(ray);
+				var focused 	: Mesh 					= castedNodes.length > 0 ? castedNodes[0] as Mesh : null;
+				var c 			: AbstractController	= null;
 				
 				if (_focused)
 				{

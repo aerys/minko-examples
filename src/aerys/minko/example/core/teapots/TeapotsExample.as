@@ -12,7 +12,7 @@ package aerys.minko.example.core.teapots
 	import flash.utils.getTimer;
 	
 	
-	public class TeapotsExample extends MinkoExampleApplication
+	public class TeapotsExample extends AbstractExampleApplication
 	{
 		private static const MATERIAL	: Material	= new Material(new Effect(new NormalsShader()));
 		private static const TARGET_FPS	: Number	= 30;
@@ -33,7 +33,7 @@ package aerys.minko.example.core.teapots
 		{
 			var time : int = getTimer();
 			
-			if (Monitor.monitor.framerate > TARGET_FPS)
+			if (1000. / (time - _lastTime) > TARGET_FPS)
 				addTeapot();
 			
 			_lastTime = time;

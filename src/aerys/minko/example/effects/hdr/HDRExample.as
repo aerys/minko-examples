@@ -1,6 +1,6 @@
 package aerys.minko.example.effects.hdr
 {
-	import aerys.minko.example.lighting.spot.SpotLightExample;
+	import aerys.minko.example.core.spotlight.SpotLightExample;
 	import aerys.minko.render.effect.hdr.HDREffect;
 	import aerys.minko.render.effect.hdr.HDRQuality;
 	
@@ -14,9 +14,9 @@ package aerys.minko.example.effects.hdr
 			cameraController.distanceStep = 0.;
 			cameraController.pitch -= .2;
 			
-			scene.postProcessingEffect = new HDREffect(HDRQuality.MEDIUM, 6);
+			scene.postProcessingEffect = new HDREffect(HDRQuality.MEDIUM, 2);
 			scene.postProcessingProperties.setProperties({
-				hdrIntensity 	: .6,
+				hdrIntensity 	: .5,
 				hdrExponent		: 1.2
 			});
 		}

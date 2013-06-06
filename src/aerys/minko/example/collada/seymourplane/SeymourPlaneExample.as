@@ -1,14 +1,15 @@
 package aerys.minko.example.collada.seymourplane
 {
+	import flash.net.URLRequest;
+	
+	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
-	
-	import flash.net.URLRequest;
 
-	public class SeymourPlaneExample extends MinkoExampleApplication
+	public class SeymourPlaneExample extends AbstractExampleApplication
 	{
 		override protected function initializeScene() : void
 		{
@@ -23,9 +24,15 @@ package aerys.minko.example.collada.seymourplane
 			options.mipmapTextures				= true;
 			options.dependencyLoaderFunction	= dependencyLoader;
 			
-			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options);
+			scene.load(new URLRequest("../assets/seymour_plane/seymourplane.DAE"), options)
+				.complete.add(sceneLoadCompleteHandler);
 		}
 		
+		private function sceneLoadCompleteHandler(sceneLoader : SceneLoader, result : ISceneNode) : void
+		{
+			scene.activeCamera.addController(cameraController);
+		}
+
 		private function dependencyLoader(dependencyPath	: String,
 										  isTexture			: Boolean,
 										  options			: ParserOptions) : ILoader
@@ -40,11 +47,6 @@ package aerys.minko.example.collada.seymourplane
 				
 				loader = new TextureLoader(true);
 				loader.load(new URLRequest(correctedURL));
-			}
-			else
-			{
-				loader = new SceneLoader(options);
-				loader.load(new URLRequest(dependencyPath));
 			}
 			
 			return loader;
