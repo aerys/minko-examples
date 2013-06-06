@@ -6,7 +6,6 @@ package aerys.minko.example.core.skybox
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
 	import aerys.minko.render.resource.texture.CubeTextureResource;
-	import aerys.minko.scene.controller.camera.ArcBallController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.enum.FrustumCulling;
 	

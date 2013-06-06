@@ -2,7 +2,6 @@ package aerys.minko.example.core.variance
 {
 	import aerys.minko.render.shader.part.phong.attenuation.LightBleedingInterpolation;
 	import aerys.minko.scene.node.light.SpotLight;
-	import aerys.minko.type.enum.ShadowMappingQuality;
 	import aerys.minko.type.enum.ShadowMappingType;
 	import aerys.minko.type.math.Vector4;
 

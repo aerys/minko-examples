@@ -1,13 +1,13 @@
 package aerys.minko.example.collada.seymourplane
 {
+	import flash.net.URLRequest;
+	
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.loader.parser.ParserOptions;
 	import aerys.minko.type.parser.collada.ColladaParser;
-	
-	import flash.net.URLRequest;
 
 	public class SeymourPlaneExample extends AbstractExampleApplication
 	{

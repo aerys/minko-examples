@@ -1,8 +1,10 @@
 package aerys.minko.example.core.projection
 {
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.Geometry;
-	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.TeapotGeometry;
 	import aerys.minko.render.geometry.stream.iterator.VertexIterator;
 	import aerys.minko.render.geometry.stream.iterator.VertexReference;
@@ -10,11 +12,6 @@ package aerys.minko.example.core.projection
 	import aerys.minko.render.shader.vertex.VertexNormalShader;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
-	import aerys.minko.type.math.Vector4;
-	
-	import flash.display.Shape;
-	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
 
 	public class ProjectionExample extends AbstractExampleApplication
 	{

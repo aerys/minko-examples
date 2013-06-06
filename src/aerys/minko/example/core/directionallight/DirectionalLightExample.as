@@ -1,6 +1,5 @@
 package aerys.minko.example.core.directionallight
 {
-	import aerys.minko.render.material.phong.PhongProperties;
 	import aerys.minko.scene.node.light.DirectionalLight;
 	import aerys.minko.type.enum.ShadowMappingQuality;
 	import aerys.minko.type.enum.ShadowMappingType;

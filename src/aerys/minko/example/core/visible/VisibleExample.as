@@ -1,12 +1,12 @@
 package aerys.minko.example.core.visible
 {
+    import flash.utils.setInterval;
+    
     import aerys.minko.example.core.primitives.PrimitivesExample;
-    import aerys.minko.scene.SceneIterator;
     import aerys.minko.scene.node.AbstractVisibleSceneNode;
     import aerys.minko.scene.node.Group;
+    import aerys.minko.scene.node.ISceneNode;
     import aerys.minko.scene.node.Mesh;
-    
-    import flash.utils.setInterval;
 
     public class VisibleExample extends PrimitivesExample
     {
@@ -19,11 +19,11 @@ package aerys.minko.example.core.visible
             
             setInterval(function() : void
             {
-                var nodes   : SceneIterator             = scene.get('/group');
-                var node    : AbstractVisibleSceneNode  = nodes[uint(Math.random() * nodes.length)];
+                var nodes   : Vector.<ISceneNode>       = scene.get('/group');
+                var node    : AbstractVisibleSceneNode  = nodes[uint(Math.random() * nodes.length)] as AbstractVisibleSceneNode;
                 
                 node.visible = !node.visible;
-            }, 2000);
+            }, 1500);
         }
     }
 }

@@ -42,7 +42,7 @@ package aerys.minko.example.core.vertexattributes
 			var material : PhongMaterial = new PhongMaterial({
 				triangleCulling : TriangleCulling.NONE
 				},
-				new PhongEffect(shatterShader)
+				new PhongEffect(null, shatterShader)
 			);
 			material.castShadows = true;
 			material.receiveShadows = true;

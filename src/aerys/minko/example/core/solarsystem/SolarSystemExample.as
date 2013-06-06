@@ -1,12 +1,11 @@
 package aerys.minko.example.core.solarsystem
 {
+	import flash.events.Event;
+	
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
 
 	public class SolarSystemExample extends AbstractExampleApplication
 	{

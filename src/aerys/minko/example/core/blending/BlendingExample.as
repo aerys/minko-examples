@@ -1,17 +1,16 @@
 package aerys.minko.example.core.blending
 {
+	import com.bit101.utils.MinimalConfigurator;
+	
+	import flash.events.MouseEvent;
+	
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.type.binding.DataProvider;
 	import aerys.minko.type.enum.Blending;
-	
-	import com.bit101.utils.MinimalConfigurator;
-	
-	import flash.events.MouseEvent;
 
 	/**
 	 * This example demonstrate how to work with blending in order to create
@@ -68,13 +67,17 @@ package aerys.minko.example.core.blending
 			cfg.parseXML(
 				<comps>
 					<Panel x="10" y="110">
-						<VBox x="10" y="10">
+						<VBox x="10" y="0">
 							<Label text="Blending:"/>
 							<RadioButton label="Normal" selected="true"
 										 event="click:blendingChangedHandler"/>
 							<RadioButton label="Alpha"
 										 event="click:blendingChangedHandler"/>
 							<RadioButton label="Additive"
+										 event="click:blendingChangedHandler"/>
+							<RadioButton label="Light"
+										 event="click:blendingChangedHandler"/>
+							<RadioButton label="Modulate"
 										 event="click:blendingChangedHandler"/>
 						</VBox>
 					</Panel>
@@ -95,6 +98,12 @@ package aerys.minko.example.core.blending
 				case 'Additive' :
 					_sharedProperties.blending = Blending.ADDITIVE;
 					break ;
+				case 'Light' : 
+					_sharedProperties.blending = Blending.LIGHT;
+					break;
+				case 'Modulate' :
+					_sharedProperties.blending = Blending.MODULATE;
+					break;
 			}
 		}
 	}
