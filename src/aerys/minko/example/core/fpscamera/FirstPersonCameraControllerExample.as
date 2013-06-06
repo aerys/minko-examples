@@ -1,16 +1,15 @@
 package aerys.minko.example.core.fpscamera
 {
-	import aerys.minko.scene.controller.camera.FirstPersonCameraController;
-	import aerys.minko.scene.node.camera.Camera;
-	import aerys.minko.scene.node.light.AmbientLight;
-	import aerys.minko.scene.node.light.DirectionalLight;
-	import aerys.minko.type.math.Vector4;
-	
 	import com.bit101.utils.MinimalConfigurator;
 	
 	import flash.display.StageDisplayState;
 	import flash.events.FullScreenEvent;
 	import flash.events.MouseEvent;
+	
+	import aerys.minko.scene.controller.camera.FirstPersonCameraController;
+	import aerys.minko.scene.node.light.AmbientLight;
+	import aerys.minko.scene.node.light.DirectionalLight;
+	import aerys.minko.type.math.Vector4;
 	
 	public class FirstPersonCameraControllerExample extends AbstractLightExampleApplication
 	{
@@ -28,7 +27,7 @@ package aerys.minko.example.core.fpscamera
 			_fpsCameraController.bindDefaultControls(stage);
 			
 			// Move back the camera.
-			_fpsCameraController.walk(-100);
+			_fpsCameraController.walk(-99);
 			
 			// Handle fullscreen mode.
 			stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullScreenChangedHandler);			

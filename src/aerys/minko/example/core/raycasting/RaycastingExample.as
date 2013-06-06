@@ -1,16 +1,15 @@
 package aerys.minko.example.core.raycasting
 {
+	import flash.events.MouseEvent;
+	
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.render.material.phong.PhongMaterial;
+	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.DirectionalLight;
-	import aerys.minko.type.enum.Blending;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.MouseEvent;
 
 	public class RaycastingExample extends AbstractExampleApplication
 	{
@@ -60,7 +59,9 @@ package aerys.minko.example.core.raycasting
 			if (_selected)
 				_selected.material = _material;
 			
-			_selected = scene.cast(camera.unproject(event.stageX, event.stageY))[0];
+			var castedNode : Vector.<ISceneNode> = scene.cast(camera.unproject(event.stageX, event.stageY));
+			
+			_selected = castedNode.length > 0 ? castedNode[0] as Mesh : null;
 			
 			if (_selected)
 				_selected.material = _selectedMaterial;

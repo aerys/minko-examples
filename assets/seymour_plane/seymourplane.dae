@@ -113,7 +113,7 @@ limitations under the License.
     </library_lights>
     <library_images>
         <image id="file1" name="file1" depth="1">
-            <init_from>./planeDiffuse.tga</init_from>
+            <init_from>./planeDiffuse.jpg</init_from>
         </image>
     </library_images>
     <library_materials>

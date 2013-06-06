@@ -2,7 +2,7 @@ package aerys.minko.example.core.pointlight
 {
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.scene.controller.AnimationController;
+	import aerys.minko.scene.controller.animation.AnimationController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.PointLight;
@@ -28,7 +28,7 @@ package aerys.minko.example.core.pointlight
 				new Mesh(SphereGeometry.sphereGeometry, new BasicMaterial({diffuseColor:0xffffffff}))
 			);
 			
-			pointLight.shadowCastingType	= ShadowMappingType.CUBE;
+			pointLight.shadowCastingType	= ShadowMappingType.PCF;
             pointLight.shadowZNear          = 0.1;
             pointLight.shadowZFar           = 100.;
 			pointLight.shadowMapSize		= 1024;

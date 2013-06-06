@@ -1,16 +1,13 @@
 package aerys.minko.example.core.animationcontroller
 {
 	import aerys.minko.example.core.cubes.CubesExample;
-	import aerys.minko.scene.controller.AnimationController;
+	import aerys.minko.scene.controller.animation.AnimationController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.animation.timeline.ITimeline;
 	import aerys.minko.type.animation.timeline.MatrixTimeline;
-	import aerys.minko.type.math.HSLAMatrix4x4;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.events.Event;
 
 	public class AnimationControllerExample extends CubesExample
 	{

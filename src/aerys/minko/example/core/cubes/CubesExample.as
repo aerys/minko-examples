@@ -1,15 +1,13 @@
 package aerys.minko.example.core.cubes
 {
+	import flash.events.Event;
+	import flash.utils.getTimer;
+	
 	import aerys.minko.render.Effect;
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.Material;
-	import aerys.minko.scene.controller.TransformController;
-	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
-	
-	import flash.events.Event;
-	import flash.utils.getTimer;
 	
 
 	public class CubesExample extends AbstractExampleApplication

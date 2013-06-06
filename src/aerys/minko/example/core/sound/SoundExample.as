@@ -1,8 +1,10 @@
 package aerys.minko.example.core.sound
 {
+	import flash.media.Sound;
+	
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.material.phong.PhongMaterial;
-	import aerys.minko.scene.controller.AnimationController;
+	import aerys.minko.scene.controller.animation.AnimationController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
 	import aerys.minko.scene.node.light.DirectionalLight;
@@ -10,8 +12,6 @@ package aerys.minko.example.core.sound
 	import aerys.minko.type.animation.timeline.MatrixTimeline;
 	import aerys.minko.type.math.Matrix4x4;
 	import aerys.minko.type.math.Vector4;
-	
-	import flash.media.Sound;
 	
 	public class SoundExample extends AbstractExampleApplication
 	{
@@ -25,7 +25,7 @@ package aerys.minko.example.core.sound
 			// Add a mesh to the scene (it'll be our sound emitter).
 			var mesh				: Mesh				= new Mesh(
 				CubeGeometry.cubeGeometry,
-				new PhongMaterial(scene, { diffuseColor: int(Math.random() * int.MAX_VALUE) })
+				new PhongMaterial({ diffuseColor: int(Math.random() * int.MAX_VALUE) })
 			);
 			
 			scene.addChild(mesh);
