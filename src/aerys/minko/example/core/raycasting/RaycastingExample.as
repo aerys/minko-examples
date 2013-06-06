@@ -20,7 +20,7 @@ package aerys.minko.example.core.raycasting
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
-            
+        
             _material = new PhongMaterial({ diffuseColor : 0xffffffff });
             _selectedMaterial = new PhongMaterial({ diffuseColor : 0xff0000ff });
             
