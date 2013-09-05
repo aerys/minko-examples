@@ -35,7 +35,7 @@ package aerys.minko.example.mk
 				addEventListener(Event.ADDED_TO_STAGE, initialize);
 		}
 		
-		public function initialize() : void
+		public function initialize(event : Event = null) : void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, initialize);
 			stage.addChildAt(_viewport, 0);
