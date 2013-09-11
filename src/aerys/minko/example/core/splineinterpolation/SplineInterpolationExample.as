@@ -1,13 +1,14 @@
 package aerys.minko.example.core.splineinterpolation
 {
-	import aerys.minko.render.Effect;
+	import com.bit101.components.CheckBox;
+	import com.bit101.utils.MinimalConfigurator;
+	
+	import flash.events.MouseEvent;
+	
 	import aerys.minko.render.geometry.primitive.CubeGeometry;
 	import aerys.minko.render.geometry.primitive.SphereGeometry;
-	import aerys.minko.render.material.Material;
 	import aerys.minko.render.material.basic.BasicMaterial;
-	import aerys.minko.render.material.basic.BasicShader;
 	import aerys.minko.render.material.phong.PhongMaterial;
-	import aerys.minko.render.resource.texture.TextureResource;
 	import aerys.minko.scene.controller.animation.AnimationController;
 	import aerys.minko.scene.node.Mesh;
 	import aerys.minko.scene.node.light.AmbientLight;
@@ -19,11 +20,6 @@ package aerys.minko.example.core.splineinterpolation
 	import aerys.minko.type.interpolation.Path;
 	import aerys.minko.type.loader.TextureLoader;
 	import aerys.minko.type.math.Vector4;
-	
-	import com.bit101.components.CheckBox;
-	import com.bit101.utils.MinimalConfigurator;
-	
-	import flash.events.MouseEvent;
 
 	public final class SplineInterpolationExample extends AbstractExampleApplication
 	{
