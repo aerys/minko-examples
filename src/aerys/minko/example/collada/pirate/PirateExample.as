@@ -35,9 +35,10 @@ package aerys.minko.example.collada.pirate
 			scene.loadClass(DAE, options);
 		}
 		
-		private function loadDependency(dependencyPath	: String,
-										isTexture		: Boolean,
-										options			: ParserOptions) : ILoader
+		protected function loadDependency(dependencyId 		: String,
+										  dependencyPath	: String,
+										  isTexture			: Boolean,
+										  options			: ParserOptions) : ILoader
 		{
 			var loader : ILoader = new TextureLoader(options.mipmapTextures)
 			

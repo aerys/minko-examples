@@ -26,9 +26,10 @@ package aerys.minko.example.obj
 			
 			options.parser = ObjParser;
 			options.material = new PhongMaterial(scene);
-			options.dependencyLoaderFunction = function(dependencyPath   : String,
-														isTexture    	 : Boolean,
-														options          : ParserOptions) : ILoader
+			options.dependencyLoaderFunction = function(dependencyId 		: String,
+														dependencyPath   	: String,
+														isTexture    	 	: Boolean,
+														options          	: ParserOptions) : ILoader
 			{
 				// load embedded MTL file
 				if (dependencyPath.indexOf('.mtl') >= 0)

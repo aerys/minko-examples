@@ -47,7 +47,8 @@ package aerys.minko.example.collada.skeletondebug
 			});
 		}
 		
-		private function loadDependency(dependencyPath	: String,
+		private function loadDependency(dependencyId 	: String,
+										dependencyPath	: String,
 										isTexture		: Boolean,
 										options			: ParserOptions) : ILoader
 		{

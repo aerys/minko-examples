@@ -33,9 +33,10 @@ package aerys.minko.example.collada.seymourplane
 			scene.activeCamera.addController(cameraController);
 		}
 
-		private function dependencyLoader(dependencyPath	: String,
-										  isTexture			: Boolean,
-										  options			: ParserOptions) : ILoader
+		protected function dependencyLoader(dependencyId 	: String,
+											dependencyPath	: String,
+											isTexture		: Boolean,
+											options			: ParserOptions) : ILoader
 		{
 			var loader : ILoader;
 			

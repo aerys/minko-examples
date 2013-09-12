@@ -55,7 +55,8 @@ package aerys.minko.example.collada.skinning
 			scene.addChild(_staticSkinnedGroup);
 		}
 		
-		private function loadDependency(dependencyPath	: String,
+		private function loadDependency(dependencyId 	: String,
+										dependencyPath	: String,
 										isTexture		: Boolean,
 										options			: ParserOptions) : ILoader
 		{
