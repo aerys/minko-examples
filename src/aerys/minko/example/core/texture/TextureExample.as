@@ -77,7 +77,7 @@ package aerys.minko.example.core.texture
 				CubeGeometry.cubeGeometry,
 				new BasicMaterial({
 					diffuseMap 		    : textureJPEFXR,
-					diffuseMaptFormat	: textureJPEFXR.format,
+					diffuseMapFormat	: textureJPEFXR.format,
 					blending		    : Blending.ALPHA
 				})
 			);
