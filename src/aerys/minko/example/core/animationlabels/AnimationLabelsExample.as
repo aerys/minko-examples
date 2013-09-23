@@ -5,10 +5,13 @@ package aerys.minko.example.core.animationlabels
 	import flash.ui.Keyboard;
 	
 	import aerys.minko.render.geometry.stream.StreamUsage;
+	import aerys.minko.scene.controller.animation.IAnimationController;
 	import aerys.minko.scene.controller.animation.MasterAnimationController;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.type.animation.SkinningMethod;
+	import aerys.minko.type.clone.CloneOptions;
+	import aerys.minko.type.clone.ControllerCloneAction;
 	import aerys.minko.type.loader.ILoader;
 	import aerys.minko.type.loader.SceneLoader;
 	import aerys.minko.type.loader.TextureLoader;
@@ -26,6 +29,7 @@ package aerys.minko.example.core.animationlabels
 		private var _animations	: MasterAnimationController;
 		private var _state		: String;
 		private var _log		: TextField;
+		private var _pirate		: Group;
 		
 		override protected function initializeUI() : void
 		{
@@ -61,12 +65,13 @@ package aerys.minko.example.core.animationlabels
 		}
 		
 		private function modelLoadedHandler(loader : SceneLoader, group : Group) : void
-		{				
+		{
+			_pirate = group;
 			var nodes		: Vector.<ISceneNode> = group.get('//*[hasController(MasterAnimationController)]');
 			
 			_animations = nodes[0].getControllersByType(MasterAnimationController)[0] as MasterAnimationController;
 			
-			initAnimations();				
+			initAnimations();
 		}
 		
 		private function initAnimations() : void
@@ -86,6 +91,19 @@ package aerys.minko.example.core.animationlabels
 			idle();
 		}
 		
+		private function reverse() : void
+		{
+			_animations.reverse = !_animations.reverse;
+		}
+		
+		public function clone() : void
+		{
+			var opt : CloneOptions = CloneOptions.defaultOptions.setActionForControllerClass(IAnimationController, ControllerCloneAction.DEEP_CLONE);
+			
+			var clone : Group = _pirate.clone(opt) as Group;
+			scene.addChild(clone);
+		}
+		
 		public function keyDownHandler(event : KeyboardEvent) : void
 		{
 			if (event.keyCode == Keyboard.UP)
@@ -96,6 +114,8 @@ package aerys.minko.example.core.animationlabels
 				kick();
 			else if(event.keyCode == Keyboard.SHIFT)
 				punch();
+			else if(event.keyCode == Keyboard.R)
+				reverse();
 		}
 		
 		public function keyUpHandler(event : KeyboardEvent) : void
@@ -115,7 +135,9 @@ package aerys.minko.example.core.animationlabels
 				_log.text = "PUNCH\n" + _log.text;
 			else if (labelName == 'kick_hit')
 				_log.text = "KICK\n" + _log.text;
-			else if (labelName == 'kick_stop' || labelName == 'punch_stop')
+			else if (!_animations.reverse && (labelName == 'kick_stop' || labelName == 'punch_stop'))
+				idle();
+			else if (_animations.reverse && (labelName == 'kick_start' || labelName == 'punch_start'))
 				idle();
 		}
 		
