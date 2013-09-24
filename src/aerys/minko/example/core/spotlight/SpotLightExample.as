@@ -18,8 +18,9 @@ package aerys.minko.example.core.spotlight
 			spotLight.shadowMapSize		= 2048;
 			spotLight.outerRadius		= Math.PI / 2;
 			spotLight.innerRadius		= 0;
-			spotLight.shadowQuality		= ShadowMappingQuality.HIGH;
+			spotLight.shadowQuality		= ShadowMappingQuality.VERY_HIGH;
             spotLight.shadowSpread      = 2;
+			spotLight.shadowColor		= 0xff0000ff;
             
 			spotLight.transform.lookAt(Vector4.Z_AXIS, new Vector4(0., 0., -70));
             
