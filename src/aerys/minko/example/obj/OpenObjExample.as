@@ -1,5 +1,7 @@
 package aerys.minko.example.obj
 {
+	import aerys.minko.render.material.Material;
+	import aerys.minko.render.material.basic.BasicMaterial;
 	import aerys.minko.render.material.phong.PhongMaterial;
 	import aerys.minko.scene.node.Group;
 	import aerys.minko.scene.node.Mesh;
@@ -18,6 +20,16 @@ package aerys.minko.example.obj
 		[Embed('../assets/dinosaur/dinosaur.mtl', mimeType="application/octet-stream")]
 		private static const DINOSAUR_MTL	: Class;
 		
+		
+		private function myMaterialFunction(materialName	: String,
+											material		: Material) : Material
+		{
+			trace("material name = " + materialName);
+			
+			return new BasicMaterial({ diffuseColor: 0xff0000ff }) as Material;
+		}
+		
+		
 		override protected function initializeScene() : void
 		{
 			super.initializeScene();
@@ -26,6 +38,7 @@ package aerys.minko.example.obj
 			
 			options.parser = ObjParser;
 			options.material = new PhongMaterial(scene);
+			options.materialFunction	=  myMaterialFunction;
 			options.dependencyLoaderFunction = function(dependencyId 		: String,
 														dependencyPath   	: String,
 														isTexture    	 	: Boolean,
