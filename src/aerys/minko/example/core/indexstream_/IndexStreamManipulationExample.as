@@ -1,4 +1,4 @@
-package aerys.minko.example.core.indexStream
+package aerys.minko.example.core.indexstream_
 {
 	import com.bit101.utils.MinimalConfigurator;
 	
