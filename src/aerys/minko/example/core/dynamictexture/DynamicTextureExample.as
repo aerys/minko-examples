@@ -16,10 +16,7 @@ package aerys.minko.example.core.dynamictexture
 			
 			var cube : Mesh = new Mesh(CubeGeometry.cubeGeometry, new BasicMaterial());
 			
-			cube.addController(new DynamicTextureController(
-				new MINKO_LOGO_SWF(),
-				512, 512
-			));
+			cube.addController(new DynamicTextureController(new MINKO_LOGO_SWF()));
 			
 			scene.addChild(cube);
 		}
