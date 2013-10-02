@@ -1,4 +1,4 @@
-package aerys.minko.example.core.blendingeffect_
+package aerys.minko.example.core.blendingeffect
 {
 	import flash.display.BitmapData;
 	import flash.events.Event;

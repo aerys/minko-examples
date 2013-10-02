@@ -1,4 +1,4 @@
-package aerys.minko.example.core.blendingeffect_
+package aerys.minko.example.core.blendingeffect
 {
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.geometry.stream.format.VertexComponent;

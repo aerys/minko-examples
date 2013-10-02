@@ -1,4 +1,4 @@
-package aerys.minko.example.core.cameraview_
+package aerys.minko.example.core.cameraview
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;

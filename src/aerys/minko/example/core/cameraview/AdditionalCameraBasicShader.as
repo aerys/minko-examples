@@ -1,4 +1,4 @@
-package aerys.minko.example.core.cameraview_
+package aerys.minko.example.core.cameraview
 {
 	import aerys.minko.render.RenderTarget;
 	import aerys.minko.render.material.basic.BasicShader;
