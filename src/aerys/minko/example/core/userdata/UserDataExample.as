@@ -7,7 +7,7 @@ package aerys.minko.example.core.userdata
 	import aerys.minko.scene.node.ISceneNode;
 	import aerys.minko.scene.node.Mesh;
 
-	public class UserDataExample_ extends AbstractExampleApplication
+	public class UserDataExample extends AbstractExampleApplication
 	{
 		private var _material : BasicMaterial = new BasicMaterial({diffuseColor : 0xFF00FFFF});
 		
