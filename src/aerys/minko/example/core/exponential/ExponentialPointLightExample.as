@@ -28,7 +28,7 @@ package aerys.minko.example.core.exponential
 				new Mesh(SphereGeometry.sphereGeometry, new BasicMaterial({diffuseColor:0xffffffff}))
 			);
 			
-			pointLight.shadowCastingType			= ShadowMappingType.EXPONENTIAL;
+			pointLight.shadowMappingType			= ShadowMappingType.EXPONENTIAL;
             pointLight.shadowZNear          		= 0.1;
             pointLight.shadowZFar           		= 200.;
 			pointLight.shadowMapSize				= 1024;

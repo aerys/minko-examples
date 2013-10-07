@@ -95,7 +95,7 @@ package aerys.minko.example.core.vertexattributes
 		private function initLight() : void
 		{
 			var pointLight	: PointLight	= new PointLight();
-			pointLight.shadowCastingType	= ShadowMappingType.NONE;
+			pointLight.shadowMappingType	= ShadowMappingType.NONE;
 			pointLight.shadowZNear          = 0.1;
 			pointLight.shadowZFar           = 100.;
 			pointLight.shadowMapSize		= 1024;

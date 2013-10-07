@@ -65,7 +65,7 @@ package
 			
 			directional = new DirectionalLight();
 			directional.transform.lookAt(Vector4.ZERO, new Vector4(100, 100, 100));
-			directional.shadowCastingType = ShadowMappingType.PCF;
+			directional.shadowMappingType = ShadowMappingType.PCF;
 			directional.shadowMapSize = 2048;
 			directional.shadowWidth = 150;
 			directional.shadowQuality = ShadowMappingQuality.LOW;

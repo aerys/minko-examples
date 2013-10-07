@@ -29,7 +29,7 @@ package aerys.minko.example.core.variance
 				new Mesh(SphereGeometry.sphereGeometry, new BasicMaterial({diffuseColor:0xffffffff}))
 			);
 			
-			pointLight.shadowCastingType			= ShadowMappingType.VARIANCE;
+			pointLight.shadowMappingType			= ShadowMappingType.VARIANCE;
             pointLight.shadowZNear          		= 0.1;
             pointLight.shadowZFar           		= 200.;
 			pointLight.shadowMapSize				= 1024;

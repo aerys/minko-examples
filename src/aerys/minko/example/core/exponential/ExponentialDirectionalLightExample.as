@@ -12,7 +12,7 @@ package aerys.minko.example.core.exponential
 			
 			var directionalLight : DirectionalLight = new DirectionalLight();
 			
-			directionalLight.shadowCastingType			= ShadowMappingType.EXPONENTIAL;
+			directionalLight.shadowMappingType			= ShadowMappingType.EXPONENTIAL;
 			directionalLight.shadowMapSize				= 1024;
 			directionalLight.shadowWidth				= 100;
 			directionalLight.shadowZFar        			= 250;

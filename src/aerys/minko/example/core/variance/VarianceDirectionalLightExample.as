@@ -13,7 +13,7 @@ package aerys.minko.example.core.variance
 			
 			var directionalLight : DirectionalLight = new DirectionalLight();
 			
-			directionalLight.shadowCastingType			= ShadowMappingType.VARIANCE;
+			directionalLight.shadowMappingType			= ShadowMappingType.VARIANCE;
 			directionalLight.shadowMapSize				= 1024;
 			directionalLight.shadowWidth				= 100;
 			directionalLight.shadowZFar        			= 250;

@@ -13,7 +13,7 @@ package aerys.minko.example.core.exponential
 			var spotLight	: SpotLight	= new SpotLight();
 			
             spotLight.color             			= 0xffeeddff;
-			spotLight.shadowCastingType				= ShadowMappingType.EXPONENTIAL;
+			spotLight.shadowMappingType				= ShadowMappingType.EXPONENTIAL;
 			spotLight.shadowMapSize					= 2048;
 			spotLight.outerRadius					= Math.PI / 2;
 			spotLight.innerRadius					= 0;

@@ -14,7 +14,7 @@ package aerys.minko.example.core.spotlight
 			var spotLight	: SpotLight	= new SpotLight();
 			
             spotLight.color             = 0xffeeddff;
-			spotLight.shadowCastingType	= ShadowMappingType.PCF;
+			spotLight.shadowMappingType	= ShadowMappingType.PCF;
 			spotLight.shadowMapSize		= 2048;
 			spotLight.outerRadius		= Math.PI / 2;
 			spotLight.innerRadius		= 0;

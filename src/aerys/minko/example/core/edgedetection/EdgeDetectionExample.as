@@ -156,7 +156,7 @@ package aerys.minko.example.core.edgedetection {
 			
 			var pointLight : PointLight		= new PointLight();
 			
-			pointLight.shadowCastingType	= ShadowMappingType.EXPONENTIAL;
+			pointLight.shadowMappingType	= ShadowMappingType.EXPONENTIAL;
 			pointLight.shadowZNear          = 0.1;
 			pointLight.shadowZFar           = 100.;
 			pointLight.shadowMapSize		= 1024;

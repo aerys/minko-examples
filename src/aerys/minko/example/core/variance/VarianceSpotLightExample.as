@@ -14,7 +14,7 @@ package aerys.minko.example.core.variance
 			var spotLight	: SpotLight	= new SpotLight();
 			
             spotLight.color             			= 0xffeeddff;
-			spotLight.shadowCastingType				= ShadowMappingType.VARIANCE;
+			spotLight.shadowMappingType				= ShadowMappingType.VARIANCE;
 			spotLight.shadowMapSize					= 2048;
 			spotLight.outerRadius					= Math.PI / 2;
 			spotLight.innerRadius					= 0;

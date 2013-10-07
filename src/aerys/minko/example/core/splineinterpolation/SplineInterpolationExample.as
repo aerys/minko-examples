@@ -118,7 +118,7 @@ package aerys.minko.example.core.splineinterpolation
 		private function initializeLights() : void
 		{
 			var light	: DirectionalLight	= new DirectionalLight();
-			light.shadowCastingType			= ShadowMappingType.PCF;
+			light.shadowMappingType			= ShadowMappingType.PCF;
 			light.shadowMapSize				= 1024;
 			light.shadowQuality				= ShadowMappingQuality.LOW;
 			light.shadowSpread				= 2;

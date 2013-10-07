@@ -13,7 +13,7 @@ package aerys.minko.example.core.directionallight
 			
 			var directionalLight : DirectionalLight = new DirectionalLight();
 			
-            directionalLight.shadowCastingType	= ShadowMappingType.PCF;
+            directionalLight.shadowMappingType	= ShadowMappingType.PCF;
             directionalLight.shadowMapSize		= 1024;
             directionalLight.shadowQuality		= ShadowMappingQuality.LOW;
             directionalLight.shadowSpread		= 2;
