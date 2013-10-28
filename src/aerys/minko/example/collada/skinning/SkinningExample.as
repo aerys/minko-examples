@@ -25,10 +25,10 @@ package aerys.minko.example.collada.skinning
 
 			stage.frameRate = 60;
 
-			cameraController.distance = 250;
-			cameraController.yaw = 1.;
+			cameraController.distance = 5;
+			cameraController.yaw = -Math.PI/2.;
 			cameraController.distanceStep = 0.02;
-			cameraController.lookAt.set(0, 75, 0);
+			cameraController.lookAt.set(0, 1, 0);
 			
 			var options : ParserOptions = new ParserOptions();
 			options.parser						= ColladaParser;
@@ -36,12 +36,12 @@ package aerys.minko.example.collada.skinning
 			options.assets						= scene.assets;
 			options.dependencyLoaderFunction	= loadDependency;
 			options.vertexStreamUsage			= StreamUsage.DYNAMIC;
-			options.skinningMethod				= SkinningMethod.HARDWARE_MATRIX;
+			options.skinningMethod				= SkinningMethod.HARDWARE_DUAL_QUATERNION;
 			options.flattenSkinning				= false;
 			
 			_onlineSkinnedGroup	= new Group();
 			_onlineSkinnedGroup.loadClass(DAE, options);
-			_onlineSkinnedGroup.transform.setTranslation(50.0, 0.0, 0.0);
+			_onlineSkinnedGroup.transform.setTranslation(1.0, 0.0, 0.0);
 			
 			scene.addChild(_onlineSkinnedGroup);
 			
@@ -50,7 +50,7 @@ package aerys.minko.example.collada.skinning
 			
 			_staticSkinnedGroup	= new Group();
 			_staticSkinnedGroup.loadClass(DAE, options);
-			_staticSkinnedGroup.transform.setTranslation(-50.0, 0.0, 0.0);
+			_staticSkinnedGroup.transform.setTranslation(-1.0, 0.0, 0.0);
 			
 			scene.addChild(_staticSkinnedGroup);
 		}
