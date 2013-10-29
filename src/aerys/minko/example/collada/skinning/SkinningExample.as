@@ -31,10 +31,10 @@ package aerys.minko.example.collada.skinning
 
 			stage.frameRate = 60;
 
-			cameraController.distance = 250;
-			cameraController.yaw = 1.;
+			cameraController.distance = 4;
+			cameraController.yaw = -Math.PI/2;
 			cameraController.distanceStep = 0.02;
-			cameraController.lookAt.set(0, 75, 0);
+			cameraController.lookAt.set(0, 0.75, 0);
 			
 			var options : ParserOptions = new ParserOptions();
 			options.parser						= ColladaParser;
