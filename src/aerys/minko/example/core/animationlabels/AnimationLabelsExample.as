@@ -48,10 +48,9 @@ package aerys.minko.example.core.animationlabels
 		{
 			super.initializeScene();
 			
-			cameraController.distance = 250;
-			cameraController.yaw = 1.;
+			cameraController.distance = 5;
 			cameraController.distanceStep = 0.02;
-			cameraController.lookAt.set(0, 75, 0);
+			cameraController.lookAt.set(0, 1, 0);
 			
 			var options : ParserOptions		= new ParserOptions();
 			
@@ -87,8 +86,17 @@ package aerys.minko.example.core.animationlabels
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			
 			_animations.labelHit.add(labelHitHandler);
-						
+			
 			idle();
+		}
+		
+		private function timeFunctionDivTwo(time : Number) : Number
+		{
+			return time / 2;
+		}
+		private function timeFunctionDivFour(time : Number) : Number
+		{
+			return time / 4;
 		}
 		
 		private function reverse() : void
@@ -116,6 +124,10 @@ package aerys.minko.example.core.animationlabels
 				punch();
 			else if(event.keyCode == Keyboard.R)
 				reverse();
+			else if(event.keyCode == Keyboard.D)
+				_animations.timeFunction = _animations.timeFunction == timeFunctionDivTwo ? null : timeFunctionDivTwo;
+			else if(event.keyCode == Keyboard.F)
+				_animations.timeFunction = _animations.timeFunction == timeFunctionDivFour ? null : timeFunctionDivFour;
 		}
 		
 		public function keyUpHandler(event : KeyboardEvent) : void
