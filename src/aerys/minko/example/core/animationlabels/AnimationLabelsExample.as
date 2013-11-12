@@ -58,7 +58,8 @@ package aerys.minko.example.core.animationlabels
 			options.mipmapTextures				= true;
 			options.dependencyLoaderFunction	= loadDependency;
 			options.vertexStreamUsage			= StreamUsage.DYNAMIC;
-			options.skinningMethod				= SkinningMethod.HARDWARE_MATRIX;
+			options.skinningMethod				= SkinningMethod.HARDWARE_DUAL_QUATERNION;
+			options.interpolateAnimations		= true;
 			
 			scene.loadClass(DAE, options).complete.add(modelLoadedHandler);
 		}
